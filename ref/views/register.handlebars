@@ -1,0 +1,53 @@
+<div class = "ui center aligned grid">
+    <div class = "container-login ui center aligned grid" style="margin-top: 100px;">
+        <div class="ui center aligned basic segment">
+            <div class = "row">
+            <img class = "logo-login" src="/imgs/logocaps.png">
+            </div>
+            <div class="ui divider"></div>
+                {{#if message}}
+                <p>{{{ message }}}</p>
+                {{/if}}
+              <form method = "POST" action = "/register">
+                <div class="ui form">
+                    <div class="field">
+                        <div class="ui input">
+                          <input type="text" placeholder="full name" id="id_name" name="name" value="{{name}}">
+                                {{{errorField errorFields.name}}}
+                        </div>
+                      </div>
+                        <div class="field">
+                          <div class="ui input">
+                            <input type="text" placeholder="email" id="id_email" name="email" value="{{email}}">
+                                {{{errorField errorFields.email}}}
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui left icon input">
+                            <input type="password" placeholder="password" id="id_password" name="password">          
+                            <i class="lock icon"></i>
+                              {{{errorField errorFields.password}}}
+                          </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                              <input type="password" placeholder="confirm password" id="id_conf_password" name="password_conf">
+                              <i class="lock icon"></i>
+                                 {{{errorField errorFields.passwordConf}}}
+                            </div>
+                          </div>
+                         <button type="submit">Sign Up</button>
+                      </div>
+                </form>
+                
+                      <div class="ui divider"></div>
+                      <p class ="">Already have an account? <a href="/login">Login</a></p>
+                          <a href="/">← Back To Home</a>
+                      <p class ="" >By logging in you agree to Hagg's Terms & Conditions and Privacy Policy</p> <br>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
