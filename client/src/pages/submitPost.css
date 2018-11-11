@@ -1,0 +1,15 @@
+form {
+  margin-left: 20vw;
+}
+#title {
+  width:60vw;
+}
+
+#body {
+  height:40vh;
+  width:60vw;
+}
+
+button {
+  margin-left:58vw;
+}
