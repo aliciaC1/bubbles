@@ -6,6 +6,9 @@ router.route("/:id")
   .get(post.findAll)
   .post(post.create);
 
+router.route("/delete/:id")
+  .post(post.delete);
+
 // Matches with "/api/books/:id"
 // router
 //   .route("/:id")
