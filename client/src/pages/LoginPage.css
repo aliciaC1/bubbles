@@ -1,0 +1,14 @@
+form {
+  margin-left:20vw;
+}
+
+input {
+  width:60vw;
+}
+
+#submit {
+  margin-top:2vh;
+  width:10vw;
+  margin-left:25vw;
+  text-align:center;
+}
