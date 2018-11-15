@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./pages/Home"; 
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import API from "./utils/API"; 
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
