@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 const LoginForm = () => (

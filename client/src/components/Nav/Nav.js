@@ -39,7 +39,7 @@ export default class MenuExampleSecondaryPointing extends Component {
         </Menu>
 
         <Segment>
-          <img src='/images/wireframe/media-paragraph.png' />
+          <img alt = "yel" src='/images/wireframe/media-paragraph.png' />
         </Segment>
       </div>
     )
