@@ -1,6 +1,7 @@
 module.exports = {
     //User: require("./User"),
     Post: require("./Posts"),
-    Bubble: require("./Bubbles")
+    Bubble: require("./Bubbles"),
+    User: require("./User")
   };
   
