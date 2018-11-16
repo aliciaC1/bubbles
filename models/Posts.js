@@ -9,6 +9,9 @@ const Schema = mongoose.Schema;
 
 // Create the headlineSchema with our schema class
 const postSchema = new Schema({
+    title: {
+        type: String,
+    },
     date: {
         type: Date,
         default: Date.now
@@ -18,7 +21,24 @@ const postSchema = new Schema({
     messageBody: {
         type: String,
         required: true
-    }
+    },
+    _bubbleId: [
+        {
+          // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Note model
+          ref: "Bubble"
+        }
+      ]
+    ,
+    _userId: [
+        {
+            // Store ObjectIds in the array
+          type: Schema.Types.ObjectId,
+          // The ObjectIds will refer to the ids in the Note model
+          ref: "User"
+        }
+    ]
 });
 
 // Create the post model using the postSchema
