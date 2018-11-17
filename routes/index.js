@@ -18,6 +18,7 @@ const bubbleRoute = require("./bubble");
 const postRoute = require("./post");
 const loginRoute = require("./login");
 const registerRoute = require("./register");
+const path = require('path');
 
 //EXAMPLE CODE FOR AUTHENTICATION-----------------------------------------------
 const reactClient = path.join(__dirname, "../client/build/index.html");
@@ -51,4 +52,4 @@ router.use("/", postRoute);
 router.use("/", loginRoute);
 router.use("/", registerRoute);
 
-module.exports = route;
+module.exports = router;

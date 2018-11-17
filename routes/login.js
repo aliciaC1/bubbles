@@ -22,7 +22,7 @@ router.route("/").post(function(req, res) {
             //Deletes the sessionID for User after ${sessionTime} has passed
             setTimeout(function(){
               db.User.findOneAndUpdate({ username: username }, { sessionExpired: true })
-              .then(response => console.log(`Session for ${response.username} has been deleted!`);
+              .then(response => console.log(`Session for ${response.username} has been deleted!`));
             }, sessionTime);
           })
           .catch(err => assert.ok(err));

@@ -37,13 +37,13 @@ const postSchema = new Schema({
 
 });
 
-Post.methods.setBubbleId = function (objectID) {
+postSchema.methods.setBubbleId = function (objectID) {
     this._bubbleId = objectID
     return this._bubbleId
 };
 
 // Custom method `lastUpdatedDate`
-Post.methods.setUserId = function (objectID) {
+postSchema.methods.setUserId = function (objectID) {
     this._userId = objectID
     return this._userId
 };
