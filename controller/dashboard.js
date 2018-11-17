@@ -5,12 +5,14 @@
 const db = require("../models");
 
 module.exports = {
-  // Find one note
+  /*
+   1. Find All Bubbles of User
+  */
   find: function (req, res) {
-    db.User.find({ _id: req.params.id })
+    db.User.find({ _id: req.params.user })
       .populate("bubbles")
       .then(function (dbBubble) {
-        // If we were able to successfully find Articles, send them back to the client
+        // If we were able to successfully find Bubbles, send them back to the client
         console.log(dbBubble);
         res.json(dbBubble);
       })
@@ -20,22 +22,31 @@ module.exports = {
       });
   },
   /*
-    1. Create a bubble (Insert Bubble Into User Array)
+    1. Create a bubble (req.body = "name of bubble").
+    2. Person who creates bubble automatically joins.
   */
-  // Create a new bubble
   create: function (req, res) {
     db.Bubble.create(req.body)
-      .then(function (dbPost) {
+      .then(function (dbBubble) {
         // If we were able to successfully update an Bubble, send it back to the client
-        console.log("Bubble Created");
-        res.json(dbPost);
+        db.User.findOneAndUpdate({ _id: req.params.user }, { $push: { _bubbleId: dbBubble._id } }, { new: true });
+      })
+      .then(function (dbBubble) {
+        // If we were able to successfully update an Bubble, send it back to the client
+        console.log(dbBubble)
+        db.Bubble.findOneAndUpdate({ _id: dbBubble._id}, { $push: { _userId: req.params.user } }, { new: true });
+      })
+      .then(function (dbBubble) {
+        // If we were able to successfully find Articles, send them back to the client
+        console.log(dbBubble);
+        res.json(dbBubble);
       })
       .catch(function (err) {
         // If an error occurred, send it to the client
         res.json(err);
       });
   }
-  // Delete a note with a given id
+  // Will add delete functionalitiy later.
   /*
   delete: function (req, res) {
     db.Note.remove({ _id: req.params.id }).then(function (dbNote) {

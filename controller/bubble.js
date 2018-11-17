@@ -4,10 +4,12 @@
 // ========================
 const db = require("../models");
 
+//Finds all buble associated with user.
+
 module.exports = {
     // Find one note
     findOne: function (req, res) {
-        db.Bubble.findOne({ _id: req.params.id })
+        db.Bubble.findOne({ _id: req.params.bubbleid })
             .populate("users")
             .populate("posts")
             .then(function (dbBubble) {
