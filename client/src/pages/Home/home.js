@@ -16,17 +16,12 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-// import API from "../../utils/API";
 
-/* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
- * such things.
- */
-const HomepageHeading = ({ mobile }) => (
+const Home = ({ mobile }) => (
   <Container text>
     <Header
       as='h1'
-      content='Imagine-a-Company'
+      content='Bubbles'
       inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
@@ -37,7 +32,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Do whatever you want when you want to.'
+      content='Anti-social media, Social media ?'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -45,14 +40,14 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
-      Get Started
+    <Button primary size='huge' href = "/register">
+      Check it out !
       <Icon name='right arrow' />
     </Button>
   </Container>
 )
 
-HomepageHeading.propTypes = {
+Home.propTypes = {
   mobile: PropTypes.bool,
 }
 
@@ -91,23 +86,18 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-                <Menu.Item as='a' active>
-                  Home
-                </Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
+            
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
+                  <Button as='a' inverted={!fixed} href = '/login'>
                     Log in
                   </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} href = '/register'>
                     Sign Up
                   </Button>
                 </Menu.Item>
               </Container>
             </Menu>
-            <HomepageHeading />
+            <Home />
           </Segment>
         </Visibility>
 
@@ -143,11 +133,8 @@ class MobileContainer extends Component {
             <Menu.Item as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
+            <Menu.Item as='a' href = '/login'>Log in</Menu.Item>
+            <Menu.Item as='a' href = '/register'>Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
@@ -170,13 +157,13 @@ class MobileContainer extends Component {
                     <Button as='a' inverted>
                       Log in
                     </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
+                    <Button as='a' inverted style={{ marginLeft: '0.5em' }} href = '/register'>
                       Sign Up
                     </Button>
                   </Menu.Item>
                 </Menu>
               </Container>
-              <HomepageHeading mobile />
+              <Home mobile />
             </Segment>
 
             {children}
