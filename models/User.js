@@ -53,6 +53,15 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    sessionID: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+    sessionExpired: {
+      type: Boolean,
+      default: true
+    },
     // Creation of Bubbles
     _bubbleId: [
         {
