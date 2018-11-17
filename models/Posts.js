@@ -11,6 +11,7 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
     title: {
         type: String,
+        required: true
     },
     date: {
         type: Date,
@@ -22,24 +23,30 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    _bubbleId: [
-        {
-          // Store ObjectIds in the array
-          type: Schema.Types.ObjectId,
-          // The ObjectIds will refer to the ids in the Note model
-          ref: "Bubble"
-        }
-      ]
-    ,
-    _userId: [
-        {
-            // Store ObjectIds in the array
-          type: Schema.Types.ObjectId,
-          // The ObjectIds will refer to the ids in the Note model
-          ref: "User"
-        }
-    ]
+    _bubbleId: {
+        type: Schema.Types.ObjectId,
+        // The ObjectIds will refer to the ids in the Note model
+        //ref: "Bubble"
+    },
+    _userId:
+    {
+        type: Schema.Types.ObjectId
+        // The ObjectIds will refer to the ids in the Note model
+        //ref: "User"
+    }
+
 });
+
+Post.methods.setBubbleId = function (objectID) {
+    this._bubbleId = objectID
+    return this._bubbleId
+};
+
+// Custom method `lastUpdatedDate`
+Post.methods.setUserId = function (objectID) {
+    this._userId = objectID
+    return this._userId
+};
 
 // Create the post model using the postSchema
 const Post = mongoose.model("Post", postSchema);
