@@ -8,8 +8,8 @@ module.exports = {
   /*
    1. Find All Bubbles of User
   */
-  find: function (req, res) {
-    db.User.find({ _id: req.params.user })
+  findOne: function (req, res) {
+    db.User.findOne({ sessionID: req.cookies.sessionID })
       .populate("bubbles")
       .then(function (dbBubble) {
         // If we were able to successfully find Bubbles, send them back to the client
@@ -28,18 +28,14 @@ module.exports = {
   create: function (req, res) {
     db.Bubble.create(req.body)
       .then(function (dbBubble) {
-        // If we were able to successfully update an Bubble, send it back to the client
-        db.User.findOneAndUpdate({ _id: req.params.user }, { $push: { _bubbleId: dbBubble._id } }, { new: true });
-      })
-      .then(function (dbBubble) {
-        // If we were able to successfully update an Bubble, send it back to the client
-        console.log(dbBubble)
-        db.Bubble.findOneAndUpdate({ _id: dbBubble._id}, { $push: { _userId: req.params.user } }, { new: true });
-      })
-      .then(function (dbBubble) {
-        // If we were able to successfully find Articles, send them back to the client
-        console.log(dbBubble);
-        res.json(dbBubble);
+        db.User.findOne({ sessionID: req.cookies.sessionID })
+          .then(function (User) {
+            // If we were able to successfully find Bubbles, send them back to the client
+            console.log(User);
+            const userID = User._id;
+            db.User.findOneAndUpdate({ _id: userID }, { $push: { _bubbleId: dbBubble._id } }, { new: false });
+            db.Bubble.findOneAndUpdate({ _id: dbBubble._id }, { $push: { _userId: userID } }, { new: false });
+          })
       })
       .catch(function (err) {
         // If an error occurred, send it to the client
@@ -53,5 +49,6 @@ module.exports = {
       res.json(dbNote);
     });
   }
+
   */
 };

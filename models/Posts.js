@@ -23,27 +23,17 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    _bubbleId: {
-        type: Schema.Types.ObjectId,
-        // The ObjectIds will refer to the ids in the Note model
-        //ref: "Bubble"
-    },
     _userId:
     {
-        type: Schema.Types.ObjectId
+        type: String
         // The ObjectIds will refer to the ids in the Note model
         //ref: "User"
     }
 
 });
 
-postSchema.methods.setBubbleId = function (objectID) {
-    this._bubbleId = objectID
-    return this._bubbleId
-};
-
 // Custom method `lastUpdatedDate`
-postSchema.methods.setUserId = function (objectID) {
+postSchema.methods.setUserId = function (name) {
     this._userId = objectID
     return this._userId
 };
