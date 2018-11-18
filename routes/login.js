@@ -22,6 +22,7 @@ router.route("/login").post(function(req, res) {
       const sessionID = generateKey();
       res.cookie("sessionID", sessionID, { httpOnly: true, expires: new Date(Date.now() + sessionTime)}); //Default Session: 1 Minute
       const update = db.User.findOneAndUpdate({ username: username }, { sessionID: sessionID, sessionExpired: false })
+      console.log("This is the Update Brah:"+ update);
       update.then(function(response) {
         setTimeout(function(){
           const destroy = db.User.findOneAndUpdate({ username: username }, { sessionExpired: true });
