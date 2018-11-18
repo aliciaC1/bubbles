@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./pages/Home/Home.js";
-import Login from "./pages/Login/Login.js";
+import Home from "./pages/Home/home.js";
+import Login from "./pages/Login/login.js";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";

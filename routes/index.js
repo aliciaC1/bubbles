@@ -16,8 +16,7 @@ const router = require("express").Router();
 const dashboardRoute = require("./dashboard");
 const bubbleRoute = require("./bubble");
 const postRoute = require("./post");
-const loginRoute = require("./login");
-const registerRoute = require("./register");
+const userRoute = require("./user");
 const path = require('path');
 const db = require('../models');
 const cookies = require('cookie-parser');
@@ -54,8 +53,7 @@ router.route("/bubbles").get(function(req, res) {
 router.use("/", dashboardRoute);
 router.use("/", bubbleRoute);
 router.use("/", postRoute);
-router.use("/", loginRoute);
-router.use("/", registerRoute);
+router.use("/", userRoute);
 
 router.use(function(request, response) {
   response.sendFile(path.join(__dirname, "../client/build/index.html"));
