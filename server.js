@@ -1,11 +1,10 @@
 const express = require("express");
+const app = express();
 const logger = require('morgan');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
-const app = express();
 const PORT = process.env.PORT || 3001;
-const cookies = require('cookie-parser');
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
@@ -19,14 +18,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 */
-
 app.use(express.static("client/build"));
 
 // Add routes, both API and view
 app.use(routes);
-
-// Cookie Parser
-app.use(cookies());
 
 // Connect to the Mongo DB
 mongoose.connect(
