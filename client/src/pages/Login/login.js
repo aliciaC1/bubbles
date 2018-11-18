@@ -53,7 +53,7 @@ class Login extends React.Component{
       });
       // const res = await API.register(this.state.username, this.state.password, this.state.email)
       const res = await API.login(data);
-      window.location = res.headers.location;
+      setTimeout(function(){ window.location = res.headers.location; }, 1000);
     }
 
 

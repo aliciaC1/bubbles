@@ -53,5 +53,9 @@ module.exports = {
         res.end();
       }
     })
+  },
+  home: function(req, res) {
+    res.location("/login");
+    res.end();
   }
 };

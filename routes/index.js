@@ -1,17 +1,3 @@
-
-
-/*
-const router = require("express").Router();
-const apiRoutes = require("./api");
-const viewRoutes = require("./view");
-
-router.use("/api", apiRoutes);
-router.use("/", viewRoutes);
-
-module.exports = router;
-
-*/
-
 const router = require("express").Router();
 const dashboardRoute = require("./dashboard");
 const bubbleRoute = require("./bubble");
@@ -19,41 +5,38 @@ const postRoute = require("./post");
 const userRoute = require("./user");
 const path = require('path');
 const db = require('../models');
-const cookies = require('cookie-parser');
 
 //Allows Server to Parse and Read through Cookies
+const cookies = require('cookie-parser');
 router.use(cookies());
 
-//EXAMPLE CODE FOR AUTHENTICATION-----------------------------------------------
-const reactClient = path.join(__dirname, "../client/build/index.html");
+//Makes All Routes except public routes require authentication
+const publicRoutes = ["/", "/login", "/register"];
+const Authenticate = require('./../controller/authenticate.js');
 
-const Authenticate = (session) => {
-  return new Promise((resolve, reject) => {
-    db.User.findOne({ sessionID: session }).then(function(response) {
-      if(response) {
-        console.log(response);
-        if(response.tokenExpired) { resolve(false) } else { resolve(true) }
-      } else {
-        resolve(false)
-      };
+router.route("*").all(function(req, res, next) {
+  // next(); is similar to continue in a for loop but for express,
+  //it just continues to the next set of routes below
+  if(publicRoutes.includes(req.path)) { next(); }
+  else {
+    Authenticate(req.cookies.sessionID).then(function(authorized) {
+      if(authorized) { console.log("User is authorized"); next(); }
+      else {
+        console.log("Protected Route");
+        //DO NOT REDIRECT, USE RES.SEND(); ~WM
+        res.send("<h1>403 Forbidden</h1><h3>You don't have permission to access " + req.path + "</h3>");
+      }
     });
-  })
-}
+  }
+})
 
-router.route("/bubbles").get(function(req, res) {
-  //Pass in the User's Session ID from Cookies
-  Authenticate(req.cookies.sessionID)
-  .then(pass => !pass ? res.send("403 FORBIDDEN ENTRY") : res.sendFile(reactClient));
-  // if it returns false, deny access
-  // if it returns true, assuming there's a "/privateRoute" in the react-router-dom in app.js, it will lead them there
-  // (send them the react app)
-});
-//(END OF) EXAMPLE CODE FOR AUTHENTICATION------------------------------------------------
-
-router.use("/", dashboardRoute);
-router.use("/", bubbleRoute);
-router.use("/", postRoute);
+//Public Routes
 router.use("/", userRoute);
+
+//Protected Routes
+router.use("/", bubbleRoute);
+router.use("/", dashboardRoute);
+router.use("/", postRoute);
 
 router.use(function(request, response) {
   response.sendFile(path.join(__dirname, "../client/build/index.html"));
