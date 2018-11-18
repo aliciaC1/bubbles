@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import querystring from 'querystring';
+import API from './../../utils/API.js';
+import hash from 'js-sha256';
 // import { Redirect } from "react-router-dom";
 import { Button, Form, Grid, Header, Image, Message, Segment , Modal, Icon} from 'semantic-ui-react'
 
@@ -10,7 +13,7 @@ class Login extends React.Component{
     this.state = {
       username: "",
       password: "",
-      modalOpen: false 
+      modalOpen: false
     }
   }
 
@@ -22,10 +25,10 @@ class Login extends React.Component{
 
   // Keep track of what user types into username input so that input can be grabbed later
   handleUserChange = (event) => {
-   
+
     this.setState({ username: event.target.value });
     console.log(this.state.username)
-   
+
   }
 
   // Keep track of what user types into password input so that input can be grabbed later
@@ -36,11 +39,21 @@ class Login extends React.Component{
 
 
   //Manage login
-  handleLogin = () => {
+  handleLogin = async (event) => {
+
+    event.preventDefault();
 
     if (this.state.password === "" || this.state.username === "" ){
       this.handleOpen();
- 
+
+    } else {
+      const data = querystring.stringify({
+        "username": this.state.username,
+        "password": hash.sha256(this.state.password),
+      });
+      // const res = await API.register(this.state.username, this.state.password, this.state.email)
+      const res = await API.login(data);
+      window.location = res.headers.location;
     }
 
 
@@ -48,10 +61,10 @@ class Login extends React.Component{
 
   render() {
     return (
-    
-       
+
+
       <div className='login-form'>
-   
+
       <style>{`
         body > div,
         body > div > div,
@@ -66,7 +79,7 @@ class Login extends React.Component{
       onClose={this.handleClose}
       basic
       size='mini'
-      textAlign='center' 
+      textAlign='center'
       style={{ height: '100%' }}
        verticalAlign='middle'
     >
@@ -80,7 +93,7 @@ class Login extends React.Component{
         </Button>
       </Modal.Actions>
     </Modal>
-   
+
 
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
@@ -98,7 +111,7 @@ class Login extends React.Component{
                 type='password'
                 onChange = {this.handlePassword}
               />
-  
+
               <Button color='black' fluid size='large' onClick = {this.handleLogin}>
                 Login
               </Button>
@@ -110,13 +123,13 @@ class Login extends React.Component{
         </Grid.Column>
       </Grid>
 
-  
-    </div>
-    
 
-     
-    
-    
+    </div>
+
+
+
+
+
     );
   }
 

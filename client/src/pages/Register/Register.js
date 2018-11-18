@@ -1,5 +1,8 @@
 import React from 'react'
 // import { Redirect } from "react-router-dom";
+import API from '../../utils/API';
+import querystring from 'querystring';
+import hash from 'js-sha256';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon} from 'semantic-ui-react'
 
 class Signup extends React.Component{
@@ -12,7 +15,7 @@ class Signup extends React.Component{
       email:"",
       password: "",
       confirm: "",
-      modalOpen: false 
+      modalOpen: false
     }
   }
 
@@ -21,10 +24,10 @@ class Signup extends React.Component{
   handleClose = () => this.setState({ modalOpen: false })
   // Keep track of what user types into username input so that input can be grabbed later
   handleUserChange = (event) => {
-   
+
     this.setState({ username: event.target.value });
     console.log(this.state.username)
-   
+
   }
 
   // Keep track of what user types into password input so that input can be grabbed later
@@ -42,30 +45,41 @@ class Signup extends React.Component{
     handlePasswordConfirm = (event) => {
         this.setState({ confirm: event.target.value });
         console.log(this.state.confirm)
-       
+
       }
 
-  
+
   passwordConfirm = () => {
 
     if ( this.state.password === this.state.confirm){
-        
+
 
     }
 
   }
 
-  handleSignup = () =>{
+  handleSignup = async (event) => {
+
+    event.preventDefault();
 
     if (this.state.password === "" || this.state.username === ""  || this.state.email === ""){
       this.handleOpen();
- 
+    } else {
+      const data = querystring.stringify({
+        "username": this.state.username,
+        "password": hash.sha256(this.state.password),
+        "email": this.state.email
+      });
+      // const res = await API.register(this.state.username, this.state.password, this.state.email)
+      const res = await API.register(data);
+      console.log(res.headers.location);
+      window.location = res.headers.location;
     }
   }
 
   render() {
     return (
-    
+
 
             <div className='login-form'>
               {/*
@@ -87,7 +101,7 @@ class Signup extends React.Component{
       onClose={this.handleClose}
       basic
       size='mini'
-      textAlign='center' 
+      textAlign='center'
       style={{ height: '100%' }}
        verticalAlign='middle'
     >
@@ -127,19 +141,19 @@ class Signup extends React.Component{
                         type='password'
                         onChange= {this.handlePasswordConfirm}
                       />
-          
+
                       <Button color='black' fluid size='large' onClick = {this.handleSignup}>
                         Signup
                       </Button>
                     </Segment>
                   </Form>
-            
+
                 </Grid.Column>
               </Grid>
             </div>
-       
-        
-  
+
+
+
     );
   }
 
