@@ -2,6 +2,7 @@ const router = require("express").Router();
 const dashboardRoute = require("./dashboard");
 const bubbleRoute = require("./bubble");
 const postRoute = require("./post");
+const commentRoute = require("./comment")
 const userRoute = require("./user");
 const path = require('path');
 const db = require('../models');
@@ -14,13 +15,13 @@ router.use(cookies());
 const publicRoutes = ["/", "/login", "/register"];
 const Authenticate = require('./../controller/authenticate.js');
 
-router.route("*").all(function(req, res, next) {
+router.route("*").all(function (req, res, next) {
   // next(); is similar to continue in a for loop but for express,
   //it just continues to the next set of routes below
-  if(publicRoutes.includes(req.path)) { next(); }
+  if (publicRoutes.includes(req.path)) { next(); }
   else {
-    Authenticate(req.cookies.sessionID).then(function(authorized) {
-      if(authorized) { console.log("User is authorized"); next(); }
+    Authenticate(req.cookies.sessionID).then(function (authorized) {
+      if (authorized) { console.log("User is authorized"); next(); }
       else {
         console.log("Protected Route");
         //DO NOT REDIRECT, USE RES.SEND(); ~WM
@@ -37,8 +38,9 @@ router.use("/", userRoute);
 router.use("/", bubbleRoute);
 router.use("/", dashboardRoute);
 router.use("/", postRoute);
+router.use("/", commentRoute);
 
-router.use(function(request, response) {
+router.use(function (request, response) {
   response.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
