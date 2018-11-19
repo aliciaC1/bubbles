@@ -15,7 +15,7 @@ module.exports = {
         post.setUserId(userName);
         db.Post.create(post)
           .then(function (dbPost) {
-            return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid }, { $push: { post: dbPost._id } }, { new: true });
+            return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid}, { $push: { _postId: dbPost._id } }, { new: true });
           }).then(function (dbPost) {
             // If we were able to successfully update an Bubble, send it back to the client
             /*
