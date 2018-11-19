@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create the headlineSchema with our schema class
-const postSchema = new Schema({
+const commentSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -23,30 +23,24 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    _userId: {
+    _userId:
+    {
         type: String
         // The ObjectIds will refer to the ids in the Note model
         //ref: "User"
-    },
-    _commentId: [
-        {
-            // Store ObjectIds in the array
-            type: Schema.Types.ObjectId,
-            // The ObjectIds will refer to the ids in the Note model
-            ref: "Comment"
-        }
-    ]
-
+    }
 });
 
 // Custom method `lastUpdatedDate`
-postSchema.methods.setUserId = function (name) {
+commentSchema.methods.setUserId = function (name) {
     this._userId = name
     return this._userId
 };
 
+// Has to be CommentX because uppercase Comment is a specialized command in JavaScript.
+
 // Create the post model using the postSchema
-const Post = mongoose.model("Post", postSchema);
+const CommentX = mongoose.model("Comment", commentSchema);
 
 // Export the Headline model
-module.exports = Post;
+module.exports = CommentX;
