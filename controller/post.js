@@ -8,11 +8,6 @@ module.exports = {
   // Create a new note
   create: function (req, res) {
 
-    /*
-
-      1. Need a variable that allows me to grab the bubble id. 
-    */
-
     db.User.findOne({ sessionID: req.cookies.sessionID })
       .then(function (SpecificUser) {
         const userName = SpecificUser.username;
@@ -24,7 +19,7 @@ module.exports = {
           }).then(function (dbPost) {
             // If we were able to successfully update an Bubble, send it back to the client
             /*
-            1. From here find the user in the collection and put his name into the post. 
+            1. From here find the user in the collection and put his name into the post.
             2. Probably along the lienes of "db.User.findOne({req.params.user})= to find his username to display"
             */
             res.json(dbPost);
@@ -37,6 +32,6 @@ module.exports = {
   }
   // Delete a note with a given id
   /*
- 
+
   */
 };
