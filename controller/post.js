@@ -11,7 +11,7 @@ module.exports = {
     db.User.findOne({ sessionID: req.cookies.sessionID })
       .then(function (SpecificUser) {
         const userName = SpecificUser.username;
-        const post = new Post(req.body);
+        const post = new db.Post(req.body);
         post.setUserId(userName);
         db.Post.create(post)
           .then(function (dbPost) {
