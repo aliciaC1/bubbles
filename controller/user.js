@@ -35,7 +35,7 @@ module.exports = {
     const login = db.User.findOne({ username: username });
     login.then(function(response) {
       if(response.password == password) {
-        const sessionTime = 60000; //Default Session: 1 Minute
+        const sessionTime = 3600000; //Default Session: 1 Hour
         const sessionID = generateKey();
         res.cookie("sessionID", sessionID, { httpOnly: true, expires: new Date(Date.now() + sessionTime)}); //Default Session: 1 Minute
         const update = db.User.findOneAndUpdate({ username: username }, { sessionID: sessionID, sessionExpired: false })

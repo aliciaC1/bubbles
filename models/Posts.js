@@ -34,7 +34,7 @@ const postSchema = new Schema({
 
 // Custom method `lastUpdatedDate`
 postSchema.methods.setUserId = function (name) {
-    this._userId = objectID
+    this._userId = name
     return this._userId
 };
 
