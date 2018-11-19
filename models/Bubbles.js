@@ -10,16 +10,16 @@ const Schema = mongoose.Schema;
 // Create the headlineSchema with our schema class
 const bubblesSchema = new Schema({
   // headline, a string, must be entered
-    name: {
-      type: String,
-      required: true
-    },
-   _userId: [
-     {
-       type: Schema.Types.ObjectId,
-       ref: "User"
-     }
-   ],
+  name: {
+    type: String,
+    required: true
+  },
+  _userId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
   _postId: [
     {
       // Store ObjectIds in the array
