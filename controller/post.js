@@ -7,7 +7,7 @@ const db = require("../models");
 module.exports = {
   // Create a new note
   findOne: function (req, res) {
-    db.Post.findOne({ _id: req.params.id })
+    db.Post.findOne({ _id: req.params.postid })
       .populate("_commentId")
       .then(function (dbComment) {
         // If we were able to successfully find Articles, send them back to the client
@@ -27,7 +27,7 @@ module.exports = {
         post.setUserId(userName);
         db.Post.create(post)
           .then(function (dbPost) {
-            return db.Bubble.findOneAndUpdate({ _id: req.params.id }, { $push: { _postId: dbPost._id } }, { new: true });
+            return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid }, { $push: { _postId: dbPost._id } }, { new: true });
           }).then(function (dbPost) {
             // If we were able to successfully update an Bubble, send it back to the client
             /*
