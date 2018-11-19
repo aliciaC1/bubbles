@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Checkbox, Comment } from 'semantic-ui-react'
 
+
 export default class CommentExampleCollapsed extends Component {
   state = { collapsed: true }
 
