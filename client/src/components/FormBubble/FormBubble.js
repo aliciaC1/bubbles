@@ -17,6 +17,7 @@ class AddBubbleForm extends Component {
       <Form.Group required inline>
             <label>Bubble Rank (1 : Coolest | 5 : Uncoolest) </label>
             <Form.Field 
+              required
               control={Radio}
               label='Coolest'
               value='1'
@@ -24,6 +25,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
             <Form.Field
+              required
               control={Radio}
               label='Pretty Cool'
               value='2'
@@ -31,6 +33,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
             <Form.Field
+              required
               control={Radio}
               label='Cool'
               value='3'
@@ -38,6 +41,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
              <Form.Field
+              required
               control={Radio}
               label='Uncool'
               value='4'
@@ -45,6 +49,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
              <Form.Field
+              required
               control={Radio}
               label='Lame'
               value='5'
@@ -52,7 +57,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Field control = {Button}>Add</Form.Field>
+          <Form.Field control = {Button}>Make New Bubble!</Form.Field>
     </Form>
     );
   }
