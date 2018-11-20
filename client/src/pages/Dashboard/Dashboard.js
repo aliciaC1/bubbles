@@ -4,16 +4,16 @@
 
 import React from 'react'
 import SideNav from '../../components/SideNav';
-import BubbleWindow from '../../components/BubbleWindow'
 import Bubble from '../../components/Bubble'
+import PostForm from '../../components/PostForm';
 
 
 const UserDashboard = () => {
   return (
     <div className = "container">
       <SideNav/>
-      <Bubble></Bubble>
-
+      {/* <Bubble></Bubble> */}
+      {/* <PostForm></PostForm> */}
     </div>
   );
 };
