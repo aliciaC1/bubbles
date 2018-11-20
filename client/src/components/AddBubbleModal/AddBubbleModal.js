@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Image, Modal, Form, Input  } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
 import FormBubble from '../FormBubble';
 
 class AddBubbleModal extends Component {
@@ -13,7 +13,10 @@ class AddBubbleModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.show('blurring')}>Blurring</Button>
+        <Button onClick={this.show('blurring')}>
+        <Icon loading size='big' name='spinner'/>
+        Create New Bubble
+        </Button>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Create a New Bubble</Modal.Header>
@@ -22,13 +25,13 @@ class AddBubbleModal extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              Nope
+              Nope, nvm. 
             </Button>
             <Button
               positive
               icon='checkmark'
               labelPosition='right'
-              content="Yep, that's me"
+              content="Make New Bubble!"
               onClick={this.close}
             />
           </Modal.Actions>
