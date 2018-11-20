@@ -5,4 +5,8 @@ router.get("/api/bubble/:id", bubbleController.findOne);
 
 router.route("/api/bubble").post(bubbleController.create);
 
+router.route("/api/bubble/:bubbieID/invite").post(bubbleController.getInvite);
+
+router.route("/api/bubble/:bubbleID/:invite").get(bubbleController.join);
+
 module.exports = router;

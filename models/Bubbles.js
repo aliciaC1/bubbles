@@ -27,7 +27,14 @@ const bubblesSchema = new Schema({
       // The ObjectIds will refer to the ids in the Note model
       ref: "Post"
     }
-  ]
+  ],
+  inviteCode: {
+    type: String
+  },
+  inviteActive: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // Create the Headline model using the headlineSchema
