@@ -36,13 +36,11 @@ export default class SideNavSidebar extends Component {
             <Menu.Item as='a'>
             <div>
               <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar size='tiny' />
-              <span size = "small">Username</span>
+              <span size = "small" float ="right">Hi, Username</span>
             </div>
             </Menu.Item>
             <Menu.Item as='a'>
             <AddBubbleModal></AddBubbleModal>
-              <Icon loading size='big' name='spinner'/>
-              Create New Bubble
             </Menu.Item>
             <Menu.Item as='a'>
               <Popup 
