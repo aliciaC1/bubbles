@@ -9,7 +9,7 @@ const FeedView = () => (
   <Grid celled='internally'>
     <Grid.Row>
       <Grid.Column width={4}>
-          <List animated ordered verticalAlign='middle'>
+          <List animated verticalAlign='middle'>
     <List.Item>
       <Image avatar src='https://react.semantic-ui.com/images/avatar/small/helen.jpg' />
       <List.Content> User 1

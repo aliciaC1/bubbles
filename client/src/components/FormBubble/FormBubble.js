@@ -15,11 +15,11 @@ class AddBubbleForm extends Component {
         <Input placeholder='Bubble Name' />
       </Form.Field>
       <Form.Group required inline>
-            <label>Bubble Rank (1 : Coolest | 5 : Uncoolest) </label>
+            <label>Bubble Rank (1 : Most Inner | 3 : Most Outer) </label>
             <Form.Field 
               required
               control={Radio}
-              label='Coolest'
+              label='1'
               value='1'
               checked={value === '1'}
               onChange={this.handleChange}
@@ -27,7 +27,7 @@ class AddBubbleForm extends Component {
             <Form.Field
               required
               control={Radio}
-              label='Pretty Cool'
+              label='2'
               value='2'
               checked={value === '2'}
               onChange={this.handleChange}
@@ -35,29 +35,13 @@ class AddBubbleForm extends Component {
             <Form.Field
               required
               control={Radio}
-              label='Cool'
+              label='3'
               value='3'
               checked={value === '3'}
               onChange={this.handleChange}
             />
-             <Form.Field
-              required
-              control={Radio}
-              label='Uncool'
-              value='4'
-              checked={value === '4'}
-              onChange={this.handleChange}
-            />
-             <Form.Field
-              required
-              control={Radio}
-              label='Lame'
-              value='5'
-              checked={value === '5'}
-              onChange={this.handleChange}
-            />
           </Form.Group>
-          <Form.Field control = {Button}>Make New Bubble!</Form.Field>
+          <Form.Field control = {Button}>Submit</Form.Field>
     </Form>
     );
   }

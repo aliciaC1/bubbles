@@ -44,7 +44,7 @@ module.exports = {
             const destroy = db.User.findOneAndUpdate({ username: username }, { sessionExpired: true });
             destroy.then(function(response) { console.log(`Session for ${response.username} has been deleted!`) });
           }, sessionTime);
-          res.location("/bubbles");
+          res.location("/dashboard");
           res.end();
         });
       } else {

@@ -1,3 +1,5 @@
+//Allow user to edit avatar image and Username 
+
 import React from 'react'
 import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
