@@ -33,10 +33,10 @@ class FormExampleCaptureValues extends Component {
 
           </Form.Group>
         </Form>
-        <strong>onChange:</strong>
+        {/* <strong>onChange:</strong>
         <pre>{JSON.stringify({ post }, null, 2)}</pre>
         <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedPost }, null, 2)}</pre>
+        <pre>{JSON.stringify({ submittedPost }, null, 2)}</pre> */}
       </div>
     )
   }
