@@ -4,25 +4,16 @@
 
 import React from 'react'
 import SideNav from '../../components/SideNav';
-// import {
-//   Button,
-//   Divider,
-//   Dropdown,
-//   Grid,
-//   Header,
-//   Icon,
-//   Image,
-//   Label,
-//   Menu,
-//   Message,
-//   Segment,
-//   Table,
-// } from 'semantic-ui-react'
+import BubbleWindow from '../../components/BubbleWindow'
+import Bubble from '../../components/Bubble'
+
 
 const UserDashboard = () => {
   return (
     <div className = "container">
       <SideNav/>
+      <Bubble></Bubble>
+
     </div>
   );
 };
