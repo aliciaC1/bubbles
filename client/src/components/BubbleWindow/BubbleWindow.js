@@ -32,7 +32,7 @@ class BubbleWindow extends Component {
           onRestoreDownClick={this.toggleMaximize}
           />
       <div>
-    <Grid columns={2} padded> <Divider vertical/>
+    <Grid columns={2} padded celled='internally'>
       <Grid.Column textAlign="center">
         <Grid.Row >
         <div>
@@ -51,7 +51,7 @@ class BubbleWindow extends Component {
       <Grid.Column>
       <h3>Activity Feed </h3>
         <Grid.Column width={2}>
-        <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text>
+        {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
         </Grid.Column>
         <Grid.Column width={6}>
             <Feed/>
