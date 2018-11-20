@@ -3,6 +3,7 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar, Popup } from 'sema
 import BubbleColor from '../BubbleColor';
 import AddBubbleModal from '../AddBubbleModal';
 import Bubble from '../Bubble';
+import API from './../../utils/API.js';
 
 
 export default class SideNavSidebar extends Component {
@@ -11,10 +12,10 @@ export default class SideNavSidebar extends Component {
   handleHideClick = () => this.setState({ visible: false })
   handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
-
+  
   render() {
     const { visible } = this.state
-
+    
     return (
       <div>
           <Button disabled={visible} onClick={this.handleShowClick}>            
@@ -35,7 +36,7 @@ export default class SideNavSidebar extends Component {
             <Menu.Item as='a'>
             <div>
               <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar size='tiny' />
-              <span size = "small" float ="right">Hi, Username</span>
+              <span size = "small" float ="right">Hi, username</span>
             </div>
             </Menu.Item>
             <Menu.Item as='a'>
