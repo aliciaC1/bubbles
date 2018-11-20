@@ -1,38 +1,42 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form,Button, Icon } from 'semantic-ui-react'
 
 class FormExampleCaptureValues extends Component {
-  state = { name: '', email: '', submittedName: '', submittedEmail: '' }
+  state = { post: '', submittedPost: '' }
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { post, value }) => this.setState({ [post]: value })
 
   handleSubmit = () => {
-    const { name, email } = this.state
+    const { post } = this.state
 
-    this.setState({ submittedName: name, submittedEmail: email })
+    this.setState({ submittedPost: post })
   }
 
   render() {
-    const { name, email, submittedName, submittedEmail } = this.state
+    const { post, submittedPost } = this.state
 
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Input placeholder='Name' name='name' value={name} onChange={this.handleChange} />
-            <Form.Input
-              placeholder='Email'
-              name='email'
-              value={email}
-              onChange={this.handleChange}
-            />
-            <Form.Button content='Submit' />
+            <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} />
+            <Button.Group>
+              <Button icon>
+                <Icon name='attach' />
+              </Button>
+            </Button.Group>{' '}
+            <Button.Group>
+              <Button content ="Submit">
+                <Icon name='angle double up' /> Post
+              </Button>
+            </Button.Group>
+
           </Form.Group>
         </Form>
         <strong>onChange:</strong>
-        <pre>{JSON.stringify({ name, email }, null, 2)}</pre>
+        <pre>{JSON.stringify({ post }, null, 2)}</pre>
         <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre>
+        <pre>{JSON.stringify({ submittedPost }, null, 2)}</pre>
       </div>
     )
   }
