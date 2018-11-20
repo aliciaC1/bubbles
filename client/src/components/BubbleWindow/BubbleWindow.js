@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input } from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon,Popup } from 'semantic-ui-react';
 import Feed from '../Feed';
 import ChatDetail from '../ChatDetail';
+import BubbleSettings from '../BubbleSettings';
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -38,6 +39,12 @@ class BubbleWindow extends Component {
         <div>
           <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' size="tiny" avatar />
           <span>Username</span>
+            <Popup
+              trigger={<Icon size="small" name ="setting"/>}
+              content={<BubbleSettings/>}
+              basic
+            />
+         
           <br/>
           <br/>
           <Input transparent icon='search' placeholder='Search...' />
