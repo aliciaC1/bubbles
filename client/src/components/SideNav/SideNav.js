@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Image, Menu, Segment, Sidebar, Popup } from 'semantic-ui-react'
 import BubbleColor from '../BubbleColor';
 import AddBubbleModal from '../AddBubbleModal';
+import Bubble from '../Bubble';
+
 
 export default class SideNavSidebar extends Component {
   state = { visible: false }
@@ -15,13 +17,10 @@ export default class SideNavSidebar extends Component {
 
     return (
       <div>
-        <Button.Group>
           <Button disabled={visible} onClick={this.handleShowClick}>            
           <Icon loading size='big' name='circle notch' />
           {/* <Icon name='sliders horizontal' /> */}
           </Button>
-        </Button.Group>
-
         <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
@@ -96,10 +95,7 @@ export default class SideNavSidebar extends Component {
               size = 'huge'
             >
               <div className='bubbleArea'>
-              {/* <Icon.Group size='huge'> */}
-                <Icon loading size='massive' name='circle notch' />
-                {/* <Icon name='user' /> */}
-              {/* </Icon.Group> */}
+              <Bubble></Bubble>
               </div>
                  
             {/* <Segment basic>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
 import { Grid, Image, Divider, Input } from 'semantic-ui-react';
 import Feed from '../Feed';
+import ChatDetail from '../ChatDetail';
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -44,7 +45,7 @@ class BubbleWindow extends Component {
         </Grid.Row>
             <Divider fitted />
         <Grid.Row>
-          <h3> Chat</h3>
+          <ChatDetail></ChatDetail>
         </Grid.Row>
       </Grid.Column>
       <Grid.Column>
