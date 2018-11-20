@@ -27,7 +27,10 @@ module.exports = {
         console.log(`Updated User: ${User}`);
         const userID = User._id;
         db.Bubble.findOneAndUpdate({ _id: dbBubble._id }, { $push: { _userId: userID } }, { new: true })
-          .then(function(Bubble) { console.log(`Updated Bubble: ${Bubble}`) });
+          .then(function(Bubble) { 
+            console.log(`Updated Bubble: ${Bubble}`); 
+            res.json(Bubble);
+          });
       })
       .catch(function(err) { res.json(err) })
     })

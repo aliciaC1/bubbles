@@ -15,7 +15,8 @@ module.exports = {
         comment.setUserId(userName);
         db.CommentX.create(comment)
           .then(function (dbComment) {
-            return db.Post.findOneAndUpdate({ _id: req.params.postid  }, { $push: { _commentId: dbComment._id } }, { new: true });
+            return db.Post.findOneAndUpdate({ _id: req.params.postid  }, { $push: { _commentId: dbComment._id } }, { new: true })
+            .populate("_commentId");
           }).then(function (dbComment) {
             // If we were able to successfully update an Bubble, send it back to the client
             /*
