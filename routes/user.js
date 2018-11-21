@@ -5,4 +5,6 @@ router.route("/register").post(user.register);
 
 router.route("/login").post(user.login);
 
+router.route("/find").get(user.findAll);
+
 module.exports = router;
