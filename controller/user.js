@@ -49,7 +49,7 @@ module.exports = {
         });
       } else {
         //incorrect password
-        res.location("/login");
+        res.location("/dashboard");
         res.end();
       }
     })
