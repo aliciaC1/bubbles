@@ -191,10 +191,10 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    {/* <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
+        <Grid.Row> */}
+          {/* <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
               We Help Companies and Companions
             </Header>
@@ -212,16 +212,16 @@ const HomepageLayout = () => (
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
             <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
-          </Grid.Column>
-        </Grid.Row>
+          </Grid.Column> */}
+        {/* </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
             <Button size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Segment>
-    <Segment style={{ padding: '0em' }} vertical>
+    </Segment> */}
+    {/* <Segment style={{ padding: '0em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
@@ -275,7 +275,7 @@ const HomepageLayout = () => (
           I'm Still Quite Interested
         </Button>
       </Container>
-    </Segment>
+    </Segment> */}
     <Segment inverted vertical style={{ padding: '5em 0em' }}>
       <Container>
         <Grid divided inverted stackable>

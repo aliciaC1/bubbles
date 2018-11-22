@@ -1,9 +1,12 @@
 import React from 'react'
+import Link from 'valuelink'
+// import {Input} from 'valuelink/tags.jsx'
 // import { Redirect } from "react-router-dom";
 import API from '../../utils/API';
 import querystring from 'querystring';
 import hash from 'js-sha256';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon} from 'semantic-ui-react'
+import { set } from 'mongoose';
 
 class Signup extends React.Component{
 
@@ -15,7 +18,11 @@ class Signup extends React.Component{
       email:"",
       password: "",
       confirm: "",
-      modalOpen: false
+      modalOpen: false,
+      passwordMatch: false,
+      passwordError: false,
+      emailError: false,
+      usernameError:false
     }
   }
 
@@ -49,14 +56,49 @@ class Signup extends React.Component{
       }
 
 
-  passwordConfirm = () => {
+      errorhandler = (event)=>{
 
-    if ( this.state.password === this.state.confirm){
+        event.preventDefault();
+        let error = false;
+
+        if (this.email === '')
+
+          {
+            this.setState({emailError: true})
+            error = true
+          }else {
+            this.setState({emailError: false})
+
+          }
+
+          if (this.password <6)
+
+          {
+            this.setState({passwordError: true})
+            error = true
+          }else {
+            this.setState({passwordError: false})
+
+          }
+
+          if (this.password != this.confirm)
+
+          {
+            this.setState({passwordMatch: true})
+            error = true
+          }else {
+            this.setState({passwordMatch: false})
+
+          }
+
+          if (error === true){
 
 
-    }
+          }
+      }
 
-  }
+     
+  
 
   handleSignup = async (event) => {
 
@@ -70,7 +112,7 @@ class Signup extends React.Component{
         "password": hash.sha256(this.state.password),
         "email": this.state.email
       });
-      // const res = await API.register(this.state.username, this.state.password, this.state.email)
+      
       const res = await API.register(data);
       console.log(res.headers.location);
       window.location = res.headers.location;
@@ -78,15 +120,13 @@ class Signup extends React.Component{
   }
 
   render() {
+
+    const nameLink = Link.state( this, 'username').check(x => x,"Name is Required").check( x => x.indexOf("") < 0, "Name shouldn’t contain spaces");
+
     return (
 
 
             <div className='login-form'>
-              {/*
-                Heads up! The styles below are necessary for the correct render of this example.
-                You can do same with CSS, the main idea is that all the elements up to the `Grid`
-                below must have a height of 100%.
-              */}
               <style>{`
                 body > div,
                 body > div > div,
@@ -96,7 +136,7 @@ class Signup extends React.Component{
               `}</style>
 
        <Modal
-      trigger={<Button onClick={this.handleOpen}></Button>}
+      
       open={this.state.modalOpen}
       onClose={this.handleClose}
       basic
@@ -121,10 +161,12 @@ class Signup extends React.Component{
                   <Header as='h2' color='black' textAlign='center'>
                     <Image src='/logo.png' /> Log-in to your account
                   </Header>
-                  <Form size='large'>
+                  <Form size='large' onSubmit = {this.handleSignup}>
                     <Segment stacked>
-                        <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' onChange = {this.handleUserChange}/>
-                      <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' onChange = {this.handleEmail} />
+              
+                      <Form.Input fluid  icon='user' label = 'Username' iconPosition='left' placeholder='Username' onChange = {this.handleUserChange} valueLink = {nameLink}/>
+            
+                      <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' onChange = {this.handleEmail}/>
                       <Form.Input
                         fluid
                         icon='lock'
@@ -132,6 +174,7 @@ class Signup extends React.Component{
                         placeholder='Password'
                         type='password'
                         onChange = {this.handlePassword}
+                        error = {this.passwordError || this.passwordMatch}
                       />
                        <Form.Input
                         fluid
@@ -139,10 +182,10 @@ class Signup extends React.Component{
                         iconPosition='left'
                         placeholder='Confirm Password'
                         type='password'
-                        onChange= {this.handlePasswordConfirm}
+                     
                       />
 
-                      <Button color='black' fluid size='large' onClick = {this.handleSignup}>
+                      <Button color='black' fluid size='large' type = "submit" >
                         Signup
                       </Button>
                     </Segment>

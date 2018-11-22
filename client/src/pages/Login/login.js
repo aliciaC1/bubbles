@@ -74,7 +74,7 @@ class Login extends React.Component{
       `}</style>
 
        <Modal
-      trigger={<Button onClick={this.handleOpen}></Button>}
+
       open={this.state.modalOpen}
       onClose={this.handleClose}
       basic
