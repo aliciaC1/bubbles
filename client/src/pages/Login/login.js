@@ -53,7 +53,12 @@ class Login extends React.Component{
       });
       // const res = await API.register(this.state.username, this.state.password, this.state.email)
       const res = await API.login(data);
-      setTimeout(function(){ window.location = res.headers.location; }, 1000);
+      if(res.data === 404) {
+        this.setState({ username: "", password: "" })
+        alert("Incorrect password");
+      } else {
+        setTimeout(function(){ window.location = res.headers.location; }, 1000);
+      }
     }
 
 
@@ -102,13 +107,14 @@ class Login extends React.Component{
           </Header>
           <Form size='large'>
             <Segment stacked>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange = {this.handleUserChange}/>
+              <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' value={this.state.username} onChange = {this.handleUserChange}/>
               <Form.Input
                 fluid
                 icon='lock'
                 iconPosition='left'
                 placeholder='Password'
                 type='password'
+                value={this.state.password}
                 onChange = {this.handlePassword}
               />
 
