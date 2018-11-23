@@ -25,50 +25,46 @@ module.exports = {
         res.json(err);
       });
   },
-  register: function (req, res) {
-    const { username } = req.body;
-
-    const checkDuplicates = db.User.findOne({ username: username });
-    const register = db.User.create(new db.User(req.body));
-
-    checkDuplicates.then(function (response) {
-      if (response) {
-        res.location("/register");
-        res.end();
-      } else {
-        register.then(function (result) {
-          res.location("/login");
-          res.end();
-        });
-      }
-    });
+  register: async function (req, res) {
+    const check = await db.User.findOne({ username: req.body.username });
+    if(check) {
+      res.send("404"); //Problem with Registration (Username in Use, Passwords Don't Match etc.)
+    } else {
+      const register = await db.User.create(new db.User(req.body));
+      console.log(`${register.username} has been successfully registered!`);
+      res.location("/login");
+      res.end();
+    }
   },
-  login: function (req, res) {
+  login: async function (req, res) {
     const { username, password } = req.body;
-    const login = db.User.findOne({ username: username });
-    login.then(function (response) {
-      if (response.password == password) {
+    const login = await db.User.findOne({ username: username });
+    if(login) {
+      if(login.password == password) {
         const sessionTime = 3600000; //Default Session: 1 Hour
         const sessionID = generateKey();
-        res.cookie("sessionID", sessionID, { httpOnly: true, expires: new Date(Date.now() + sessionTime) }); //Default Session: 1 Minute
-        const update = db.User.findOneAndUpdate({ username: username }, { sessionID: sessionID, sessionExpired: false })
-        update.then(function (response) {
-          setTimeout(function () {
-            const destroy = db.User.findOneAndUpdate({ username: username }, { sessionExpired: true });
-            destroy.then(function (response) { console.log(`Session for ${response.username} has been deleted!`) });
-          }, sessionTime);
-          res.location("/dashboard");
-          res.end();
-        });
-      } else {
-        //incorrect password
+        res.cookie("sessionID", sessionID, { httpOnly: true, expires: new Date(Date.now() + sessionTime) });
+        const update = await db.User.updateOne({ username: username }, { sessionID: sessionID, sessionExpired: false });
+        setTimeout(async function() {
+          const destroy = await db.User.updateOne({ username: username }, { sessionExpired: true });
+          console.log(`Session for ${destroy} has been deleted!`)
+        }, sessionTime);
         res.location("/dashboard");
         res.end();
+      } else {
+        res.send("404");
       }
-    })
+    }
   },
-  home: function (req, res) {
-    res.location("/login");
-    res.end();
+  logout: async function (req, res) {
+    const Session = await db.User.updateOne({ sessionID: req.cookies.sessionID }, { sessionExpired: true });
+    res.redirect("/");
+  },
+  findUser: async function(req, res) {
+    console.log("I love ponies")
+    const { sessionID } = req.cookies;
+    const User = await db.User.findOne({ sessionID: sessionID });
+    res.send(User);
+    console.log(User);
   }
 };
