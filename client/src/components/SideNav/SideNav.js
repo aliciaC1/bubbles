@@ -3,7 +3,9 @@ import { Button, Header, Icon, Image, Menu, Segment, Sidebar, Popup } from 'sema
 import BubbleColor from '../BubbleColor';
 import AddBubbleModal from '../AddBubbleModal';
 import Bubble from '../Bubble';
-import API from './../../utils/API.js';
+import UserAvatar from '../UserAvatar';
+import UserSettings from '../UserSettings';
+
 
 
 export default class SideNavSidebar extends Component {
@@ -35,12 +37,16 @@ export default class SideNavSidebar extends Component {
           >
             <Menu.Item as='a'>
             <div>
-              <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar size='tiny' />
-              <span size = "small" float ="right">Hi, username</span>
+              <UserAvatar></UserAvatar>
+                <Popup
+                trigger={<Icon size="small" name ="settings"/>}
+                content={<UserSettings/>}
+                basic
+                />
             </div>
             </Menu.Item>
             <Menu.Item as='a'>
-            <AddBubbleModal></AddBubbleModal>
+            <AddBubbleModal/>
             </Menu.Item>
             <Menu.Item as='a'>
               <Popup 
