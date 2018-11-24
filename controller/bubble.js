@@ -14,57 +14,80 @@ const generateKey = () => {
 module.exports = {
   // Find one note
   findOne: function (req, res) {
-      db.Bubble.findOne({ _id: req.params.id })
-          .populate("_userId")
-          .populate("_postId")
-          .then(function (dbBubble) {
-              // If we were able to successfully find Articles, send them back to the client
-              console.log(dbBubble);
-              res.json(dbBubble);
-          })
-          .catch(function (err) {
-              // If an error occurred, send it to the client
-              res.json(err);
-          });
+    db.Bubble.findOne({ _id: req.params.id })
+      .populate("_userId")
+      .populate("_postId")
+      .then(function (dbBubble) {
+        // If we were able to successfully find Articles, send them back to the client
+        console.log(dbBubble);
+        res.json(dbBubble);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  },
+  findAll: function (req, res) {
+    db.Bubble.find({})
+      .populate("_userId")
+      .populate("_postId")
+      .then(function (dbBubble) {
+        // If we were able to successfully find Articles, send them back to the client
+        console.log(dbBubble);
+        res.json(dbBubble);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
   },
   create: function (req, res) {
+
     db.Bubble.create(req.body).then(function (dbBubble) {
       console.log(`Created Bubble ID: ${dbBubble._id}`);
-      db.User.findOneAndUpdate({ sessionID: req.cookies.sessionID }, { $push: { _bubbleId: dbBubble._id}}, { new: true })
-      .then(function (User) {
-        // If we were able to successfully find Bubbles, send them back to the client
-        console.log(`Updated User: ${User}`);
-        const userID = User._id;
-        db.Bubble.findOneAndUpdate({ _id: dbBubble._id }, { $push: { _userId: userID } }, { new: true })
-          .then(function(Bubble) {
-            console.log(`Updated Bubble: ${Bubble}`);
-            res.json(Bubble);
-          });
-      })
-      .catch(function(err) { res.json(err) })
+      db.User.findOneAndUpdate({ sessionID: req.cookies.sessionID }, { $push: { _bubbleId: dbBubble._id } }, { new: true })
+        .then(function (User) {
+          // If we were able to successfully find Bubbles, send them back to the client
+          console.log(`Updated User: ${User}`);
+          const userID = User._id;
+          db.Bubble.findOneAndUpdate({ _id: dbBubble._id }, { $push: { _userId: userID } }, { new: true })
+            .then(function (Bubble) {
+              console.log(`Updated Bubble: ${Bubble}`);
+              res.json(Bubble);
+            });
+        })
+        .catch(function (err) { res.json(err) })
     })
-    .catch(function (err) {
-      res.json(err);
-    });
+      .catch(function (err) {
+        res.json(err);
+      });
   },
-  getInvite: function(req, res) {
+  getInvite: function (req, res) {
     const { bubbleID } = req.params;
     //if user is logged in
-    if(req.cookies.sessionID) {
+    if (req.cookies.sessionID) {
+      console.log("Number")
       const User = db.User.findOne({ sessionID: req.cookies.sessionID });
-      User.then(function(response) {
+      User.then(function (response) {
+        console.log("Number")
+        console.log(typeof response._bubbleId.toString())
+        console.log(typeof bubbleID);
         //if user belongs to the current bubble
-        if(response._bubbleId.includes(bubbleID)) {
+        if (response._bubbleId.toString().includes(bubbleID)) {
+          console.log("Number")
+
           //generate invite link
           const password = generateKey();
           const expirationTime = 600000; //10 minutes
-          const updateDB = db.findOneAndUpdate({ _id: bubbleID }, { inviteCode: password, inviteActive: true }, { new: true });
-          updateDB.then(function(response) {
-            setTimeout(function(){
+          const updateDB = db.Bubble.findOneAndUpdate({ _id: bubbleID }, { inviteCode: password, inviteActive: true }, { new: true });
+          updateDB.then(function (response) {
+            console.log("Number")
+
+            setTimeout(function () {
               const destroy = db.User.findOneAndUpdate({ _id: bubbleID }, { inviteActive: false }, { new: true });
-              destroy.then(function(response) { console.log(`Invite Link for ${response.name} has expired!`) });
+              destroy.then(function (response) { console.log(`Invite Link for ${response.name} has expired!`) });
             }, expirationTime);
-            const domain = "localhost.com/3001"
+            const domain = "localhost:3001"
             res.send(domain + "/api/bubble/" + bubbleID + "/" + password);
           })
         }
@@ -75,16 +98,18 @@ module.exports = {
       res.end();
     }
   },
-  join: function(req, res) {
-    if(req.cookies.sessionID) {
+  join: function (req, res) {
+    if (req.cookies.sessionID) {
       const { bubbleID, invite } = req.params;
       const Bubble = db.Bubble.findOne({ inviteCode: invite });
-      Bubble.then(function(bubble) {
-        if(response.inviteActive) {
+      Bubble.then(function (bubble) {
+        if (bubble.inviteActive) {
           const User = db.User.findOneAndUpdate({ sessionID: req.cookies.sessionID }, { $push: { _bubbleId: bubbleID } }, { new: true });
-          User.then(function(user) {
-            const Update = db.Bubble.findOneAndUpdate({ inviteCode: invite }, { $push: { _userId: response._id } }, { new: true });
-            Update.then(function(update) {
+          User.then(function (user) {
+            const Update = db.Bubble.findOneAndUpdate({ inviteCode: invite }, { $push: { _userId: user._id } }, { new: true });
+            Update.then(function (update) {
+              console.log("---------------------\n", update);
+              console.log("---------------------\n", user);
               res.redirect("/dashboard");
             })
           })

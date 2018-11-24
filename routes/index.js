@@ -23,7 +23,6 @@ router.route("*").all(function (req, res, next) {
     Authenticate(req.cookies.sessionID).then(function (authorized) {
       if (authorized) { console.log("User is authorized"); next(); }
       else {
-        console.log("Protected Route");
         //DO NOT REDIRECT, USE RES.SEND(); ~WM
         res.send("<h1>403 Forbidden</h1><h3>You don't have permission to access " + req.path + "</h3>");
       }
