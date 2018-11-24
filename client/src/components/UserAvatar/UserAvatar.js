@@ -1,5 +1,6 @@
-import React from 'react'
-import { Image, Icon, Header} from 'semantic-ui-react'
+import React from 'react';
+import { Image, Icon, Header} from 'semantic-ui-react';
+import "./UserAvatar.css";
 
 const UserAvatar = () => (
   <div>
