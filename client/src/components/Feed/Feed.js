@@ -38,12 +38,6 @@ const FeedView = () => (
         <PostImage></PostImage>
       </div>
       </Segment>   
-      <Divider horizontal>POST</Divider>
-      <Segment basic fluid>
-      <div className = "PostArea">
-        <PostForm></PostForm>
-      </div>
-      </Segment>
       </Grid.Column>
     </Grid.Row>
 
