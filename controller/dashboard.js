@@ -9,7 +9,7 @@ module.exports = {
    1. Find All Bubbles of User
   */
   findOne: function (req, res) {
-    db.User.findOne({ sessionID: req.cookies.sessionID })
+   db.User.findOne({ sessionID: req.cookies.sessionID })
       .populate("_bubbleId")
       .then(function (dbBubble) {
         // If we were able to successfully find Bubbles, send them back to the client
