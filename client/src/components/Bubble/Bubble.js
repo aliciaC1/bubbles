@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
-import BubbleWindow from '../BubbleWindow';
+// import BubbleWindow from '../BubbleWindow';
+import DraggableWindow from '../DraggableWindow';
 
 class Bubble extends React.Component {
     constructor () {
@@ -25,7 +26,7 @@ class Bubble extends React.Component {
   }
   
   const Window = () => (
-  <BubbleWindow></BubbleWindow>
+  <DraggableWindow/>
   )
 
 export default Bubble;
