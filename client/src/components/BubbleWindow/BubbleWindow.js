@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon,Popup } from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon,Popup, List, Segment, Header} from 'semantic-ui-react';
 import Feed from '../Feed';
-import ChatDetail from '../ChatDetail';
+import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
+import UserAvatar from '../UserAvatar';
+import BubbleSettingHeader from '../BubbleSettingHeader';
+import PostForm from '../PostForm';
+import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -18,9 +22,11 @@ class BubbleWindow extends Component {
         color={this.props.color}
         theme={this.props.theme}
         chrome
-        height="600px"
-        width = "1000px"
-        padding="20px"
+        minHeight ="500px"
+        minWidth ="500px"
+        height="900px"
+        width = "1200px"
+        padding="10px"
       >
         <TitleBar title="Coolest Bubble" 
           controls
@@ -34,29 +40,11 @@ class BubbleWindow extends Component {
           />
       <div>
     <Grid columns={2} padded celled='internally'>
-      <Grid.Column textAlign="center">
-        <Grid.Row >
-        <div>
-          <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' size="tiny" avatar />
-          <span>Username</span>
-            <Popup
-              trigger={<Icon size="small" name ="setting"/>}
-              content={<BubbleSettings/>}
-              basic
-            />
-         
-          <br/>
-          <br/>
-          <Input transparent icon='search' placeholder='Search...' />
-        </div>
-        </Grid.Row>
-            <Divider fitted />
-        <Grid.Row>
-          <ChatDetail></ChatDetail>
-        </Grid.Row>
-      </Grid.Column>
-      <Grid.Column>
-      <h3>Activity Feed </h3>
+    <Grid.Column>
+      <Header as='h2' icon textAlign='center'>
+      <Icon name='ellipsis horizontal' circular />
+      <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
+    </Header>
         <Grid.Column width={2}>
         {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
         </Grid.Column>
@@ -64,6 +52,51 @@ class BubbleWindow extends Component {
             <Feed/>
         </Grid.Column>
       </Grid.Column>
+      <Grid.Column textAlign="center">
+        <Grid.Row >
+        <div>
+        {/* <UserAvatar/> */}
+        </div>
+        </Grid.Row>
+        <List divided horizontal size='small'>
+            <List.Item>
+              <List.Content>
+                <UserAvatar/>
+                {/* <Input transparent icon='search' placeholder='Search...' />  */}
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Content>
+                <Popup
+                trigger={<BubbleSettingHeader/>}
+                content={<BubbleSettings/>}
+                on='click'
+                basic
+              />  
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Content>
+                <Input transparent icon='search' placeholder='Search...' /> 
+              </List.Content>
+            </List.Item>
+          </List>
+            <Divider fitted />
+        <Grid.Row>
+          <Divider horizontal>Image Feed</Divider>
+          <Segment basic>
+            <ImageGallery/>
+          </Segment>   
+        </Grid.Row>
+      </Grid.Column>
+      <Grid.Row>
+      <Divider horizontal>POST</Divider>
+      <Segment basic padded fluid>
+      <div className = "PostArea">
+        <PostForm></PostForm>
+      </div>
+      </Segment>
+      </Grid.Row>
     </Grid>
   </div>
      
@@ -73,58 +106,3 @@ class BubbleWindow extends Component {
 }
 
 export default BubbleWindow;
-// import React from 'react';
-// import Rnd from 'react-rnd';
-// import { Window, TitleBar, Text } from 'react-desktop/windows';
-
-// const Box = () => (
-//   <div
-//     className="box"
-//     style={{ margin: 0, height: '100%', paddingBottom: '40px' }}
-//   >
-//      <Window
-//         color={this.props.color}
-//         theme={this.props.theme}
-//         chrome
-//         height="300px"
-//         padding="12px"
-//       >
-//         <TitleBar title="My Windows Application" 
-//           controls
-//           // isMaximized={this.state.isMaximized}
-//           theme={this.props.theme}
-//           background={this.props.color}
-//           onCloseClick={this.close}
-//           onMinimizeClick={this.minimize}
-//           onMaximizeClick={this.toggleMaximize}
-//           onRestoreDownClick={this.toggleMaximize}
-//           />
-//         <Text color={this.props.theme === 'dark' ? 'white' : '#333'}>
-//         </Text>
-//       </Window>
-//   </div>
-// );
-
-
-// export default () => (
-//   <div
-//     style={{
-//       width: '800px',
-//       height: '400px',
-//     }}
-//   >
-//     <Rnd
-//       default={{
-//         x: 150,
-//         y: 205,
-//         width: 500,
-//         height: 190,
-//       }}
-//       minWidth={500}
-//       minHeight={190}
-//       bounds="window"
-//     >
-//       <Box />
-//     </Rnd>
-//   </div>
-// );

@@ -1,19 +1,28 @@
-// import PropTypes from 'prop-types'
-// import React, { Component } from 'react'
-
 import React from 'react'
 import SideNav from '../../components/SideNav';
-import Bubble from '../../components/Bubble'
-import PostForm from '../../components/PostForm';
+import BubblesBanner from '../../components/BubbleBanner';
+import { Segment,Grid } from 'semantic-ui-react';
+import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
 
 
 const UserDashboard = () => {
   return (
-    <div className = "container">
-      <SideNav/>
-      {/* <Bubble></Bubble> */}
-      {/* <PostForm></PostForm> */}
+    <div>
+       <BubblesBanner/>
+      <div className = "container">
+        <Grid>
+          <Grid.Column width ={2}>
+            <SideNav/>  
+          </Grid.Column>
+          <Grid.Column stretch width = {14}>
+            <Segment >
+              {/* <BubbleCanvas/> */}
+              <Bubble/>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </div>
     </div>
   );
 };

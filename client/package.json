@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "add": "^2.0.6",
     "axios": "^0.18.0",
     "http": "^0.0.0",
     "js-sha256": "^0.9.0",
@@ -11,9 +12,10 @@
     "react-color": "^2.14.1",
     "react-desktop": "^0.3.7",
     "react-dom": "^16.6.3",
-    "react-rnd": "^9.0.3",
+    "react-rnd": "^9.0.4",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "semantic-ui": "^2.4.2",
     "semantic-ui-css": "^2.2.14",
     "semantic-ui-react": "^0.83.0",
     "valuelink": "^1.5.5"

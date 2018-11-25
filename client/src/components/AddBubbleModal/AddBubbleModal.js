@@ -13,11 +13,12 @@ class AddBubbleModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.show('blurring')}>
-        <Icon loading size='big' name='spinner'/>
-        Create New Bubble
-        </Button>
-
+        <div className="AddBubble"  onClick={this.show('blurring')}>
+          <Header as='h4'>
+          <Icon name='plus' />
+          <Header.Content>Bubble</Header.Content>
+          </Header>
+        </div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Create a New Bubble</Modal.Header>
           <Modal.Content>

@@ -32,17 +32,12 @@ const FeedView = () => (
   </List>
       </Grid.Column>
       <Grid.Column width={12}>
-      <Segment padded>
+      <Segment basic fluid>
       <div className ="display">
         <PostText></PostText>
         <PostImage></PostImage>
       </div>
-      <Divider horizontal/>
-      <div className = "PostArea">
-        <PostForm></PostForm>
-      </div>
-      </Segment>
-      
+      </Segment>   
       </Grid.Column>
     </Grid.Row>
 

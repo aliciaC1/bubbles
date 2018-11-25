@@ -1,111 +1,98 @@
 import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar, Popup } from 'semantic-ui-react'
-import BubbleColor from '../BubbleColor';
+import { Menu, Icon, Header, Segment } from 'semantic-ui-react'
+import UserAvatar from '../UserAvatar';
+import UserSettings from '../UserSettings';
 import AddBubbleModal from '../AddBubbleModal';
+import BubbleColor from '../BubbleColor';
 import Bubble from '../Bubble';
-import API from './../../utils/API.js';
 
+export default class MenuExampleVerticalSecondary extends Component {
+  state = { activeItem: 'user' }
 
-export default class SideNavSidebar extends Component {
-  state = { visible: false }
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
-  handleSidebarHide = () => this.setState({ visible: false })
-  
   render() {
-    const { visible } = this.state
-    
-    return (
-      <div>
-          <Button disabled={visible} onClick={this.handleShowClick}>            
-          <Icon loading size='big' name='circle notch' />
-          {/* <Icon name='sliders horizontal' /> */}
-          </Button>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
-            icon='labeled'
-            inverted
-            onHide={this.handleSidebarHide}
-            vertical
-            visible={visible}
-            width='wide'
-          >
-            <Menu.Item as='a'>
-            <div>
-              <Image src='https://react.semantic-ui.com/images/wireframe/square-image.png' avatar size='tiny' />
-              <span size = "small" float ="right">Hi, username</span>
-            </div>
-            </Menu.Item>
-            <Menu.Item as='a'>
-            <AddBubbleModal></AddBubbleModal>
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Popup 
-                trigger={<Icon loading size='huge' name='circle notch'/>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-              Coolest
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Pretty Cool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Plain Cool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Uncool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-            </Menu.Item>
-            <Menu.Item as='a'>
-            <BubbleColor></BubbleColor> LAME
-            </Menu.Item>
-            <Menu.Item as='a'>
-            <Icon loading size='big' name='x' /> 
-            Logout       
-            </Menu.Item>
-          </Sidebar>
+    const { activeItem } = this.state
 
-          <Sidebar.Pusher>
-          <Segment basic
-              textAlign='center'
-              style={{ minHeight: 1350, padding: '1em 0em' }}
-              vertical
-              size = 'huge'
-            >
-              <div className='bubbleArea'>
-              <Bubble></Bubble>
-              </div>
-                 
-            {/* <Segment basic>
-              <Header as='h3'></Header>
-              <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' /> */}
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </div>
+    return (
+      <Menu pointing secondary vertical>
+        <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>
+        <UserAvatar/>
+        </Menu.Item>
+       <Menu.Item
+          name='addBubble'
+          active={activeItem === 'addBubble'}
+          onClick={this.handleItemClick}
+        > <AddBubbleModal/>
+        </Menu.Item>       
+        <Menu.Item
+          name='1'
+          active={activeItem === '1'}
+          onClick={this.handleItemClick}
+        >
+          <Segment basic>
+            <Header as='h2' floated='left'>
+              1
+            </Header>
+            <Header as='h2' floated='right'>
+              <BubbleColor/>
+            </Header>
+          </Segment>
+        </Menu.Item>
+        <Menu.Item
+          name='2'
+          active={activeItem === '2'}
+          onClick={this.handleItemClick}
+        >
+          <Segment basic>
+            <Header as='h2' floated='left'>
+              2
+            </Header>
+            <Header as='h2' floated='right'>
+              <BubbleColor/>
+            </Header>
+          </Segment>
+        </Menu.Item>
+           <Menu.Item
+          name='3'
+          active={activeItem === '3'}
+          onClick={this.handleItemClick}
+        >
+          <Segment basic>
+            <Header as='h2' floated='left'>
+              3
+            </Header>
+            <Header as='h2' floated='right'>
+              <BubbleColor/>
+            </Header>
+          </Segment>
+        </Menu.Item>
+        <Menu.Item/>
+        <Menu.Item
+          name='settings'
+          active={activeItem === 'settings'}
+          onClick={this.handleItemClick}
+        >
+          <UserSettings/>
+        </Menu.Item> 
+        <Menu.Item
+          name='logout'
+          active={activeItem === 'logout'}
+          onClick={this.handleItemClick}
+        >
+          <Header as='h4'>
+            <Icon name='ban'/>
+            <Header.Content>Logout</Header.Content>
+          </Header>
+        </Menu.Item>
+      </Menu>
     )
   }
 }
+
+
+      
+{/* <Header as='h2'>
+<BubbleColor/>
+<Header.Content>3</Header.Content>
+</Header>  */}
