@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon,Popup } from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon,Popup, List} from 'semantic-ui-react';
 import Feed from '../Feed';
-import ChatDetail from '../ChatDetail';
+import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
+import BubbleSettingHeader from '../BubbleSettingHeader';
 import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
@@ -39,20 +40,28 @@ class BubbleWindow extends Component {
       <Grid.Column textAlign="center">
         <Grid.Row >
         <div>
-          <UserAvatar/>
-            <Popup
-              trigger={<Icon size="small" name ="settings"/>}
-              content={<BubbleSettings/>}
-              basic
-            />        
-          <br/>
-          <br/>
-          <Input transparent icon='search' placeholder='Search...' />
+        <UserAvatar/>
         </div>
         </Grid.Row>
+        <List divided horizontal size='small'>
+            <List.Item>
+              <List.Content>
+                <Popup
+                trigger={<BubbleSettingHeader/>}
+                content={<BubbleSettings/>}
+                basic
+              />  
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Content>
+                <Input transparent icon='search' placeholder='Search...' /> 
+              </List.Content>
+            </List.Item>
+          </List>
             <Divider fitted />
         <Grid.Row>
-          <ChatDetail></ChatDetail>
+          <ImageGallery/>
         </Grid.Row>
       </Grid.Column>
       <Grid.Column>
