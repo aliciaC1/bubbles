@@ -1,14 +1,17 @@
 
 
 import React, { Component } from 'react'
-import { Button, Header, Image, Modal, Form, Input, Icon, Card } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Form, Input, Icon, Card,Label } from 'semantic-ui-react'
 import FormBubble from '../FormBubble';
 
 const src = 'https://www.sonomamag.com/wp-content/uploads/2018/05/shutterstock_352176329.jpg';
 const extra = (
     <a>
         <Icon name='fire' />
-        16 Friends
+        16 | 
+        <Label as='a' basic color='blue'>
+          Blue
+        </Label>
     </a>
     )
 class ImageCard extends Component {
