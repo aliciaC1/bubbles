@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import { Form,Button, Icon } from 'semantic-ui-react'
 import FileUpload from '../FileUpload';
 
-class FormExampleCaptureValues extends Component {
+class PostForm extends Component {
   state = { post: '', submittedPost: '' }
 
-  handleChange = (e, { post, value }) => this.setState({ [post]: value })
+  onInputChange (event) {
+    console.log(event.target.value);
+  }
+  handleChange = (e, { post, value }) => this.setState({[post]: value })
 
   handleSubmit = () => {
     const { post } = this.state
@@ -21,24 +24,23 @@ class FormExampleCaptureValues extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} />
+         
             <Button.Group>
-              <FileUpload/>
-            </Button.Group>{' '}
-            <Button.Group>
+            <FileUpload/>
               <Button content ="Submit">
-                <Icon name='angle double up' /> Post
+                <Icon name='angle double up' />Post
               </Button>
             </Button.Group>
+           
 
           </Form.Group>
         </Form>
-        {/* <strong>onChange:</strong>
+        <strong>onChange:</strong>
         <pre>{JSON.stringify({ post }, null, 2)}</pre>
         <strong>onSubmit:</strong>
-        <pre>{JSON.stringify({ submittedPost }, null, 2)}</pre> */}
+        <pre>{JSON.stringify({ submittedPost }, null, 2)}</pre>
       </div>
     )
   }
 }
-
-export default FormExampleCaptureValues
+export default PostForm;
