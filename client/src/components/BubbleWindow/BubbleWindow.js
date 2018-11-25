@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon,Popup, List} from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon,Popup, PopupContent, List, Segment, Header} from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
@@ -42,15 +42,22 @@ class BubbleWindow extends Component {
       <Grid.Column textAlign="center">
         <Grid.Row >
         <div>
-        <UserAvatar/>
+        {/* <UserAvatar/> */}
         </div>
         </Grid.Row>
         <List divided horizontal size='small'>
             <List.Item>
               <List.Content>
+                <UserAvatar/>
+                {/* <Input transparent icon='search' placeholder='Search...' />  */}
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Content>
                 <Popup
                 trigger={<BubbleSettingHeader/>}
                 content={<BubbleSettings/>}
+                on='click'
                 basic
               />  
               </List.Content>
@@ -63,11 +70,18 @@ class BubbleWindow extends Component {
           </List>
             <Divider fitted />
         <Grid.Row>
-          <ImageGallery/>
+          <Divider horizontal>Image Feed</Divider>
+          <Segment basic>
+            <ImageGallery/>
+          </Segment>
+    
         </Grid.Row>
       </Grid.Column>
       <Grid.Column>
-      <h3>Activity Feed </h3>
+      <Header as='h2' icon textAlign='center'>
+      <Icon name='ellipsis horizontal' circular />
+      <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
+    </Header>
         <Grid.Column width={2}>
         {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
         </Grid.Column>
