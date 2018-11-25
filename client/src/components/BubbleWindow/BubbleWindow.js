@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon,Popup, PopupContent, List, Segment, Header} from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon,Popup, List, Segment, Header} from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
