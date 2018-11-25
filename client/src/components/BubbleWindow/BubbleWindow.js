@@ -5,6 +5,7 @@ import Feed from '../Feed';
 import ChatDetail from '../ChatDetail';
 import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
+import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
   static defaultProps = {
