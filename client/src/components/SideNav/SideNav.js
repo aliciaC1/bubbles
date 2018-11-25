@@ -49,44 +49,13 @@ export default class SideNavSidebar extends Component {
             <AddBubbleModal/>
             </Menu.Item>
             <Menu.Item as='a'>
-              <Popup 
-                trigger={<Icon loading size='huge' name='circle notch'/>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-              Coolest
+            <BubbleColor></BubbleColor> <br/>Bubbles 1
             </Menu.Item>
             <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Pretty Cool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
+            <BubbleColor></BubbleColor> <br/>Bubbles 2
             </Menu.Item>
             <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Plain Cool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-            </Menu.Item>
-            <Menu.Item as='a'>
-              <Popup 
-                trigger={<Button>Uncool  <Icon loading size='big' name='circle notch'/></Button>} 
-                flowing
-                position='right center' 
-                on='click'>
-                  <BubbleColor></BubbleColor>
-              </Popup>
-            </Menu.Item>
-            <Menu.Item as='a'>
-            <BubbleColor></BubbleColor> LAME
+            <BubbleColor></BubbleColor> <br/>Bubbles 3
             </Menu.Item>
             <Menu.Item as='a'>
             <Icon loading size='big' name='x' /> 
