@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "formsy-react": "^1.1.5",
+    "formsy-semantic-ui-react": "^0.3.3",
     "http": "^0.0.0",
     "js-sha256": "^0.9.0",
     "querystring": "^0.2.0",

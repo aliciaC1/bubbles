@@ -5,7 +5,7 @@ import Link from 'valuelink'
 import API from '../../utils/API';
 import querystring from 'querystring';
 import hash from 'js-sha256';
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon} from 'semantic-ui-react'
+import { Button, Form,Grid, Header, Image, Message, Segment, Modal, Icon} from 'semantic-ui-react'
 import { set } from 'mongoose';
 
 class Signup extends React.Component{
@@ -58,43 +58,17 @@ class Signup extends React.Component{
 
       errorhandler = (event)=>{
 
-        event.preventDefault();
-        let error = false;
+ 
+  
+        if (this.state.password === "" || this.state.username === ""  || this.state.email === ""){
+          this.handleOpen();
+        } 
 
-        if (this.email === '')
+        if (this.password < 6){
 
-          {
-            this.setState({emailError: true})
-            error = true
-          }else {
-            this.setState({emailError: false})
+          
+        }
 
-          }
-
-          if (this.password <6)
-
-          {
-            this.setState({passwordError: true})
-            error = true
-          }else {
-            this.setState({passwordError: false})
-
-          }
-
-          if (this.password != this.confirm)
-
-          {
-            this.setState({passwordMatch: true})
-            error = true
-          }else {
-            this.setState({passwordMatch: false})
-
-          }
-
-          if (error === true){
-
-
-          }
       }
 
      
@@ -104,9 +78,11 @@ class Signup extends React.Component{
 
     event.preventDefault();
 
+    this.errorhandler();
+
     if (this.state.password === "" || this.state.username === ""  || this.state.email === ""){
       this.handleOpen();
-    } else {
+    } 
       const data = querystring.stringify({
         "username": this.state.username,
         "password": hash.sha256(this.state.password),
@@ -116,7 +92,7 @@ class Signup extends React.Component{
       const res = await API.register(data);
       console.log(res.headers.location);
       window.location = res.headers.location;
-    }
+    
   }
 
   render() {
@@ -164,13 +140,19 @@ class Signup extends React.Component{
                   <Form size='large' onSubmit = {this.handleSignup}>
                     <Segment stacked>
               
-                      <Form.Input fluid  icon='user' label = 'Username' iconPosition='left' placeholder='Username' onChange = {this.handleUserChange} valueLink = {nameLink}/>
+                      <Form.Input fluid  icon='user'  iconPosition='left' placeholder='Username' onChange = {this.handleUserChange} errorText = {this.state.usernameError}/>
+                      <Message
+                      error
+                       header='Error '
+                        content='Username must be longer than 6 characters and may not contain space'
+                          />
             
-                      <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' onChange = {this.handleEmail}/>
+                      <Form.Input fluid icon='mail'  iconPosition='left' placeholder='E-mail address' onChange = {this.handleEmail}/>
                       <Form.Input
                         fluid
                         icon='lock'
                         iconPosition='left'
+                 
                         placeholder='Password'
                         type='password'
                         onChange = {this.handlePassword}
@@ -180,6 +162,7 @@ class Signup extends React.Component{
                         fluid
                         icon='lock'
                         iconPosition='left'
+                        
                         placeholder='Confirm Password'
                         type='password'
                      
