@@ -39,6 +39,18 @@ class BubbleWindow extends Component {
           />
       <div>
     <Grid columns={2} padded celled='internally'>
+    <Grid.Column>
+      <Header as='h2' icon textAlign='center'>
+      <Icon name='ellipsis horizontal' circular />
+      <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
+    </Header>
+        <Grid.Column width={2}>
+        {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
+        </Grid.Column>
+        <Grid.Column width={6}>
+            <Feed/>
+        </Grid.Column>
+      </Grid.Column>
       <Grid.Column textAlign="center">
         <Grid.Row >
         <div>
@@ -73,22 +85,10 @@ class BubbleWindow extends Component {
           <Divider horizontal>Image Feed</Divider>
           <Segment basic>
             <ImageGallery/>
-          </Segment>
-    
+          </Segment>   
         </Grid.Row>
       </Grid.Column>
-      <Grid.Column>
-      <Header as='h2' icon textAlign='center'>
-      <Icon name='ellipsis horizontal' circular />
-      <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
-    </Header>
-        <Grid.Column width={2}>
-        {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
-        </Grid.Column>
-        <Grid.Column width={6}>
-            <Feed/>
-        </Grid.Column>
-      </Grid.Column>
+
     </Grid>
   </div>
      
