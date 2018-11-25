@@ -12,11 +12,11 @@ const UserDashboard = () => {
        <BubblesBanner/>
       <div className = "container">
         <Grid>
-          <Grid.Column width ={4}>
+          <Grid.Column width ={2}>
             <SideNav/>  
           </Grid.Column>
-          <Grid.Column stretch width = {12}>
-            <Segment basic>
+          <Grid.Column stretch width = {14}>
+            <Segment >
               {/* <BubbleCanvas/> */}
               <Bubble/>
             </Segment>
