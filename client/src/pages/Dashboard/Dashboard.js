@@ -2,6 +2,7 @@ import React from 'react'
 import SideNav from '../../components/SideNav';
 import BubblesBanner from '../../components/BubbleBanner';
 import { Segment,Grid } from 'semantic-ui-react';
+import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
 
 
@@ -17,6 +18,7 @@ const UserDashboard = () => {
           <Grid.Column stretch width = {12}>
             <Segment basic>
               {/* <BubbleCanvas/> */}
+              <Bubble/>
             </Segment>
           </Grid.Column>
         </Grid>
