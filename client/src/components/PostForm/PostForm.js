@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form,Button, Icon } from 'semantic-ui-react'
+import FileUpload from '../FileUpload';
 
 class FormExampleCaptureValues extends Component {
   state = { post: '', submittedPost: '' }
@@ -21,9 +22,7 @@ class FormExampleCaptureValues extends Component {
           <Form.Group>
             <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} />
             <Button.Group>
-              <Button icon>
-                <Icon name='attach' />
-              </Button>
+              <FileUpload/>
             </Button.Group>{' '}
             <Button.Group>
               <Button content ="Submit">
