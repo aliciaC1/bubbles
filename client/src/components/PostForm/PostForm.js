@@ -16,7 +16,8 @@ class FormExampleClearOnSubmit extends Component {
       <Form onSubmit={this.handleSubmit}>
         <Form.Group>
           <Form.TextArea placeholder='Post' name='post' value={post} onChange={this.handleChange} />
-          <Form.Button content='Submit' />
+          <Form.Button content='Post' />
+          <FileUpload/>
         </Form.Group>
       </Form>
     )

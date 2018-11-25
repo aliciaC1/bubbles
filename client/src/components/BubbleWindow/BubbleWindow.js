@@ -6,6 +6,7 @@ import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
 import BubbleSettingHeader from '../BubbleSettingHeader';
+import PostForm from '../PostForm';
 import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
@@ -88,7 +89,14 @@ class BubbleWindow extends Component {
           </Segment>   
         </Grid.Row>
       </Grid.Column>
-
+      <Grid.Row>
+      <Divider horizontal>POST</Divider>
+      <Segment basic padded fluid>
+      <div className = "PostArea">
+        <PostForm></PostForm>
+      </div>
+      </Segment>
+      </Grid.Row>
     </Grid>
   </div>
      
