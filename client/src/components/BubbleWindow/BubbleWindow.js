@@ -21,9 +21,11 @@ class BubbleWindow extends Component {
         color={this.props.color}
         theme={this.props.theme}
         chrome
-        height="600px"
-        width = "1000px"
-        padding="20px"
+        minHeight ="500px"
+        minWidth ="500px"
+        height="900px"
+        width = "1200px"
+        padding="10px"
       >
         <TitleBar title="Coolest Bubble" 
           controls
@@ -82,58 +84,3 @@ class BubbleWindow extends Component {
 }
 
 export default BubbleWindow;
-// import React from 'react';
-// import Rnd from 'react-rnd';
-// import { Window, TitleBar, Text } from 'react-desktop/windows';
-
-// const Box = () => (
-//   <div
-//     className="box"
-//     style={{ margin: 0, height: '100%', paddingBottom: '40px' }}
-//   >
-//      <Window
-//         color={this.props.color}
-//         theme={this.props.theme}
-//         chrome
-//         height="300px"
-//         padding="12px"
-//       >
-//         <TitleBar title="My Windows Application" 
-//           controls
-//           // isMaximized={this.state.isMaximized}
-//           theme={this.props.theme}
-//           background={this.props.color}
-//           onCloseClick={this.close}
-//           onMinimizeClick={this.minimize}
-//           onMaximizeClick={this.toggleMaximize}
-//           onRestoreDownClick={this.toggleMaximize}
-//           />
-//         <Text color={this.props.theme === 'dark' ? 'white' : '#333'}>
-//         </Text>
-//       </Window>
-//   </div>
-// );
-
-
-// export default () => (
-//   <div
-//     style={{
-//       width: '800px',
-//       height: '400px',
-//     }}
-//   >
-//     <Rnd
-//       default={{
-//         x: 150,
-//         y: 205,
-//         width: 500,
-//         height: 190,
-//       }}
-//       minWidth={500}
-//       minHeight={190}
-//       bounds="window"
-//     >
-//       <Box />
-//     </Rnd>
-//   </div>
-// );
