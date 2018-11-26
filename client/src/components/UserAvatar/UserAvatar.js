@@ -5,7 +5,7 @@ import "./UserAvatar.css";
 const UserAvatar = (props) => (
   <div>
     <Header as='h2'>
-      <Image circular src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /> 
+      <Image circular src='' /> 
       <Header.Content>
       {props.username}
     </Header.Content>
