@@ -18,7 +18,11 @@ export default {
   logout: function(){
 
     return  axios.get('/logout')
-  }
+  },
 
+  createBubble: function(bubbleName) {
+
+    return axios.post('/api/bubble',bubbleName)
+  }
 
 };
