@@ -4,10 +4,28 @@ import UserAvatar from '../UserAvatar';
 import UserSettings from '../UserSettings';
 import AddBubbleModal from '../AddBubbleModal';
 import BubbleColor from '../BubbleColor';
+import API from '../../utils/API'
 import Bubble from '../Bubble';
+import Dashboard from '../../pages/Dashboard/Dashboard'
 
 export default class MenuExampleVerticalSecondary extends Component {
-  state = { activeItem: 'user' }
+  state = { activeItem: 'user' , username:''}
+
+  componentDidMount() {
+    this.loadData()
+    
+  
+}
+
+  loadData = async () =>{
+
+ const user = await API.dashboardInfo();
+ console.log(user)
+ this.setState({username: user.data.username})
+      
+  }
+
+ 
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -17,7 +35,9 @@ export default class MenuExampleVerticalSecondary extends Component {
     return (
       <Menu pointing secondary vertical>
         <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>
-        <UserAvatar/>
+        <UserAvatar username = {this.state.username}/>
+          
+        
         </Menu.Item>
        <Menu.Item
           name='addBubble'
@@ -82,7 +102,7 @@ export default class MenuExampleVerticalSecondary extends Component {
         >
           <Header as='h4'>
             <Icon name='ban'/>
-            <Header.Content>Logout</Header.Content>
+            <Header.Content href = '/logout' >Logout</Header.Content>
           </Header>
         </Menu.Item>
       </Menu>
