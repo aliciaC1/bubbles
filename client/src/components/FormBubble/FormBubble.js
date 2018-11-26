@@ -2,9 +2,14 @@ import React, { Component }from 'react'
 import { Form, Input,Radio, Button } from 'semantic-ui-react'
 
 class AddBubbleForm extends Component {
-  state = {}
+  state = {name: ''}
 
   handleChange = (e, { value }) => this.setState({ value })
+
+  createBubble = () => {
+
+    console.log(this.state.name)
+  }
 
   render() {
     const { value } = this.state
@@ -41,7 +46,7 @@ class AddBubbleForm extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Field control = {Button}>Submit</Form.Field>
+          <Form.Field control = {Button} onClick= {this.createBubble}>Submit</Form.Field>
     </Form>
     );
   }

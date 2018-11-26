@@ -47,8 +47,11 @@ class UserDashboard extends React.Component {
           </Grid.Column>
           <Grid.Column stretch width = {14}>
             <Segment >
-              {/* <BubbleCanvas/> */}
-              <Bubble/>
+              
+              
+                <Bubble/>
+                
+         
             </Segment>
           </Grid.Column>
         </Grid>

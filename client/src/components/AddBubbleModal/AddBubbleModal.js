@@ -1,12 +1,34 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
 import FormBubble from '../FormBubble';
+import API from '../../utils/API';
+import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
-  state = { open: false }
+  state = { open: false , name:'' }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  createBubble = () =>{ 
+    this.setState({ open: false })  
+
+    API.createBubble({name: this.state.name}).then(
+      function(res) {
+console.log(res)
+
+      }
+    )
+ 
+    
+  }
+
+         
+ 
+
+  handleChange = (event) => {
+
+    this.setState({name : event.target.value})
+    console.log(event.target.value)
+  }
 
   render() {
     const { open, dimmer } = this.state
@@ -22,7 +44,13 @@ class AddBubbleModal extends Component {
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Create a New Bubble</Modal.Header>
           <Modal.Content>
-            <FormBubble> </FormBubble>
+            {/* <FormBubble> </FormBubble> */}
+            <Form>
+            <Form.Field required>
+              <label>Bubble Name</label>
+              <Input placeholder='Bubble Name' name= "name" onChange = {this.handleChange}/>
+            </Form.Field>
+          </Form>
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
@@ -33,7 +61,7 @@ class AddBubbleModal extends Component {
               icon='checkmark'
               labelPosition='right'
               content="Make New Bubble!"
-              onClick={this.close}
+              onClick={this.createBubble}
             />
           </Modal.Actions>
         </Modal>
