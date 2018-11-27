@@ -27,9 +27,12 @@ class UserDashboard extends React.Component {
   loadData = async() =>{
 
  const data = await API.dashboardInfo();
- console.log(data)
+ 
+ this.setState({
+  bubbles: [...this.state.bubbles, data.data._bubbleId]
+})
 
-      
+      console.log(this.state.bubbles)
   }
     
 
@@ -47,9 +50,12 @@ class UserDashboard extends React.Component {
           </Grid.Column>
           <Grid.Column stretch width = {14}>
             <Segment >
+            {this.state.bubbles.map((bubbles, i=0) => (
+             <Bubble/>
+        
+           ))}
               
-              
-                <Bubble/>
+                
                 
          
             </Segment>
