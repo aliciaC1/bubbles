@@ -1,6 +1,7 @@
 import React from 'react'
 import SideNav from '../../components/SideNav';
 import BubblesBanner from '../../components/BubbleBanner';
+import BubbleCanvas from '../../components/BubbleCanvas'
 import { Segment,Grid } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
@@ -20,7 +21,6 @@ class UserDashboard extends React.Component {
 
   componentDidMount() {
     this.loadData()
-    
   
 }
 
@@ -29,7 +29,7 @@ class UserDashboard extends React.Component {
  const data = await API.dashboardInfo();
  
  this.setState({
-  bubbles: [...this.state.bubbles, data.data._bubbleId]
+  bubbles: [...data.data._bubbleId]
 })
 
       console.log(this.state.bubbles)
@@ -50,6 +50,7 @@ class UserDashboard extends React.Component {
           </Grid.Column>
           <Grid.Column stretch width = {14}>
             <Segment >
+
             {this.state.bubbles.map((bubbles, i=0) => (
              <Bubble/>
         

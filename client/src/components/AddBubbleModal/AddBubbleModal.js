@@ -8,12 +8,13 @@ class AddBubbleModal extends Component {
   state = { open: false , name:'' }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
+  
   createBubble = () =>{ 
     this.setState({ open: false })  
 
     API.createBubble({name: this.state.name}).then(
       function(res) {
-console.log(res)
+      console.log(res)
 
       }
     )
