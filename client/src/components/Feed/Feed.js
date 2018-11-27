@@ -1,7 +1,7 @@
 import React from 'react'
 import PostText from '../PostText';
 import PropTypes from 'prop-types';
-import PostImage from '../PostImage';
+
 import PostForm from '../PostForm';
 
 import { Segment, Grid, Image, List, Divider } from 'semantic-ui-react'

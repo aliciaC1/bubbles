@@ -9,10 +9,6 @@ const Schema = mongoose.Schema;
 
 // Create the headlineSchema with our schema class
 const postSchema = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
     date: {
         type: Date,
         default: Date.now
@@ -23,10 +19,7 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    name:{
-        type: String
-    }, 
-    avatar: {
+     avatar: {
         type: String
     }, 
     _userId: {
