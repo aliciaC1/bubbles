@@ -23,6 +23,9 @@ export default {
   createBubble: function(bubbleName) {
 
     return axios.post('/api/bubble',bubbleName)
+  },
+  postPhoto: function(photo) {
+    return axios.post('/api/dashboard', photo)
   }
 
 };
