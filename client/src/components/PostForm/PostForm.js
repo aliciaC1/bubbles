@@ -23,10 +23,10 @@ class FormExampleCaptureValues extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} />
+            <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} style={{ minWidth: 425 }} />
          
             <Button.Group>
-            <FileUpload/>
+            {/* <FileUpload/> */}
               <Button content ="Submit">
                 <Icon name='angle double up' />Post
               </Button>
