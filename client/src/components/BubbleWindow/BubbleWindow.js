@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon,Popup, List, Segment, Header} from 'semantic-ui-react';
-// import Feed from '../Feed';
+import { Grid, Image, Divider, Input, Icon,Popup, List, Segment, Header, Button} from 'semantic-ui-react';
+import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
-import BubbleSettings from '../BubbleSettings';
+import FormBubble from '../FormBubble';
 import UserAvatar from '../UserAvatar';
-import BubbleSettingHeader from '../BubbleSettingHeader';
 import PostForm from '../PostForm';
 // import {Posts, PostFeed, PostForm} from '../posts';
 import './BubbleWindow.css';
 import FileUpload from '../FileUpload';
+
+const style = {
+  borderRadius: 0,
+  opacity: 0.7,
+  padding: '2em',
+}
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -30,7 +35,7 @@ class BubbleWindow extends Component {
         width = "1200px"
         padding="10px"
       >
-        <TitleBar title="Coolest Bubble" 
+        <TitleBar title='{Bubblename}'
           controls
           // isMaximized={this.state.isMaximized}
           theme={this.props.theme}
@@ -50,7 +55,7 @@ class BubbleWindow extends Component {
       <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
     </Header>
         <Grid.Column width={6}>
-            {/* <Feed/> */}
+            <Feed/>
         </Grid.Column>
       </Grid.Column>
       <Grid.Column textAlign="center">
@@ -77,22 +82,28 @@ class BubbleWindow extends Component {
             <List.Item>
               <List.Content>
                 <UserAvatar/>
-                {/* <Input transparent icon='search' placeholder='Search...' />  */}
               </List.Content>
             </List.Item>
             <List.Item>
               <List.Content>
-                <Popup
-                trigger={<BubbleSettingHeader/>}
-                content={<BubbleSettings/>}
+              <Popup
+                trigger={<Button icon='settings' content='Bubble Setting' />}
+                content={<FormBubble/>}
                 on='click'
-                basic
+                style={style}
+                inverted
               />  
               </List.Content>
             </List.Item>
             <List.Item>
               <List.Content>
-                <Input transparent icon='search' placeholder='Search...' /> 
+              <Popup
+                trigger={<Button icon='magic' content='Magic Link' />}
+                content={'magic link add members'}
+                on='click'
+                style={style}
+                inverted
+              />  
               </List.Content>
             </List.Item>
           </List>
