@@ -6,9 +6,10 @@ import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
 import BubbleSettingHeader from '../BubbleSettingHeader';
-// import PostForm from '../PostForm';
-import {Posts, PostFeed, PostForm} from '../posts';
+import PostForm from '../PostForm';
+// import {Posts, PostFeed, PostForm} from '../posts';
 import './BubbleWindow.css';
+import FileUpload from '../FileUpload';
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -40,28 +41,39 @@ class BubbleWindow extends Component {
           onRestoreDownClick={this.toggleMaximize}
           />
       <div>
+  <Grid.Row>
     <Grid columns={2} padded celled='internally'>
+   
     <Grid.Column>
       <Header as='h2' icon textAlign='center'>
       <Icon name='ellipsis horizontal' circular />
       <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
     </Header>
-        <Grid.Column width={2}>
-        {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
-        </Grid.Column>
         <Grid.Column width={6}>
-            <Posts/>
-            <PostFeed/>
-          
+            {/* <Feed/> */}
         </Grid.Column>
       </Grid.Column>
       <Grid.Column textAlign="center">
-        <Grid.Row >
-        <div>
-        {/* <UserAvatar/> */}
-        </div>
+        
+        
+        <Grid.Row>
+        <Header as='h2' icon textAlign='center'>
+          <Icon name='images outline' circular />
+          <Header.Content><Divider horizontal>Image Gallery</Divider></Header.Content>
+        </Header>
+          <Segment basic>
+            <ImageGallery/>
+          </Segment>   
         </Grid.Row>
-        <List divided horizontal size='small'>
+      </Grid.Column>
+      </Grid>
+      </Grid.Row>
+
+      <Grid.Row>
+      <Grid columns={2} padded celled='internally'>
+      <Grid.Column>
+      <Segment basic padded fluid>
+      <List divided horizontal size='small'>
             <List.Item>
               <List.Content>
                 <UserAvatar/>
@@ -84,23 +96,19 @@ class BubbleWindow extends Component {
               </List.Content>
             </List.Item>
           </List>
-            <Divider fitted />
-        <Grid.Row>
-          <Divider horizontal>Image Feed</Divider>
-          <Segment basic>
-            <ImageGallery/>
-          </Segment>   
-        </Grid.Row>
-      </Grid.Column>
-      <Grid.Row>
-      <Divider horizontal>POST</Divider>
-      <Segment basic padded fluid>
+          <Divider horizontal>POST</Divider>
+   
       <div className = "PostArea">
-        <PostForm/>
+        <PostForm></PostForm>
       </div>
       </Segment>
+      </Grid.Column>
+      <Grid.Column>
+      <FileUpload/>
+      </Grid.Column>
+   
+      </Grid>
       </Grid.Row>
-    </Grid>
   </div>
      
       </Window>
