@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
+import store from './store';
+import { createStore, applyMiddleware } from 'redux';
+
 import Home from "./pages/Home/home.js";
 import Login from "./pages/Login/login.js";
 import Register from "./pages/Register";
@@ -10,6 +13,7 @@ import NoMatch from "./pages/NoMatch";
 // import Posts from './components/posts/Posts';
 import './App.css';
 
+const store = createStore(() => [], {}, applyMiddleware());
 const App = () => (
 <Router>
   <div>
