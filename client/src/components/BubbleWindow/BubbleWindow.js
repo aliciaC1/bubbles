@@ -7,7 +7,7 @@ import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
 import BubbleSettingHeader from '../BubbleSettingHeader';
 // import PostForm from '../PostForm';
-import {Posts, PostFeed, PostForm} from '../Posts';
+import {Posts, PostFeed, PostForm} from '../posts';
 import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
@@ -52,6 +52,7 @@ class BubbleWindow extends Component {
         <Grid.Column width={6}>
             <Posts/>
             <PostFeed/>
+          
         </Grid.Column>
       </Grid.Column>
       <Grid.Column textAlign="center">
