@@ -5,16 +5,25 @@ import API from '../../utils/API';
 import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
-  state = { open: false , name:'' }
+
+  constructor(props) {
+    super(props);
+
+    this.state= { open: false , name:'' }
+  }
+
+
 
   show = dimmer => () => this.setState({ dimmer, open: true })
+  
   createBubble = () =>{ 
     this.setState({ open: false })  
 
     API.createBubble({name: this.state.name}).then(
       function(res) {
-console.log(res)
+      console.log(res)
 
+      // this.props.fromParent(res);
       }
     )
  
