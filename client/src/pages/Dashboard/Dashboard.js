@@ -6,6 +6,7 @@ import { Segment,Grid } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
 import { set } from 'mongoose';
+import { throws } from 'assert';
 
 
 class UserDashboard extends React.Component {
@@ -19,9 +20,17 @@ class UserDashboard extends React.Component {
     }
   }
 
+
+
   componentDidMount() {
     this.loadData()
   
+}
+
+getbubble =   (newBubble) => {
+
+  this.setState({bubbles: this.state.bubbles.push(newBubble)})
+
 }
 
   loadData = async() =>{
@@ -44,9 +53,9 @@ class UserDashboard extends React.Component {
       <div className = "container">
         <Grid>
           <Grid.Column width ={2}>
-            <SideNav>
+            <SideNav fromParent = {this.getbubble}/>
             
-            </SideNav>
+           
           </Grid.Column>
           <Grid.Column stretch width = {14}>
             <Segment >

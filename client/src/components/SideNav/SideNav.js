@@ -9,7 +9,15 @@ import Bubble from '../Bubble';
 import Dashboard from '../../pages/Dashboard/Dashboard'
 
 export default class MenuExampleVerticalSecondary extends Component {
-  state = { activeItem: 'user' , username:''}
+
+  constructor(props) {
+    super(props);
+    // initialize state here
+    this.state = {
+      activeItem: 'user' , username:''
+    }
+  }
+
 
   componentDidMount() {
     this.loadData()
@@ -20,8 +28,9 @@ export default class MenuExampleVerticalSecondary extends Component {
   loadData = async () =>{
 
  const user = await API.dashboardInfo();
- console.log(user)
+ 
  this.setState({username: user.data.username})
+ 
       
   }
 
