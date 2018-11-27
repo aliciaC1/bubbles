@@ -16,7 +16,7 @@ class Posts extends Component {
         const { posts, loading } = this.props.post; 
         let postContent; 
 
-        if(post === null || loading) {
+        if( posts === null || loading) {
             postContent = <Spinner/>
         } else {
             postContent = <PostFeed posts={posts} />
@@ -42,4 +42,4 @@ const mapStateToProps = state => ({
     post: state.post
 }); 
 
-export default connect(mapStateToProps, { getPosts }) (Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);

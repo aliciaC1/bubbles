@@ -7,7 +7,7 @@ import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
 import BubbleSettingHeader from '../BubbleSettingHeader';
 // import PostForm from '../PostForm';
-import {Posts, PostForm, PostFeed} from '../posts';
+import {Posts, PostFeed, PostForm} from '../Posts';
 import './BubbleWindow.css';
 
 class BubbleWindow extends Component {

@@ -9,6 +9,7 @@ import Login from "./pages/Login/login.js";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
+// import Posts from "./components/Posts";
 
 // import Posts from './components/posts/Posts';
 import './App.css';
@@ -23,6 +24,7 @@ const App = () => (
           <Route exact path ="/login" component={Login} />
           <Route exact path ="/register" component={Register} />
           <Route exact path ="/dashboard" component={Dashboard} />
+          {/* <Route exact path ="/post" component={Posts} /> */}
           <Route component={NoMatch} />
       </Switch>
     </Provider>
