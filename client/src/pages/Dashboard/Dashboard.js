@@ -66,7 +66,7 @@ getbubble =   (newBubble) => {
            ))}
               
                 
-                
+              <Bubble/>  
          
             </Segment>
           </Grid.Column>
