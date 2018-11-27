@@ -13,7 +13,7 @@ import NoMatch from "./pages/NoMatch";
 // import Posts from './components/posts/Posts';
 import './App.css';
 
-const store = createStore(() => [], {}, applyMiddleware());
+
 const App = () => (
 <Router>
   <div>

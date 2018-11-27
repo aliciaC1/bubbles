@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
 import { Grid, Image, Divider, Input, Icon,Popup, List, Segment, Header} from 'semantic-ui-react';
-import Feed from '../Feed';
+// import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
 import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
 import BubbleSettingHeader from '../BubbleSettingHeader';
-import PostForm from '../PostForm';
+// import PostForm from '../PostForm';
+import {Posts, PostForm, PostFeed} from '../posts';
 import './BubbleWindow.css';
 
 class BubbleWindow extends Component {
@@ -49,7 +50,8 @@ class BubbleWindow extends Component {
         {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
         </Grid.Column>
         <Grid.Column width={6}>
-            <Feed/>
+            <Posts/>
+            <PostFeed/>
         </Grid.Column>
       </Grid.Column>
       <Grid.Column textAlign="center">
@@ -93,7 +95,7 @@ class BubbleWindow extends Component {
       <Divider horizontal>POST</Divider>
       <Segment basic padded fluid>
       <div className = "PostArea">
-        <PostForm></PostForm>
+        <PostForm/>
       </div>
       </Segment>
       </Grid.Row>

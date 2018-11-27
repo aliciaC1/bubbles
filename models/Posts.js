@@ -23,11 +23,26 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
+    name:{
+        type: String
+    }, 
+    avatar: {
+        type: String
+    }, 
     _userId: {
         type: String
         // The ObjectIds will refer to the ids in the Note model
         //ref: "User"
     },
+    likes: [
+        {
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'users'
+            }
+
+        }
+    ], 
     _commentId: [
         {
             // Store ObjectIds in the array

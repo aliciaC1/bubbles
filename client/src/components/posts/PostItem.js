@@ -32,11 +32,11 @@ class PostItem extends Component {
                 <Feed.Event>
                 <Feed.Label image={post.avatar} />
                 <Feed.Content>
-                    <Feed.Date>3 days ago</Feed.Date>
+                    <Feed.Date>{post.date}</Feed.Date>
                     <Feed.Summary>
                     <a>{post.name}</a> created a post
                     </Feed.Summary>
-                    <Feed.Extra text>{post.text}</Feed.Extra>
+                    <Feed.Extra text>{post.messageBody}</Feed.Extra>
                         <Feed.Meta>
                     <Feed.Like onClick ={this.onLikeClick.bind(this, post._id)}>
                         <Icon name='like' />
