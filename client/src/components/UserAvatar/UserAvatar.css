@@ -1,3 +1,11 @@
 Header{
     font-family: 'Libre Franklin', sans-serif;
 }
+
+input {
+  display: none;
+}
+
+label {
+  border: 1px solid black;
+}

@@ -7,6 +7,7 @@ import BubbleColor from '../BubbleColor';
 import API from '../../utils/API'
 import Bubble from '../Bubble';
 import Dashboard from '../../pages/Dashboard/Dashboard'
+import querystring from 'querystring'
 
 export default class MenuExampleVerticalSecondary extends Component {
 
@@ -14,27 +15,40 @@ export default class MenuExampleVerticalSecondary extends Component {
     super(props);
     // initialize state here
     this.state = {
-      activeItem: 'user' , username:''
+      activeItem: 'user' , username:'', userimage:''
     }
   }
 
 
   componentDidMount() {
-    this.loadData()
-    
-  
+    this.loadData();
 }
 
-  loadData = async () =>{
+  loadData = async () => {
+   const user = await API.dashboardInfo();
 
- const user = await API.dashboardInfo();
- 
- this.setState({username: user.data.username})
- 
-      
+   this.setState({username: user.data.username})
+   if(user && user.data.image) {
+     this.setState({ userimage: user.data.image })
+   }
   }
 
- 
+  change = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const a = this;
+      const reader = new FileReader();
+
+      reader.onload = async function (e) {
+        a.setState({ userimage: e.target.result });
+        const data = querystring.stringify({
+          "image": e.target.result
+        });
+        const post = await API.postPhoto(data);
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -44,16 +58,17 @@ export default class MenuExampleVerticalSecondary extends Component {
     return (
       <Menu pointing secondary vertical>
         <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>
-        <UserAvatar username = {this.state.username}/>
-          
-        
+        <input onChange={this.change} type="file" id="userimage" name="userimage" accept="image/png, image/jpeg"></input>
+        <UserAvatar username = {this.state.username} userimage={this.state.userimage}/>
+        <label for="userimage">    Update Avatar </label>
+
         </Menu.Item>
        <Menu.Item
           name='addBubble'
           active={activeItem === 'addBubble'}
           onClick={this.handleItemClick}
         > <AddBubbleModal/>
-        </Menu.Item>       
+        </Menu.Item>
         <Menu.Item
           name='1'
           active={activeItem === '1'}
@@ -103,7 +118,7 @@ export default class MenuExampleVerticalSecondary extends Component {
           onClick={this.handleItemClick}
         >
           <UserSettings/>
-        </Menu.Item> 
+        </Menu.Item>
         <Menu.Item
           name='logout'
           active={activeItem === 'logout'}
@@ -120,7 +135,7 @@ export default class MenuExampleVerticalSecondary extends Component {
 }
 
 
-      
+
 {/* <Header as='h2'>
 <BubbleColor/>
 <Header.Content>3</Header.Content>

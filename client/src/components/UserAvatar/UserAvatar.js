@@ -5,7 +5,7 @@ import "./UserAvatar.css";
 const UserAvatar = (props) => (
   <div>
     <Header as='h2'>
-      <Image circular src='' /> 
+      <Image circular src={props.userimage} />
       <Header.Content>
       {props.username}
     </Header.Content>
