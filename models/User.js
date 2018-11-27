@@ -18,7 +18,7 @@ const UserSchema = new Schema({
         required: [true, "can't be blank"],
         index: true
     },
-    image: {
+    avatar: {
         type: String,
     },
     // `password` must be of type String
