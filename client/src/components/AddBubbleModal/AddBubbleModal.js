@@ -8,7 +8,7 @@ class AddBubbleModal extends Component {
 
   constructor(props) {
     super(props);
-    // initialize state here
+
     this.state= { open: false , name:'' }
   }
 
