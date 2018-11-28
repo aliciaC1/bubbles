@@ -1,9 +1,8 @@
 import React from 'react'
 import PostText from '../PostText';
-import PostImage from '../PostImage';
-import PostForm from '../PostForm';
 
-import { Segment, Grid, Image, List, Divider } from 'semantic-ui-react'
+
+import { Segment, Grid, Image, List } from 'semantic-ui-react'
 
 const FeedView = () => (
   <Grid celled='internally'>
@@ -35,7 +34,6 @@ const FeedView = () => (
       <Segment basic fluid>
       <div className ="display">
         <PostText></PostText>
-        <PostImage></PostImage>
       </div>
       </Segment>   
       </Grid.Column>
