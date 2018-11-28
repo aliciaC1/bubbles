@@ -4,7 +4,7 @@ const logger = require('morgan');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 8000;
 const path = require ('path');
 
 
@@ -12,7 +12,7 @@ const path = require ('path');
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Configure body parsing for AJAX requests
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // DB Config 
@@ -48,7 +48,10 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routes);
 
 // Connect to the Mongo DB
-
+mongoose
+  .connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 
 // mongoose.connect(
@@ -59,13 +62,13 @@ app.use(routes);
 //   }
 // );
 
-mongoose.connect(
-  db || "mongodb://localhost/bubbles",
-  {
-    useCreateIndex: true,
-    useNewUrlParser: true
-  }
-);
+// mongoose.connect(
+//   db || process.env.MONGODB_URL || "mongodb://localhost/bubbles",
+//   {
+//     useCreateIndex: true,
+//     useNewUrlParser: true
+//   }
+// );
 
 
 
