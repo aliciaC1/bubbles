@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3002;
-const path = require ('path');
-
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
@@ -14,31 +12,20 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// DB Config 
-const db = require ('./config/keys').mongoURI;
-
-app.use(express.static("client/build"));
-
 /* ////////////////////////////////////////////////Production///////////////////////////////////////
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 */
-
-// Server static assets if in production 
-// if (process.env.NODE_ENV === 'production') {
-//   //Set static folder
-//   // app.use(express.static("client/build"));
-
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
+app.use(express.static("client/build"));
 
 // Add routes, both API and view
 app.use(routes);
 
 // Connect to the Mongo DB
-
 mongoose.connect(
-  db || process.env.MONGODB_URL || "mongodb://localhost/bubbles",
+  process.env.MONGODB_URI || "mongodb://localhost/bubbles",
   {
     useCreateIndex: true,
     useNewUrlParser: true
