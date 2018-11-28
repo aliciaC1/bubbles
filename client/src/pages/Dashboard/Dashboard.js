@@ -1,12 +1,10 @@
 import React from 'react'
 import SideNav from '../../components/SideNav';
 import BubblesBanner from '../../components/BubbleBanner';
-import BubbleCanvas from '../../components/BubbleCanvas'
 import { Segment, Grid } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
-import { set } from 'mongoose';
-import { throws } from 'assert';
+
 
 
 class UserDashboard extends React.Component {
@@ -26,8 +24,8 @@ class UserDashboard extends React.Component {
   loadData = async () => {
     const data = await API.dashboardInfo();
     let { _bubbleId } = data.data;
-    console.log()
-    console.log("props", this.props)
+    console.log(data.data)
+
     this.props.updateBubbles(_bubbleId)
     this.props.updateUserName(data.data.username)
   }
@@ -48,7 +46,12 @@ class UserDashboard extends React.Component {
 
                 {this.props.bubbles ? (
                   this.props.bubbles.map(bubble => (
-                    <Bubble />
+                    <Bubble
+                      id={bubble._ID}
+                      name={bubble.name}
+                      _userID={bubble._userID}
+                      username={this.props.username}
+                    />
 
                   ))) : null
                 }

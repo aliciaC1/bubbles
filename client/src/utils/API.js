@@ -1,28 +1,28 @@
 import axios from "axios";
-import { DH_UNABLE_TO_CHECK_GENERATOR } from "constants";
+
 
 export default {
-  register: function(userInfo) {
+  register: function (userInfo) {
     return axios.post('/register', userInfo);
   },
-  login: function(userInfo) {
+  login: function (userInfo) {
     return axios.post('/login', userInfo);
   },
 
-  dashboardInfo: function() {
+  dashboardInfo: function () {
 
-  return axios.get('/api/dashboard');
+    return axios.get('/api/dashboard');
 
   },
 
-  logout: function(){
+  logout: function () {
 
-    return  axios.get('/logout')
+    return axios.get('/logout')
   },
 
-  createBubble: function(bubbleName) {
+  createBubble: function (bubbleName) {
 
-    return axios.post('/api/bubble',bubbleName)
+    return axios.post('/api/bubble', bubbleName)
   }
 
 };

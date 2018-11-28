@@ -5,26 +5,24 @@ import Link from 'valuelink'
 import API from '../../utils/API';
 import querystring from 'querystring';
 import hash from 'js-sha256';
-import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Icon} from 'semantic-ui-react'
-import { set } from 'mongoose';
+import { Button, Form, Grid, Header, Image, Segment, Modal, Icon } from 'semantic-ui-react'
+// import { set } from 'mongoose';
 
-class Signup extends React.Component{
+class Signup extends React.Component {
 
-  constructor(props) {
-    super(props);
-    // initialize state here
-    this.state = {
-      username: "",
-      email:"",
-      password: "",
-      confirm: "",
-      modalOpen: false,
-      passwordMatch: false,
-      passwordError: false,
-      emailError: false,
-      usernameError:false
-    }
+
+  state = {
+    username: "",
+    email: "",
+    password: "",
+    confirm: "",
+    modalOpen: false,
+    passwordMatch: false,
+    passwordError: false,
+    emailError: false,
+    usernameError: false
   }
+
 
   handleOpen = () => this.setState({ modalOpen: true })
 
@@ -43,59 +41,53 @@ class Signup extends React.Component{
     console.log(this.state.password)
   }
 
-    // Keep track of what user types into email input so that input can be grabbed later
-    handleEmail= (event) => {
-        this.setState({ email: event.target.value });
-        console.log(this.state.email)
-      }
+  // Keep track of what user types into email input so that input can be grabbed later
+  handleEmail = (event) => {
+    this.setState({ email: event.target.value });
+    console.log(this.state.email)
+  }
 
-    handlePasswordConfirm = (event) => {
-        this.setState({ confirm: event.target.value });
-        console.log(this.state.confirm)
+  handlePasswordConfirm = (event) => {
+    this.setState({ confirm: event.target.value });
+    console.log(this.state.confirm)
 
-      }
-
-
-      errorhandler = (event)=>{
-
-        event.preventDefault();
-        let error = false;
-
-        if (this.email === '')
-
-          {
-            this.setState({emailError: true})
-            error = true
-          }else {
-            this.setState({emailError: false})
-
-          }
-
-          if (this.password <6)
-
-          {
-            this.setState({passwordError: true})
-            error = true
-          }else {
-            this.setState({passwordError: false})
-
-          }
-
-          if (this.password != this.confirm)
-
-          {
-            this.setState({passwordMatch: true})
-            error = true
-          }else {
-            this.setState({passwordMatch: false})
-
-          }
-
-          if (error === true){
+  }
 
 
-          }
-      }
+  errorhandler = (event) => {
+
+    event.preventDefault();
+    let error = false;
+
+    if (this.email === '') {
+      this.setState({ emailError: true })
+      error = true
+    } else {
+      this.setState({ emailError: false })
+
+    }
+
+    if (this.password < 6) {
+      this.setState({ passwordError: true })
+      error = true
+    } else {
+      this.setState({ passwordError: false })
+
+    }
+
+    if (this.password !== this.confirm) {
+      this.setState({ passwordMatch: true })
+      error = true
+    } else {
+      this.setState({ passwordMatch: false })
+
+    }
+
+    if (error === true) {
+
+
+    }
+  }
 
 
 
@@ -109,8 +101,8 @@ class Signup extends React.Component{
       this.setState({ email: "" });
     } else if (this.state.password !== this.state.confirm) {
       alert("Passwords don't Match!");
-      this.setState({ password: "", confirm: ""});
-    } else if (this.state.password === "" || this.state.username === ""  || this.state.email === ""){
+      this.setState({ password: "", confirm: "" });
+    } else if (this.state.password === "" || this.state.username === "" || this.state.email === "") {
       this.handleOpen();
     } else {
       const data = querystring.stringify({
@@ -120,24 +112,24 @@ class Signup extends React.Component{
       });
 
       const res = await API.register(data);
-      if(res.data === 404) {
+      if (res.data === 404) {
         alert("Username already exists or Email is already in use!");
         this.setState({ username: "", email: "", password: "", confirm: "" })
       } else {
-        setTimeout(function(){ window.location = res.headers.location; }, 1000);
+        setTimeout(function () { window.location = res.headers.location; }, 1000);
       }
     }
   }
 
   render() {
 
-    const nameLink = Link.state( this, 'username').check(x => x,"Name is Required").check( x => x.indexOf("") < 0, "Name shouldn’t contain spaces");
+    const nameLink = Link.state(this, 'username').check(x => x, "Name is Required").check(x => x.indexOf("") < 0, "Name shouldn’t contain spaces");
 
     return (
 
 
-            <div className='login-form'>
-              <style>{`
+      <div className='login-form'>
+        <style>{`
                 body > div,
                 body > div > div,
                 body > div > div > div.login-form {
@@ -145,68 +137,68 @@ class Signup extends React.Component{
                 }
               `}</style>
 
-       <Modal
+        <Modal
 
-      open={this.state.modalOpen}
-      onClose={this.handleClose}
-      basic
-      size='mini'
-      textAlign='center'
-      style={{ height: '100%' }}
-       verticalAlign='middle'
-    >
-      <Header content='Hey There ! ' />
-      <Modal.Content>
-        <h3>All the fields must be filled !! </h3>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color='green' onClick={this.handleClose} inverted>
-          <Icon name='checkmark' /> Got it
+          open={this.state.modalOpen}
+          onClose={this.handleClose}
+          basic
+          size='mini'
+          textAlign='center'
+          style={{ height: '100%' }}
+          verticalAlign='middle'
+        >
+          <Header content='Hey There ! ' />
+          <Modal.Content>
+            <h3>All the fields must be filled !! </h3>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color='green' onClick={this.handleClose} inverted>
+              <Icon name='checkmark' /> Got it
         </Button>
-      </Modal.Actions>
-    </Modal>
+          </Modal.Actions>
+        </Modal>
 
-              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
-                  <Header as='h2' color='black' textAlign='center'>
-                    <Image src='/logo.png' /> Log-in to your account
+        <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' color='black' textAlign='center'>
+              <Image src='/logo.png' /> Log-in to your account
                   </Header>
-                  <Form size='large' onSubmit = {this.handleSignup}>
-                    <Segment stacked>
+            <Form size='large' onSubmit={this.handleSignup}>
+              <Segment stacked>
 
-                      <Form.Input fluid  icon='user' label = 'Username' iconPosition='left' placeholder='Username' value = {this.state.username} onChange = {this.handleUserChange} valueLink = {nameLink}/>
+                <Form.Input fluid icon='user' label='Username' iconPosition='left' placeholder='Username' value={this.state.username} onChange={this.handleUserChange} valueLink={nameLink} />
 
-                      <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' value = {this.state.email} onChange = {this.handleEmail}/>
-                      <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Password'
-                        type='password'
-                        onChange = {this.handlePassword}
-                        value = {this.state.password}
-                        error = {this.passwordError || this.passwordMatch}
-                      />
-                       <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Confirm Password'
-                        value={this.state.confirm}
-                        onChange = {this.handlePasswordConfirm}
-                        type='password'
+                <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' value={this.state.email} onChange={this.handleEmail} />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Password'
+                  type='password'
+                  onChange={this.handlePassword}
+                  value={this.state.password}
+                  error={this.passwordError || this.passwordMatch}
+                />
+                <Form.Input
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='Confirm Password'
+                  value={this.state.confirm}
+                  onChange={this.handlePasswordConfirm}
+                  type='password'
 
-                      />
+                />
 
-                      <Button color='black' fluid size='large' type = "submit" >
-                        Signup
+                <Button color='black' fluid size='large' type="submit" >
+                  Signup
                       </Button>
-                    </Segment>
-                  </Form>
+              </Segment>
+            </Form>
 
-                </Grid.Column>
-              </Grid>
-            </div>
+          </Grid.Column>
+        </Grid>
+      </div>
 
 
 
