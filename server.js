@@ -48,10 +48,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose
-  .connect(db)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+
 
 
 // mongoose.connect(
@@ -62,13 +59,13 @@ mongoose
 //   }
 // );
 
-// mongoose.connect(
-//   db || process.env.MONGODB_URL || "mongodb://localhost/bubbles",
-//   {
-//     useCreateIndex: true,
-//     useNewUrlParser: true
-//   }
-// );
+mongoose.connect(
+  db || process.env.MONGODB_URL || "mongodb://localhost/bubbles",
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  }
+);
 
 
 
