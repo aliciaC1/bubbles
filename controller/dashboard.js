@@ -20,5 +20,11 @@ module.exports = {
         // If an error occurred, send it to the client
         res.json(err);
       });
-  }
+  },
+  postPhoto: function(req, res) {
+    db.User.updateOne({ sessionID: req.cookies.sessionID}, { image: req.body.image })
+    .then(function(response) {
+      console.log("Finished Updating Photo");
+    })
+  }	  
 };
