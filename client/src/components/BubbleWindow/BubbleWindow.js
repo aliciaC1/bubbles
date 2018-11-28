@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
-import { Grid, Image, Divider, Input, Icon, Popup, List, Segment, Header } from 'semantic-ui-react';
+import { Grid, Image, Divider, Input, Icon, Popup, List, Segment, Header, Button } from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
-import BubbleSettings from '../BubbleSettings';
 import UserAvatar from '../UserAvatar';
-import BubbleSettingHeader from '../BubbleSettingHeader';
 import PostForm from '../PostForm';
+import FormBubble from '../FormBubble';
+// import FileUpload from '../FileUpload';
 import './BubbleWindow.css';
+
+
+const style = {
+  borderRadius: 0,
+  opacity: 0.7,
+  padding: '2em',
+}
 
 class BubbleWindow extends Component {
   static defaultProps = {
@@ -39,65 +46,80 @@ class BubbleWindow extends Component {
           onRestoreDownClick={this.toggleMaximize}
         />
         <div>
-          <Grid columns={2} padded celled='internally'>
-            <Grid.Column>
-              <Header as='h2' icon textAlign='center'>
-                <Icon name='ellipsis horizontal' circular />
-                <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
-              </Header>
-              <Grid.Column width={2}>
-                {/* <Text color={this.props.theme === 'dark' ? 'white' : '#333'}> Poops  </Text> */}
+          <Grid.Row>
+            <Grid columns={2} padded celled='internally'>
+
+              <Grid.Column>
+                <Header as='h2' icon textAlign='center'>
+                  <Icon name='ellipsis horizontal' circular />
+                  <Header.Content><Divider horizontal>Activity Feed</Divider></Header.Content>
+                </Header>
+                <Grid.Column width={6}>
+                  <Feed />
+                </Grid.Column>
               </Grid.Column>
-              <Grid.Column width={6}>
-                <Feed />
+              <Grid.Column textAlign="center">
+
+
+                <Grid.Row>
+                  <Header as='h2' icon textAlign='center'>
+                    <Icon name='images outline' circular />
+                    <Header.Content><Divider horizontal>Image Gallery</Divider></Header.Content>
+                  </Header>
+                  <Segment basic>
+                    <ImageGallery />
+                  </Segment>
+                </Grid.Row>
               </Grid.Column>
-            </Grid.Column>
-            <Grid.Column textAlign="center">
-              <Grid.Row >
-                <div>
-                  {/* <UserAvatar/> */}
-                </div>
-              </Grid.Row>
-              <List divided horizontal size='small'>
-                <List.Item>
-                  <List.Content>
-                    <UserAvatar />
-                    {/* <Input transparent icon='search' placeholder='Search...' />  */}
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <Popup
-                      trigger={<BubbleSettingHeader />}
-                      content={<BubbleSettings />}
-                      on='click'
-                      basic
-                    />
-                  </List.Content>
-                </List.Item>
-                <List.Item>
-                  <List.Content>
-                    <Input transparent icon='search' placeholder='Search...' />
-                  </List.Content>
-                </List.Item>
-              </List>
-              <Divider fitted />
-              <Grid.Row>
-                <Divider horizontal>Image Feed</Divider>
-                <Segment basic>
-                  <ImageGallery />
+            </Grid>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid columns={2} padded celled='internally'>
+              <Grid.Column>
+                <Segment basic padded fluid>
+                  <List divided horizontal size='small'>
+                    <List.Item>
+                      <List.Content>
+                        <UserAvatar />
+                      </List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Content>
+                        <Popup
+                          trigger={<Button icon='settings' content='Bubble Setting' />}
+                          content={<FormBubble />}
+                          on='click'
+                          style={style}
+                          inverted
+                        />
+                      </List.Content>
+                    </List.Item>
+                    <List.Item>
+                      <List.Content>
+                        <Popup
+                          trigger={<Button icon='magic' content='Magic Link' />}
+                          content={'magic link add members'}
+                          on='click'
+                          style={style}
+                          inverted
+                        />
+                      </List.Content>
+                    </List.Item>
+                  </List>
+                  <Divider horizontal>POST</Divider>
+
+                  <div className="PostArea">
+                    <PostForm></PostForm>
+                  </div>
                 </Segment>
-              </Grid.Row>
-            </Grid.Column>
-            <Grid.Row>
-              <Divider horizontal>POST</Divider>
-              <Segment basic padded fluid>
-                <div className="PostArea">
-                  <PostForm></PostForm>
-                </div>
-              </Segment>
-            </Grid.Row>
-          </Grid>
+              </Grid.Column>
+              <Grid.Column>
+                {/* <FileUpload /> */}
+              </Grid.Column>
+
+            </Grid>
+          </Grid.Row>
         </div>
 
       </Window>

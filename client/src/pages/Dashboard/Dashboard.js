@@ -55,6 +55,7 @@ class UserDashboard extends React.Component {
 
                   ))) : null
                 }
+                <Bubble/>
               </Segment>
             </Grid.Column>
           </Grid>

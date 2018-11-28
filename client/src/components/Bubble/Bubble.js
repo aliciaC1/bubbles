@@ -1,14 +1,15 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import BubbleWindow from '../BubbleWindow';
 
 
 class Bubble extends React.Component {
-
-  state = {
-    isHidden: true
+  constructor() {
+    super()
+    this.state = {
+      isHidden: true
+    }
   }
-
   toggleHidden() {
     this.setState({
       isHidden: !this.state.isHidden
@@ -17,13 +18,15 @@ class Bubble extends React.Component {
   render() {
     return (
       <div>
-        <Icon onClick={this.toggleHidden.bind(this)} loading size='massive' name='circle notch' />
+        <Icon onClick={this.toggleHidden.bind(this)} loading size='massive' name='circle' />
         {!this.state.isHidden && <BubbleWindow name={this.props.name} />}
       </div>
     )
   }
 }
 
-
+// const Window = () => (
+//   <BubbleWindow />
+// )
 
 export default Bubble;
