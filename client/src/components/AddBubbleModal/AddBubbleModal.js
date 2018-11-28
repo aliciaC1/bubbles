@@ -5,37 +5,31 @@ import API from '../../utils/API';
 import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state= { open: false , name:'' }
-  }
-
-
+  state = { open: false, name: '' }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
-  
-  createBubble = () =>{ 
-    this.setState({ open: false })  
 
-    API.createBubble({name: this.state.name}).then(
-      function(res) {
-      console.log(res)
+  createBubble = () => {
 
-      // this.props.fromParent(res);
-      }
+    console.log("props", this.props)
+    let bubbles = this.props.bubbles;
+    this.setState({ open: false })
+
+    API.createBubble({ name: this.state.name }).then(res => {
+      console.log("WHAT DIS", res.data)
+      bubbles.push(res.data);
+      this.props.updateBubbles(bubbles)
+
+    }
     )
- 
-    
+
+
   }
 
-         
- 
 
   handleChange = (event) => {
 
-    this.setState({name : event.target.value})
+    this.setState({ name: event.target.value })
     console.log(event.target.value)
   }
 
@@ -44,10 +38,10 @@ class AddBubbleModal extends Component {
 
     return (
       <div>
-        <div className="AddBubble"  onClick={this.show('blurring')}>
+        <div className="AddBubble" onClick={this.show('blurring')}>
           <Header as='h4'>
-          <Icon name='plus' />
-          <Header.Content>Bubble</Header.Content>
+            <Icon name='plus' />
+            <Header.Content>Bubble</Header.Content>
           </Header>
         </div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
@@ -55,15 +49,15 @@ class AddBubbleModal extends Component {
           <Modal.Content>
             {/* <FormBubble> </FormBubble> */}
             <Form>
-            <Form.Field required>
-              <label>Bubble Name</label>
-              <Input placeholder='Bubble Name' name= "name" onChange = {this.handleChange}/>
-            </Form.Field>
-          </Form>
+              <Form.Field required>
+                <label>Bubble Name</label>
+                <Input placeholder='Bubble Name' name="name" onChange={this.handleChange} />
+              </Form.Field>
+            </Form>
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              Nope, nvm. 
+              Nope, nvm.
             </Button>
             <Button
               positive

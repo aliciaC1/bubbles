@@ -2,7 +2,7 @@ import React from 'react'
 import SideNav from '../../components/SideNav';
 import BubblesBanner from '../../components/BubbleBanner';
 import BubbleCanvas from '../../components/BubbleCanvas'
-import { Segment,Grid } from 'semantic-ui-react';
+import { Segment, Grid } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
 import { set } from 'mongoose';
@@ -15,66 +15,50 @@ class UserDashboard extends React.Component {
     super(props);
     // initialize state here
     this.state = {
-      bubbles: [],
-      avatar:""
+      avatar: ""
     }
   }
 
-
-
   componentDidMount() {
     this.loadData()
-  
-}
-
-getbubble =   (newBubble) => {
-
-  this.setState({bubbles: this.state.bubbles.push(newBubble)})
-
-}
-
-  loadData = async() =>{
-
- const data = await API.dashboardInfo();
- 
- this.setState({
-  bubbles: [...data.data._bubbleId]
-})
-
-      console.log(this.state.bubbles)
   }
-    
+
+  loadData = async () => {
+    const data = await API.dashboardInfo();
+    let { _bubbleId } = data.data;
+    console.log()
+    console.log("props", this.props)
+    this.props.updateBubbles(_bubbleId)
+    this.props.updateUserName(data.data.username)
+  }
+
 
   render() {
+    return (
+      <div>
+        <BubblesBanner />
+        <div className="container">
+          <Grid>
+            <Grid.Column width={2}>
+              <SideNav bubbles={this.props.bubbles} updateBubbles={this.props.updateBubbles} username={this.props.username} />
 
-  return (
-    <div>
-       <BubblesBanner/>
-      <div className = "container">
-        <Grid>
-          <Grid.Column width ={2}>
-            <SideNav fromParent = {this.getbubble}/>
-            
-           
-          </Grid.Column>
-          <Grid.Column stretch width = {14}>
-            <Segment >
+            </Grid.Column>
+            <Grid.Column stretch width={14}>
+              <Segment >
 
-            {this.state.bubbles.map((bubbles, i=0) => (
-             <Bubble/>
-        
-           ))}
-              
-                
-                
-         
-            </Segment>
-          </Grid.Column>
-        </Grid>
+                {this.props.bubbles ? (
+                  this.props.bubbles.map(bubble => (
+                    <Bubble />
+
+                  ))) : null
+                }
+              </Segment>
+            </Grid.Column>
+          </Grid>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 
