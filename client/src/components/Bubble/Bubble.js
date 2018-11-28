@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
-// import BubbleWindow from '../BubbleWindow';
-import DraggableWindow from '../DraggableWindow';
+import BubbleWindow from '../BubbleWindow';
+
 
 class Bubble extends React.Component {
     constructor () {
@@ -18,7 +18,7 @@ class Bubble extends React.Component {
     render () {
       return (
         <div>
-          <Icon onClick={this.toggleHidden.bind(this)} loading size='massive' name='circle notch'/>
+          <Icon onClick={this.toggleHidden.bind(this)} loading size='massive' name='circle'/>
           {!this.state.isHidden && <Window />}
         </div>
       )
@@ -26,7 +26,7 @@ class Bubble extends React.Component {
   }
   
   const Window = () => (
-  <DraggableWindow/>
+  <BubbleWindow/>
   )
 
 export default Bubble;
