@@ -4,9 +4,7 @@ import UserAvatar from '../UserAvatar';
 import UserSettings from '../UserSettings';
 import AddBubbleModal from '../AddBubbleModal';
 import BubbleColor from '../BubbleColor';
-import API from '../../utils/API'
-import Bubble from '../Bubble';
-import Dashboard from '../../pages/Dashboard/Dashboard'
+
 
 export default class MenuExampleVerticalSecondary extends Component {
 
@@ -100,7 +98,7 @@ export default class MenuExampleVerticalSecondary extends Component {
 
 
 
-{/* <Header as='h2'>
-<BubbleColor/>
-<Header.Content>3</Header.Content>
-</Header>  */}
+// {/* <Header as='h2'>
+// <BubbleColor/>
+// <Header.Content>3</Header.Content>
+// </Header>  */}

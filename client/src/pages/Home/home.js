@@ -4,11 +4,11 @@ import React, { Component } from 'react'
 import {
   Button,
   Container,
-  Divider,
+
   Grid,
   Header,
   Icon,
-  Image,
+
   List,
   Menu,
   Responsive,
@@ -40,7 +40,7 @@ const Home = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge' href = "/register">
+    <Button primary size='huge' href="/register">
       Check it out !
       <Icon name='right arrow' />
     </Button>
@@ -86,12 +86,12 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
-            
+
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed} href = '/login'>
+                  <Button as='a' inverted={!fixed} href='/login'>
                     Log in
                   </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} href = '/register'>
+                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} href='/register'>
                     Sign Up
                   </Button>
                 </Menu.Item>
@@ -133,8 +133,8 @@ class MobileContainer extends Component {
             <Menu.Item as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a' href = '/login'>Log in</Menu.Item>
-            <Menu.Item as='a' href = '/register'>Sign Up</Menu.Item>
+            <Menu.Item as='a' href='/login'>Log in</Menu.Item>
+            <Menu.Item as='a' href='/register'>Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
@@ -157,7 +157,7 @@ class MobileContainer extends Component {
                     <Button as='a' inverted>
                       Log in
                     </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }} href = '/register'>
+                    <Button as='a' inverted style={{ marginLeft: '0.5em' }} href='/register'>
                       Sign Up
                     </Button>
                   </Menu.Item>
@@ -194,7 +194,7 @@ const HomepageLayout = () => (
     {/* <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row> */}
-          {/* <Grid.Column width={8}>
+    {/* <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
               We Help Companies and Companions
             </Header>
@@ -213,7 +213,7 @@ const HomepageLayout = () => (
           <Grid.Column floated='right' width={6}>
             <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
           </Grid.Column> */}
-        {/* </Grid.Row>
+    {/* </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
             <Button size='huge'>Check Them Out</Button>
