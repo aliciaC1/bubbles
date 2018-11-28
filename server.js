@@ -12,7 +12,7 @@ const path = require ('path');
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Configure body parsing for AJAX requests
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config 
