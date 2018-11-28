@@ -10,31 +10,10 @@ import Dashboard from '../../pages/Dashboard/Dashboard'
 
 export default class MenuExampleVerticalSecondary extends Component {
 
-  constructor(props) {
-    super(props);
-    // initialize state here
-    this.state = {
-      activeItem: 'user' , username:''
-    }
+  state = {
+    activeItem: 'user'
   }
 
-
-  componentDidMount() {
-    this.loadData()
-    
-  
-}
-
-  loadData = async () =>{
-
- const user = await API.dashboardInfo();
- 
- this.setState({username: user.data.username})
- 
-      
-  }
-
- 
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -44,16 +23,16 @@ export default class MenuExampleVerticalSecondary extends Component {
     return (
       <Menu pointing secondary vertical>
         <Menu.Item name='user' active={activeItem === 'user'} onClick={this.handleItemClick}>
-        <UserAvatar username = {this.state.username}/>
-          
-        
+          <UserAvatar username={this.props.username} />
+
+
         </Menu.Item>
-       <Menu.Item
+        <Menu.Item
           name='addBubble'
           active={activeItem === 'addBubble'}
           onClick={this.handleItemClick}
-        > <AddBubbleModal/>
-        </Menu.Item>       
+        > <AddBubbleModal bubbles={this.props.bubbles} updateBubbles={this.props.updateBubbles} />
+        </Menu.Item>
         <Menu.Item
           name='1'
           active={activeItem === '1'}
@@ -64,7 +43,7 @@ export default class MenuExampleVerticalSecondary extends Component {
               1
             </Header>
             <Header as='h2' floated='right'>
-              <BubbleColor/>
+              <BubbleColor />
             </Header>
           </Segment>
         </Menu.Item>
@@ -78,11 +57,11 @@ export default class MenuExampleVerticalSecondary extends Component {
               2
             </Header>
             <Header as='h2' floated='right'>
-              <BubbleColor/>
+              <BubbleColor />
             </Header>
           </Segment>
         </Menu.Item>
-           <Menu.Item
+        <Menu.Item
           name='3'
           active={activeItem === '3'}
           onClick={this.handleItemClick}
@@ -92,26 +71,26 @@ export default class MenuExampleVerticalSecondary extends Component {
               3
             </Header>
             <Header as='h2' floated='right'>
-              <BubbleColor/>
+              <BubbleColor />
             </Header>
           </Segment>
         </Menu.Item>
-        <Menu.Item/>
+        <Menu.Item />
         <Menu.Item
           name='settings'
           active={activeItem === 'settings'}
           onClick={this.handleItemClick}
         >
-          <UserSettings/>
-        </Menu.Item> 
+          <UserSettings />
+        </Menu.Item>
         <Menu.Item
           name='logout'
           active={activeItem === 'logout'}
           onClick={this.handleItemClick}
         >
           <Header as='h4'>
-            <Icon name='ban'/>
-            <Header.Content href = '/logout' >Logout</Header.Content>
+            <Icon name='ban' />
+            <Header.Content href='/logout' >Logout</Header.Content>
           </Header>
         </Menu.Item>
       </Menu>
@@ -120,7 +99,7 @@ export default class MenuExampleVerticalSecondary extends Component {
 }
 
 
-      
+
 {/* <Header as='h2'>
 <BubbleColor/>
 <Header.Content>3</Header.Content>

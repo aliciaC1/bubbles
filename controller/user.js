@@ -27,7 +27,7 @@ module.exports = {
   },
   register: async function (req, res) {
     const check = await db.User.findOne({ username: req.body.username });
-    if(check) {
+    if (check) {
       res.send("404"); //Problem with Registration (Username in Use, Passwords Don't Match etc.)
     } else {
       const register = await db.User.create(new db.User(req.body));
@@ -39,13 +39,13 @@ module.exports = {
   login: async function (req, res) {
     const { username, password } = req.body;
     const login = await db.User.findOne({ username: username });
-    if(login) {
-      if(login.password == password) {
+    if (login) {
+      if (login.password == password) {
         const sessionTime = 3600000; //Default Session: 1 Hour
         const sessionID = generateKey();
         res.cookie("sessionID", sessionID, { httpOnly: true, expires: new Date(Date.now() + sessionTime) });
         const update = await db.User.updateOne({ username: username }, { sessionID: sessionID, sessionExpired: false });
-        setTimeout(async function() {
+        setTimeout(async function () {
           const destroy = await db.User.updateOne({ username: username }, { sessionExpired: true });
           console.log(`Session for ${destroy} has been deleted!`)
         }, sessionTime);
@@ -60,7 +60,7 @@ module.exports = {
     const Session = await db.User.updateOne({ sessionID: req.cookies.sessionID }, { sessionExpired: true });
     res.redirect("/");
   },
-  findUser: async function(req, res) {
+  findUser: async function (req, res) {
     console.log("I love ponies")
     const { sessionID } = req.cookies;
     const User = await db.User.findOne({ sessionID: sessionID });
