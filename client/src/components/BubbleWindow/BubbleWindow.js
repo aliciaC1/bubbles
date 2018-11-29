@@ -25,24 +25,29 @@ class BubbleWindow extends Component {
       width: 1450,
       height: 980,
       x: 10,
-      y: 10
+      y: 10, 
+      visible: true
     };
+    this.onCloseClick =this.onCloseClick.bind(this)
   }
 
   static defaultProps = {
     color: '#5e9bff',
-    theme: 'light',
-    visible: true
+    theme: 'light'  
   };
   
-
-  onCloseClick() {
+  onCloseClick(event) {
+    event.preventDefault()
+    console.log('close');
     this.setState(prevState => ({
       visible: !prevState.visible,
     }))
   }
 
   render() {
+    if (!this.state.visible) {
+      return null
+    }
     return (
       // Settings regarding window 
 
@@ -79,7 +84,7 @@ class BubbleWindow extends Component {
           // isMaximized={this.state.isMaximized}
           theme={this.props.theme}
           background={this.props.color}
-          onCloseClick={this.close}
+          onCloseClick={this.onCloseClick}
           onMinimizeClick={this.minimize}
           onMaximizeClick={this.toggleMaximize}
           onRestoreDownClick={this.toggleMaximize}
