@@ -28,6 +28,18 @@ const postSchema = new Schema({
         // The ObjectIds will refer to the ids in the Note model
         //ref: "User"
     },
+    likes: [
+        {
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'User'
+            }
+
+        }
+    ], 
+    avatar: {
+        type: String
+    },
     _commentId: [
         {
             // Store ObjectIds in the array
@@ -43,6 +55,11 @@ const postSchema = new Schema({
 postSchema.methods.setUserId = function (name) {
     this._userId = name
     return this._userId
+};
+
+postSchema.methods.setAvatar = function (avatar) {
+    this.avatar = avatar
+    return this.avatar
 };
 
 // Create the post model using the postSchema
