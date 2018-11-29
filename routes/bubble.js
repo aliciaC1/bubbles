@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bubbleController = require("../controller/bubble");
 
-router.get("/api/bubble/:id", bubbleController.findOne);
+router.get("/api/bubble", bubbleController.findOne);
 
 router.get("/api/findbubble", bubbleController.findAll);
 
