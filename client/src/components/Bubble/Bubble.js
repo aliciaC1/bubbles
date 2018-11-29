@@ -19,7 +19,7 @@ class Bubble extends React.Component {
     return (
       <div>
         <Icon onClick={this.toggleHidden.bind(this)} loading size='massive' name='circle' />
-        {!this.state.isHidden && <BubbleWindow name={this.props.name} />}
+        {!this.state.isHidden && <BubbleWindow name={this.props.name} username={this.props.username} />}
       </div>
     )
   }
