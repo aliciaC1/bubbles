@@ -1,6 +1,5 @@
 node_modules
-.env
-/config/keys_dev.js
+.DS_Store
 
 #production 
 /build 

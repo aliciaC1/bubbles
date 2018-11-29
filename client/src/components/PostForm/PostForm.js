@@ -16,16 +16,16 @@ class FormPost extends Component {
   }
 
   render() {
+  
     const { post, submittedPost } = this.state
-
     return (
+
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.TextArea placeholder='Type Away...' post='post' value={post} onChange={this.handleChange} style={{ minWidth: 425 }} />
          
             <Button.Group>
-            {/* <FileUpload/> */}
               <Button content ="Submit">
                 <Icon name='angle double up' />Post
               </Button>
