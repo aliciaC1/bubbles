@@ -57,7 +57,7 @@ class FeedView extends Component {
                 {/* ================================================Post Form ======================== */}
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group>
-                    <Form.TextArea placeholder='Type Away...' post='post' value={this.state} onChange={this.handleChange} style={{ minWidth: 425 }} />
+                    <Form.TextArea onMouseDown={e => e.stopPropagation()} placeholder='Type Away...' post='post' value={this.state} onChange={this.handleChange} style={{ minWidth: 425 }} />
                     <Button.Group>
                       <Button content="Submit">
                         <Icon name='angle double up' />Post

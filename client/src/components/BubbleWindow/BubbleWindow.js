@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
+import { Rnd } from "react-rnd";
 import { Grid, Icon, Popup, List, Button } from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
@@ -10,18 +11,30 @@ import './BubbleWindow.css';
 
 const style = {
   borderRadius: 0,
-  opacity: 0.7,
+  opacity: 0.85,
   padding: '2em',
 }
 
 
 
 class BubbleWindow extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      width: 1450,
+      height: 980,
+      x: 10,
+      y: 10
+    };
+  }
+
   static defaultProps = {
     color: '#5e9bff',
     theme: 'light',
     visible: true
   };
+  
 
   onCloseClick() {
     this.setState(prevState => ({
@@ -32,7 +45,24 @@ class BubbleWindow extends Component {
   render() {
     return (
       // Settings regarding window 
-      <Window
+
+
+      <Rnd
+      size={{ width: this.state.width, height: this.state.height }}
+      position={{ x: this.state.x, y: this.state.y }}
+      onDragStop={(e, d) => {
+        this.setState({ x: d.x, y: d.y });
+      }}
+      onResize={(e, direction, ref, delta, position) => {
+        this.setState({
+          width: ref.style.width,
+          height: ref.style.height,
+          ...position
+        });
+      }}
+    >
+          
+          <Window
         color={this.props.color}
         theme={this.props.theme}
         chrome
@@ -42,6 +72,8 @@ class BubbleWindow extends Component {
         width="1200px"
         padding="10px"
       >
+   
+
         <TitleBar title={this.props.name}
           controls
           // isMaximized={this.state.isMaximized}
@@ -73,6 +105,7 @@ class BubbleWindow extends Component {
                       content={<FormBubble />}
                       on='click'
                       style={style}
+                      wide
                     />
                   </List.Content>
                 </List.Item>
@@ -103,6 +136,8 @@ class BubbleWindow extends Component {
           </Grid.Column>
         </Grid>
       </Window>
+
+       </Rnd>
     );
   }
 }
