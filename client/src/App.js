@@ -13,12 +13,18 @@ class App extends React.Component {
     username: '',
     posts: [],
     avatar: '',
-
   }
 
   updateBubbles = (bubbles) => {
     this.setState({
       bubbles
+    })
+  }
+
+  updatePosts = (posts) => {
+
+    this.setState({
+      posts
     })
   }
 
