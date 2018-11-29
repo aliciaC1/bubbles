@@ -91,6 +91,7 @@ class FileUpload extends Component {
           <section>
             <div className="dropzone">
               <Dropzone
+                text = 'add media'
                 accept="image/*"
                 onDrop={this.onDrop.bind(this)}
               />
