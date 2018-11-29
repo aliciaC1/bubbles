@@ -4,6 +4,7 @@ import BubblesBanner from '../../components/BubbleBanner';
 import { Segment, Grid } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
+import axios from "axios"
 
 
 
@@ -21,14 +22,39 @@ class UserDashboard extends React.Component {
     this.loadData()
   }
 
+
   loadData = async () => {
     const data = await API.dashboardInfo();
     let { _bubbleId } = data.data;
-    console.log(data.data)
-
-    this.props.updateBubbles(_bubbleId)
     this.props.updateUserName(data.data.username)
+
+    console.log(_bubbleId)
+
+    var example = _bubbleId.map(bubble => {
+
+      const obj = { id: bubble._id }
+
+      axios.get("/api/bubble", obj).then(function (res) {
+        console.log(res)
+        const data = [];
+
+
+        data.push(res.body)
+        return data;
+      })
+
+      console.log(example)
+
+    })
+
   }
+
+
+
+
+
+
+
 
 
   render() {
@@ -47,15 +73,19 @@ class UserDashboard extends React.Component {
                 {this.props.bubbles ? (
                   this.props.bubbles.map(bubble => (
                     <Bubble
-                      id={bubble._ID}
+                      id={bubble._id}
                       name={bubble.name}
-                      _userID={bubble._userID}
+                      users={bubble._userID}
                       username={this.props.username}
+                      updatePost={this.props.updatePost}
+                      posts={bubble.postId}
+
+
                     />
 
                   ))) : null
                 }
-                <Bubble/>
+                <Bubble />
               </Segment>
             </Grid.Column>
           </Grid>

@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import './App.css';
+import axios from "axios"
 
 class App extends React.Component {
   state = {
@@ -34,6 +35,15 @@ class App extends React.Component {
     })
   }
 
+  updatePost = (posts) => {
+
+    this.setState({
+      posts
+    })
+  }
+
+
+
   render() {
     return (
       <Router>
@@ -48,6 +58,8 @@ class App extends React.Component {
                 bubbles={this.state.bubbles}
                 username={this.state.username}
                 updateUserName={this.updateUserName}
+                updatePost={this.updatePost}
+                posts={this.posts}
               />}>
             </Route>
             <Route component={NoMatch} />

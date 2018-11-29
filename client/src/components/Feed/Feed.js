@@ -23,11 +23,17 @@ class FeedView extends Component {
                 <Grid.Column width={4}>
                   <div className="memberDisplay">
                     <List animated verticalAlign='middle'>
-                      {/* //Display Bubble members here  */}
-                      <BubbleMembers
-                        member={this.props.username}
-                        avatar={src}
-                      />
+
+                      {this.props.bubbles ? (
+                        this.props.users.map(user => (
+                          <BubbleMembers
+                            member={user._userId}
+                            avatar={user.avatar}
+                          />
+
+                        ))) : null
+                      }
+
                     </List>
                   </div>
                 </Grid.Column>

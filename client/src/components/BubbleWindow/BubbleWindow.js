@@ -92,10 +92,10 @@ class BubbleWindow extends Component {
             </div>
           </Grid.Row>
           <Grid.Column width={8} textAlign="center">
-            {/* Display Post Feed Here  */}
             <Feed
-              username={this.props.username}
-            />
+              users={this.props.users}
+              posts={this.props.posts}
+              updatePost={this.props.updatePost} />
           </Grid.Column>
           <Grid.Column width={8} textAlign="center">
             {/* Display Image Feed Here  */}
