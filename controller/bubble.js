@@ -14,7 +14,7 @@ const generateKey = () => {
 module.exports = {
   // Find one note
   findOne: function (req, res) {
-    db.Bubble.findOne({ _id: req.params.id })
+    db.Bubble.findOne({ _id: req.body.id })
       .populate("_userId")
       .populate("_postId")
       .populate("_imageId")
