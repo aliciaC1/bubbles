@@ -17,6 +17,7 @@ module.exports = {
     db.Bubble.findOne({ _id: req.params.id })
       .populate("_userId")
       .populate("_postId")
+      .populate("_imageId")
       .then(function (dbBubble) {
         // If we were able to successfully find Articles, send them back to the client
         console.log(dbBubble);

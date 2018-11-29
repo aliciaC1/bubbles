@@ -3,6 +3,7 @@ module.exports = {
     Post: require("./Posts"),
     Bubble: require("./Bubbles"),
     User: require("./User"),
-    CommentX: require("./Comment")
+    CommentX: require("./Comment"),
+    Image: require("./Image")
   };
   

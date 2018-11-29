@@ -4,6 +4,7 @@ const bubbleRoute = require("./bubble");
 const postRoute = require("./post");
 const commentRoute = require("./comment")
 const userRoute = require("./user");
+const imageRoute = require("./image");
 const path = require('path');
 const db = require('../models');
 
@@ -38,6 +39,7 @@ router.use("/", bubbleRoute);
 router.use("/", dashboardRoute);
 router.use("/", postRoute);
 router.use("/", commentRoute);
+router.use("/", imageRoute);
 
 router.use(function (request, response) {
   response.sendFile(path.join(__dirname, "../client/build/index.html"));
