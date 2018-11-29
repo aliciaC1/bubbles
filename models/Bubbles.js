@@ -14,6 +14,9 @@ const bubblesSchema = new Schema({
     type: String,
     required: true
   },
+  bubbleCategories: {
+    type: Number
+  },
   _userId: [
     {
       type: Schema.Types.ObjectId,
