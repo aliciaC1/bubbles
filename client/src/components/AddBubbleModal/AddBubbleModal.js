@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Image, Modal, Form, Input, Icon } from 'semantic-ui-react'
+import { Button, Header, Modal, Form, Input, Icon, Radio } from 'semantic-ui-react'
 import FormBubble from '../FormBubble';
 import API from '../../utils/API';
 import querystring from 'querystring';
@@ -35,6 +35,7 @@ class AddBubbleModal extends Component {
 
   render() {
     const { open, dimmer } = this.state
+    const value = ''
 
     return (
       <div>
@@ -44,21 +45,52 @@ class AddBubbleModal extends Component {
             <Header.Content>Bubble</Header.Content>
           </Header>
         </div>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal closeIcon dimmer={dimmer} open={open} onClose={this.close} >
           <Modal.Header>Create a New Bubble</Modal.Header>
           <Modal.Content>
             {/* <FormBubble> </FormBubble> */}
             <Form>
               <Form.Field required>
-                <label>Bubble Name</label>
-                <Input placeholder='Bubble Name' name="name" onChange={this.handleChange} />
-              </Form.Field>
+                  <label>Bubble Name</label>
+                  <Input placeholder='Bubble Name' name="name" onChange={this.handleChange} />
+                </Form.Field>
+                <Form.Group required inline>
+              <label>Bubble Rank (1 : Most Inner | 3 : Most Outer) </label>
+              <Form.Field 
+                required
+                control={Radio}
+                label='1'
+                value='1'
+                checked={value === '1'}
+                onChange={this.handleChange}
+              />
+              <Form.Field
+                required
+                control={Radio}
+                label='2'
+                value='2'
+                checked={value === '2'}
+                onChange={this.handleChange}
+              />
+              <Form.Field
+                required
+                control={Radio}
+                label='3'
+                value='3'
+                checked={value === '3'}
+                onChange={this.handleChange}
+              />
+            </Form.Group>
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.close}>
-              Nope, nvm.
-            </Button>
+          {/* <Button
+              positive
+              icon='x'
+              labelPosition='right'
+              content="No Bubble!"
+              onClick={this.onClose}
+            /> */}
             <Button
               positive
               icon='checkmark'
