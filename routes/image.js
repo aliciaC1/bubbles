@@ -18,5 +18,6 @@ const storage = cloudinaryStorage({
 const parser = multer({ storage: storage });
 
 router.post("/api/images/:bubbleid", parser.single('image'), imageController.postImage);
+router.post("/api/avatar", parser.single('image'), imageController.postAvatar);
 
 module.exports = router;
