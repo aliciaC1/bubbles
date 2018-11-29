@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
+import { Rnd } from "react-rnd";
 import { Grid, Icon, Popup, List, Button } from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
@@ -10,29 +11,63 @@ import './BubbleWindow.css';
 
 const style = {
   borderRadius: 0,
-  opacity: 0.7,
+  opacity: 0.85,
   padding: '2em',
 }
 
 
 
 class BubbleWindow extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      width: 1450,
+      height: 980,
+      x: 10,
+      y: 10, 
+      visible: true
+    };
+    this.onCloseClick =this.onCloseClick.bind(this)
+  }
+
   static defaultProps = {
     color: '#5e9bff',
-    theme: 'light',
-    visible: true
+    theme: 'light'  
   };
-
-  onCloseClick() {
+  
+  onCloseClick(event) {
+    event.preventDefault()
+    console.log('close');
     this.setState(prevState => ({
       visible: !prevState.visible,
     }))
   }
 
   render() {
+    if (!this.state.visible) {
+      return null
+    }
     return (
       // Settings regarding window 
-      <Window
+
+
+      <Rnd
+      size={{ width: this.state.width, height: this.state.height }}
+      position={{ x: this.state.x, y: this.state.y }}
+      onDragStop={(e, d) => {
+        this.setState({ x: d.x, y: d.y });
+      }}
+      onResize={(e, direction, ref, delta, position) => {
+        this.setState({
+          width: ref.style.width,
+          height: ref.style.height,
+          ...position
+        });
+      }}
+    >
+          
+          <Window
         color={this.props.color}
         theme={this.props.theme}
         chrome
@@ -42,12 +77,14 @@ class BubbleWindow extends Component {
         width="1200px"
         padding="10px"
       >
+   
+
         <TitleBar title={this.props.name}
           controls
           // isMaximized={this.state.isMaximized}
           theme={this.props.theme}
           background={this.props.color}
-          onCloseClick={this.close}
+          onCloseClick={this.onCloseClick}
           onMinimizeClick={this.minimize}
           onMaximizeClick={this.toggleMaximize}
           onRestoreDownClick={this.toggleMaximize}
@@ -73,6 +110,7 @@ class BubbleWindow extends Component {
                       content={<FormBubble />}
                       on='click'
                       style={style}
+                      wide
                     />
                   </List.Content>
                 </List.Item>
@@ -103,6 +141,8 @@ class BubbleWindow extends Component {
           </Grid.Column>
         </Grid>
       </Window>
+
+       </Rnd>
     );
   }
 }
