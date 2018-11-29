@@ -44,7 +44,7 @@ class AddBubbleModal extends Component {
             <Header.Content>Bubble</Header.Content>
           </Header>
         </div>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close} closeIcon>
           <Modal.Header>Create a New Bubble</Modal.Header>
           <Modal.Content>
             {/* <FormBubble> </FormBubble> */}
@@ -56,9 +56,6 @@ class AddBubbleModal extends Component {
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.close}>
-              Nope, nvm.
-            </Button>
             <Button
               positive
               icon='checkmark'
