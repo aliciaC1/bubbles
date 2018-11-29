@@ -9,6 +9,7 @@ module.exports = {
   findOne: function (req, res) {
     db.Post.findOne({ _id: req.params.postid })
       .populate("_commentId")
+      .populate("likes")
       .then(function (dbComment) {
         // If we were able to successfully find Articles, send them back to the client
         console.log(dbComment);
