@@ -4,11 +4,9 @@ import React, { Component } from 'react'
 import {
   Button,
   Container,
-
+  Icon,
   Grid,
   Header,
-  Icon,
-
   List,
   Menu,
   Responsive,
@@ -17,39 +15,42 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
-const Home = ({ mobile }) => (
-  <Container text>
-    <Header
-      as='h1'
-      content='Bubbles'
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as='h2'
-      content='Anti-social media, Social media ?'
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-      }}
-    />
-    <Button primary size='huge' href="/register">
-      Check it out !
-      <Icon name='right arrow' />
-    </Button>
-  </Container>
-)
+import HomeSlider from '../../components/HomeSlider'
 
-Home.propTypes = {
-  mobile: PropTypes.bool,
-}
+// const Home = ({ mobile }) => (
+//   <Container text>
+//   <HomeSlider></HomeSlider>
+//     {/* <Header
+//       as='h1'
+//       content='Bubbles'
+//       inverted
+//       style={{
+//         fontSize: mobile ? '2em' : '4em',
+//         fontWeight: 'normal',
+//         marginBottom: 0,
+//         marginTop: mobile ? '1.5em' : '3em',
+//       }}
+//     />
+//     <Header
+//       as='h2'
+//       content='Anti-social media, Social media ?'
+//       inverted
+//       style={{
+//         fontSize: mobile ? '1.5em' : '1.7em',
+//         fontWeight: 'normal',
+//         marginTop: mobile ? '0.5em' : '1.5em',
+//       }}
+//     />
+//     <Button primary size='huge' href="/register">
+//       Check it out !
+//       <Icon name='right arrow' />
+//     </Button>
+//   </Container> */}
+// )
+
+// Home.propTypes = {
+//   mobile: PropTypes.bool,
+// }
 
 /* Heads up!
  * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
@@ -97,7 +98,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>
             </Menu>
-            <Home />
+            <HomeSlider></HomeSlider>
           </Segment>
         </Visibility>
 
@@ -163,7 +164,7 @@ class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              <Home mobile />
+              {/* <Home mobile /> */}
             </Segment>
 
             {children}
@@ -283,27 +284,30 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
+                <List.Item as='a'>About</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
                 <List.Item as='a'>Religious Ceremonies</List.Item>
                 <List.Item as='a'>Gazebo Plans</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Team' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a'>William Ma</List.Item>
+                <List.Item as='a'>Luis Rishi Puno</List.Item>
+                <List.Item as='a'>Jonas Morel</List.Item>
+                <List.Item as='a'>Alicia Chan</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+              Bubbles: The Anti-Social Media Social Media App 
               </Header>
               <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
+                <Icon name ='github' size = ''/>View on Github 
+                <br/>
+                <br/>
+                Bubbles© Copyright 2018
               </p>
             </Grid.Column>
           </Grid.Row>
