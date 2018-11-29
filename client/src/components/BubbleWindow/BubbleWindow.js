@@ -19,19 +19,19 @@ const style = {
 class BubbleWindow extends Component {
   static defaultProps = {
     color: '#5e9bff',
-    theme: 'light', 
+    theme: 'light',
     visible: true
   };
 
   onCloseClick() {
     this.setState(prevState => ({
-      visible: !prevState.visible, 
+      visible: !prevState.visible,
     }))
   }
 
   render() {
     return (
-// Settings regarding window 
+      // Settings regarding window 
       <Window
         color={this.props.color}
         theme={this.props.theme}
@@ -52,54 +52,56 @@ class BubbleWindow extends Component {
           onMaximizeClick={this.toggleMaximize}
           onRestoreDownClick={this.toggleMaximize}
         />
-       
-{/* Displays Window Body Content */}
-{/* Displays TopBar Avatar + Settings */}
-  <Grid padded celled='internally'>
+
+        {/* Displays Window Body Content */}
+        {/* Displays TopBar Avatar + Settings */}
+        <Grid padded celled='internally'>
           <Grid.Row>
-            <div className ="controlWindow">
-            <List divided horizontal size='small' textAlign='center'>
-                    <List.Item>
-                      <List.Content>
-      {/* Show User's Avatar + Name here  */}
-                        <UserAvatar />
-                      </List.Content>
-                    </List.Item>
-                    <List.Item>
-      {/* Bubble Settings here  */}
-                      <List.Content>
-                        <Popup
-                          trigger={<Button icon='settings' content='Bubble Setting' />}
-                          content={<FormBubble />}
-                          on='click'
-                          style={style}
-                        />
-                      </List.Content>
-                    </List.Item>
-                    <List.Item>
-      {/* Bubble Magic Link Button here  */}
-                      <List.Content>
-                        <Popup
-                          trigger={<Button icon='magic' content='Magic Link' />}
-                          content={'magic link add members'}
-                          on='click'
-                          style={style}
-                          inverted
-                        />
-                      </List.Content>
-                    </List.Item>
-                  </List>
-                  </div>
-              </Grid.Row>
-              <Grid.Column width={8} textAlign="center">              
-          {/* Display Post Feed Here  */}
-                  <Feed/>
-              </Grid.Column>
-              <Grid.Column  width={8} textAlign="center">
-          {/* Display Image Feed Here  */}
-                <ImageGallery/>
-              </Grid.Column>           
-            </Grid>
+            <div className="controlWindow">
+              <List divided horizontal size='small' textAlign='center'>
+                <List.Item>
+                  <List.Content>
+                    {/* Show User's Avatar + Name here  */}
+                    <UserAvatar />
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  {/* Bubble Settings here  */}
+                  <List.Content>
+                    <Popup
+                      trigger={<Button icon='settings' content='Bubble Setting' />}
+                      content={<FormBubble />}
+                      on='click'
+                      style={style}
+                    />
+                  </List.Content>
+                </List.Item>
+                <List.Item>
+                  {/* Bubble Magic Link Button here  */}
+                  <List.Content>
+                    <Popup
+                      trigger={<Button icon='magic' content='Magic Link' />}
+                      content={'magic link add members'}
+                      on='click'
+                      style={style}
+                      inverted
+                    />
+                  </List.Content>
+                </List.Item>
+              </List>
+            </div>
+          </Grid.Row>
+          <Grid.Column width={8} textAlign="center">
+            {/* Display Post Feed Here  */}
+            <Feed
+              username={this.props.username}
+            />
+          </Grid.Column>
+          <Grid.Column width={8} textAlign="center">
+            {/* Display Image Feed Here  */}
+            <ImageGallery />
+          </Grid.Column>
+        </Grid>
       </Window>
     );
   }

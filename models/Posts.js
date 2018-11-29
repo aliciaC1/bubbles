@@ -9,10 +9,6 @@ const Schema = mongoose.Schema;
 
 // Create the headlineSchema with our schema class
 const postSchema = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
     date: {
         type: Date,
         default: Date.now
@@ -27,6 +23,18 @@ const postSchema = new Schema({
         type: String
         // The ObjectIds will refer to the ids in the Note model
         //ref: "User"
+    },
+    likes: [
+        {
+            user: {
+                type: Schema.Types.ObjectId, 
+                ref: 'User'
+            }
+
+        }
+    ], 
+    avatar: {
+        type: String
     },
     _commentId: [
         {
@@ -43,6 +51,11 @@ const postSchema = new Schema({
 postSchema.methods.setUserId = function (name) {
     this._userId = name
     return this._userId
+};
+
+postSchema.methods.setAvatar = function (avatar) {
+    this.avatar = avatar
+    return this.avatar
 };
 
 // Create the post model using the postSchema

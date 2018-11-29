@@ -14,6 +14,9 @@ const bubblesSchema = new Schema({
     type: String,
     required: true
   },
+  bubbleCategories: {
+    type: Number
+  },
   _userId: [
     {
       type: Schema.Types.ObjectId,
@@ -24,8 +27,16 @@ const bubblesSchema = new Schema({
     {
       // Store ObjectIds in the array
       type: Schema.Types.ObjectId,
-      // The ObjectIds will refer to the ids in the Note model
+      // The ObjectIds will refer to the ids in the Post model
       ref: "Post"
+    }
+  ],
+  _imageId: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Image model
+      ref: "Image"
     }
   ],
   inviteCode: {
