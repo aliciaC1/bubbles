@@ -3,7 +3,8 @@ import querystring from 'querystring';
 import API from './../../utils/API.js';
 import hash from 'js-sha256';
 // import { Redirect } from "react-router-dom";
-import { Button, Form, Grid, Header, Image, Message, Segment , Modal, Icon} from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment , Modal, Icon, Divider} from 'semantic-ui-react'
+import logo from '../../assets/BBLOGO.png'
 
 class Login extends React.Component{
 
@@ -79,35 +80,36 @@ class Login extends React.Component{
       `}</style>
 
        <Modal
-
-      open={this.state.modalOpen}
-      onClose={this.handleClose}
-      basic
-      size='mini'
-      textAlign='center'
-      style={{ height: '100%' }}
-       verticalAlign='middle'
-    >
-      <Header content='Hey There ! ' />
-      <Modal.Content>
-        <h3>All the fields must be filled !! </h3>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color='green' onClick={this.handleClose} inverted>
-          <Icon name='checkmark' /> Got it
-        </Button>
-      </Modal.Actions>
-    </Modal>
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+        basic
+        size='small'
+        textAlign='center'
+        style ={{paddingTop:'325px'}}
+        >
+          <Modal.Content>
+            <Header inverted as='h3' icon = 'exclamation' content = 'Hey There! All fields must be filled!'/>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button inverted color='yellow' onClick={this.handleClose}>
+              <Icon name='checkmark' /> Got it
+            </Button>
+          </Modal.Actions>
+        </Modal>
 
 
       <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='black' textAlign='center'>
-            <Image src='./BLOGO1.png' /> Log-in to your account
+          <Header as='h3' color='black' textAlign='center'>
+          
+           <Image className ='mainLogo' src={logo} style={{width:'293px'}} /> 
+          
+          <br/><br/> --  Log-in to Your Account --
           </Header>
+
           <Form size='large'>
-            <Segment stacked>
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='Username' value={this.state.username} onChange = {this.handleUserChange}/>
+            <Segment basic>
+              <Form.Input fluid iconPosition='left' placeholder='username' value={this.state.username} onChange = {this.handleUserChange}/>
               <Form.Input
                 fluid
                 icon='lock'
@@ -117,15 +119,17 @@ class Login extends React.Component{
                 value={this.state.password}
                 onChange = {this.handlePassword}
               />
-
-              <Button color='black' fluid size='large' onClick = {this.handleLogin}>
-                Login
+                <Button animated='vertical' basic color='black' fluid size='large' onClick = {this.handleLogin}>
+                  <Button.Content visible>Login</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='arrow right' />
+                  </Button.Content>
               </Button>
             </Segment>
-          </Form>
-          <Message>
-            New to us? <a href='/register'>Sign Up</a>
-          </Message>
+          </Form>      
+            Don't have a Bubbles account? <a href='/register' style = {{color:'#a08000'}}>Sign Up</a>
+            <br/>
+            <a href='/' style = {{color: '#8bb2ff'}}><Icon name ='angle double left'/> Return to Home Page</a>
         </Grid.Column>
       </Grid>
 
