@@ -58,6 +58,11 @@ postSchema.methods.setAvatar = function (avatar) {
     return this.avatar
 };
 
+postSchema.methods.setMessageBody = function (avatar) {
+    this.messageBody = avatar
+    return this.messageBody
+};
+
 // Create the post model using the postSchema
 const Post = mongoose.model("Post", postSchema);
 
