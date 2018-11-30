@@ -25,9 +25,12 @@ module.exports = {
       .then(function (SpecificUser) {
         const userName = SpecificUser.username
         const avatar = SpecificUser.image;
-        const post = new db.Post(req.body.messageBody);
+        const post = new db.Post();
         post.setUserId(userName);
         post.setAvatar(avatar);
+        post.setMessageBody(req.body.messageBody);
+        console.log(post);
+        console.log('Body:',req.body);
         db.Post.create(post)
           .then(function (dbPost) {
             return db.Bubble.findOneAndUpdate({ _id: req.body.bubbleid }, { $push: { _postId: dbPost._id } }, { new: true })
@@ -41,27 +44,6 @@ module.exports = {
           });
       })
   },
-  update: function (req, res) {
-    db.Post.updateOne({ _id: req.params.id })
-      .then(function (SpecificUser) {
-        const userName = SpecificUser.username
-        const avatar = SpecificUser.image;
-        const post = new db.Post(req.body);
-        post.setUserId(userName);
-        post.setAvatar(avatar);
-        db.Post.create(post)
-          .then(function (dbPost) {
-            return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid }, { $push: { _postId: dbPost._id } }, { new: true })
-              .populate("_postId");
-          }).then(function (dbPost) {
-            res.json(dbPost);
-          })
-          .catch(function (err) {
-            // If an error occurred, send it to the client
-            res.json(err);
-          });
-      })
-  }
   // Delete a note with a given id
   /*
 
