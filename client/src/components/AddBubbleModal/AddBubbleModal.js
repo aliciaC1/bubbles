@@ -43,7 +43,7 @@ class AddBubbleModal extends Component {
         <div className="AddBubble" onClick={this.show('blurring')}>
           <Header as='h4'>
             <Icon name='plus' />
-            <Header.Content>Bubble</Header.Content>
+            <Header.Content>Add Bubble</Header.Content>
           </Header>
         </div>
         <Modal closeIcon dimmer={dimmer} open={open} onClose={this.close} >
@@ -72,7 +72,8 @@ class AddBubbleModal extends Component {
               onClick={this.onClose}
             /> */}
             <Button
-              positive
+              basic
+              color ='black' 
               icon='checkmark'
               labelPosition='right'
               content="Make New Bubble!"
