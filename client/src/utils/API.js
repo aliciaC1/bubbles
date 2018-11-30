@@ -26,10 +26,14 @@ export default {
   },
 
   findbubble: function (id) {
-    return axios.get('/api/bubble', id)
+    return axios.get('/api/bubble/' + id)
 
   },
 
+  userFindOne: function (username) {
+
+    return axios.post('/findOne', username)
+  },
 
   createpost: function (post) {
 

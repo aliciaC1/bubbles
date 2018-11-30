@@ -25,9 +25,10 @@ module.exports = {
       .then(function (SpecificUser) {
         const userName = SpecificUser.username
         const avatar = SpecificUser.image;
-        const post = new db.Post(req.body.messageBody);
+        const post = new db.Post();
         post.setUserId(userName);
         post.setAvatar(avatar);
+        post.setMessageBody(req.body.messageBody);
         db.Post.create(post)
           .then(function (dbPost) {
             return db.Bubble.findOneAndUpdate({ _id: req.body.bubbleid }, { $push: { _postId: dbPost._id } }, { new: true })

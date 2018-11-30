@@ -27,12 +27,12 @@ const postSchema = new Schema({
     likes: [
         {
             user: {
-                type: Schema.Types.ObjectId, 
+                type: Schema.Types.ObjectId,
                 ref: 'User'
             }
 
         }
-    ], 
+    ],
     avatar: {
         type: String
     },
@@ -56,6 +56,11 @@ postSchema.methods.setUserId = function (name) {
 postSchema.methods.setAvatar = function (avatar) {
     this.avatar = avatar
     return this.avatar
+};
+
+postSchema.methods.setMessageBody = function (avatar) {
+    this.messageBody = avatar
+    return this.messageBody
 };
 
 // Create the post model using the postSchema

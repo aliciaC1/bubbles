@@ -12,8 +12,9 @@ class App extends React.Component {
   state = {
     bubbles: [],
     username: '',
+    activeuser: '',
     posts: [],
-    avatar: '',
+    avatar: ''
   }
 
   updateBubbles = (bubbles) => {
@@ -42,6 +43,13 @@ class App extends React.Component {
     })
   }
 
+  updateactiveuser = (id) => {
+
+    this.setState({
+      activeuser: id
+    })
+  }
+
 
 
   render() {
@@ -57,9 +65,14 @@ class App extends React.Component {
                 updateBubbles={this.updateBubbles}
                 bubbles={this.state.bubbles}
                 username={this.state.username}
+                posts={this.posts}
+                activeuser={this.activeuser}
+                updateactiveuser={this.updateactiveuser}
                 updateUserName={this.updateUserName}
                 updatePost={this.updatePost}
-                posts={this.posts}
+                updateBubbles={this.updateBubbles}
+
+
               />}>
             </Route>
             <Route component={NoMatch} />

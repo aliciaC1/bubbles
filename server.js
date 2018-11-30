@@ -4,7 +4,7 @@ const logger = require('morgan');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const routes = require("./routes");
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3004;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));

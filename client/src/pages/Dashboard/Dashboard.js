@@ -27,25 +27,7 @@ class UserDashboard extends React.Component {
     const data = await API.dashboardInfo();
     let { _bubbleId } = data.data;
     this.props.updateUserName(data.data.username)
-
-    console.log(_bubbleId)
-
-    var example = _bubbleId.map(bubble => {
-
-      const obj = { id: bubble._id }
-
-      axios.get("/api/bubble", obj).then(function (res) {
-        console.log(res)
-        const data = [];
-
-
-        data.push(res.body)
-        return data;
-      })
-
-      console.log(example)
-
-    })
+    this.props.updateBubbles(_bubbleId)
 
   }
 

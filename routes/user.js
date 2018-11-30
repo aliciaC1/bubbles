@@ -7,6 +7,8 @@ router.route("/login").post(user.login);
 
 router.route("/find").get(user.findAll);
 
+router.route("/findOne").post(user.findOne);
+
 router.route("/logout").get(user.logout);
 
 router.route("/check").get(user.findUser);

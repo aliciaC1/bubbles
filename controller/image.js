@@ -1,40 +1,40 @@
 
 
-// Controller for our notes
-// ========================
-const db = require("../models");
+// // Controller for our notes
+// // ========================
+// const db = require("../models");
 
-// Initialize Firebase
-let config = {
-  apiKey: "AIzaSyDNyM_cu96UQ7n-NLJLpHCZuVsZwyuopUU",
-  authDomain: "bubbles-9481c.firebaseapp.com",
-  databaseURL: "https://bubbles-9481c.firebaseio.com",
-  projectId: "bubbles-9481c",
-  storageBucket: "bubbles-9481c.appspot.com",
-  messagingSenderId: "470591964890"
-};
-firebase.initializeApp(config);
+// // Initialize Firebase
+// let config = {
+//   apiKey: "AIzaSyDNyM_cu96UQ7n-NLJLpHCZuVsZwyuopUU",
+//   authDomain: "bubbles-9481c.firebaseapp.com",
+//   databaseURL: "https://bubbles-9481c.firebaseio.com",
+//   projectId: "bubbles-9481c",
+//   storageBucket: "bubbles-9481c.appspot.com",
+//   messagingSenderId: "470591964890"
+// };
+// firebase.initializeApp(config);
 
-// Get a reference to the storage service, which is used to create references in your storage bucket
-let storage = firebase.storage();
+// // Get a reference to the storage service, which is used to create references in your storage bucket
+// let storage = firebase.storage();
 
-// Create a storage reference from our storage service
-let storageRef = storage.ref();
+// // Create a storage reference from our storage service
+// let storageRef = storage.ref();
 
 module.exports = {
-    postImage: function (req, res) {
-        db.Image.create(req.body.image)
-            .then(function (dbImage) {
-                return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid }, { $push: { _postId: dbImage._id } }, { new: true })
-                    .populate("_imageId");
-            }).then(function (dbImage) {
-                console.log(dbImage);
-            })
-            .catch(function (err) {
-                // If an error occurred, send it to the client
-                res.json(err);
-            });
-    }
+  postImage: function (req, res) {
+    db.Image.create(req.body.image)
+      .then(function (dbImage) {
+        return db.Bubble.findOneAndUpdate({ _id: req.params.bubbleid }, { $push: { _postId: dbImage._id } }, { new: true })
+          .populate("_imageId");
+      }).then(function (dbImage) {
+        console.log(dbImage);
+      })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  }
 
 };
 // Delete a note with a given id
