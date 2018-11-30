@@ -14,48 +14,10 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
+import { Parallax, ParallaxLayer } from 'react-spring/dist/addons'
+// import HomeSlider from '../../components/HomeSlider'
 
-import HomeSlider from '../../components/HomeSlider'
 
-// const Home = ({ mobile }) => (
-//   <Container text>
-//   <HomeSlider></HomeSlider>
-//     {/* <Header
-//       as='h1'
-//       content='Bubbles'
-//       inverted
-//       style={{
-//         fontSize: mobile ? '2em' : '4em',
-//         fontWeight: 'normal',
-//         marginBottom: 0,
-//         marginTop: mobile ? '1.5em' : '3em',
-//       }}
-//     />
-//     <Header
-//       as='h2'
-//       content='Anti-social media, Social media ?'
-//       inverted
-//       style={{
-//         fontSize: mobile ? '1.5em' : '1.7em',
-//         fontWeight: 'normal',
-//         marginTop: mobile ? '0.5em' : '1.5em',
-//       }}
-//     />
-//     <Button primary size='huge' href="/register">
-//       Check it out !
-//       <Icon name='right arrow' />
-//     </Button>
-//   </Container> */}
-// )
-
-// Home.propTypes = {
-//   mobile: PropTypes.bool,
-// }
-
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
 class DesktopContainer extends Component {
   state = {}
 
@@ -77,7 +39,6 @@ class DesktopContainer extends Component {
             inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
-            vertical
           >
             <Menu
               fixed={fixed ? 'top' : null}
@@ -98,7 +59,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>
             </Menu>
-            <HomeSlider></HomeSlider>
+            {/* <HomeSlider></HomeSlider> */}
           </Segment>
         </Visibility>
 
@@ -147,7 +108,7 @@ class MobileContainer extends Component {
               inverted
               textAlign='center'
               style={{ minHeight: 1350, padding: '1em 0em' }}
-              vertical
+              
             >
               <Container>
                 <Menu inverted pointing secondary size='large'>
@@ -277,7 +238,7 @@ const HomepageLayout = () => (
         </Button>
       </Container>
     </Segment> */}
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
+    <Segment inverted style={{ padding: '5em 0em' }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>

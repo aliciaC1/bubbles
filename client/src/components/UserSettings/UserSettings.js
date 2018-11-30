@@ -65,7 +65,6 @@ export default class UserSettingsModal extends Component {
           <Icon name='settings' />
           <Header.Content>
             Account Settings
-            <Header.Subheader>Manage preferences</Header.Subheader>
           </Header.Content>
           </Header>
         </div>
@@ -85,8 +84,8 @@ export default class UserSettingsModal extends Component {
           </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button
-              positive
+            <Button basic 
+              color = 'black'
               icon='checkmark'
               labelPosition='right'
               content="Update Settings"

@@ -1,52 +1,30 @@
 import React, { Component }from 'react'
-import { Form, Input,Radio, Button } from 'semantic-ui-react'
+import { Form, Input,Dropdown, Button } from 'semantic-ui-react'
 
 class AddBubbleForm extends Component {
   state = {name: ''}
-
+  bubbleOptions = [ { value: 1, text: 'Circle One' }, { value: 2, text: 'Circle Two' },{ value: 3, text: 'Circle Three' }  ]
+ 
   handleChange = (e, { value }) => this.setState({ value })
-
+  
   createBubble = () => {
 
     console.log(this.state.name)
   }
 
   render() {
-    const { value } = this.state
+    // const { value } = this.state
     return(
       <Form>
       <Form.Field required>
         <label>Bubble Name</label>
-        <Input placeholder='Bubble Name' />
+        <Input onMouseDown={e => e.stopPropagation()} placeholder='Bubble Name' />
       </Form.Field>
       <Form.Group required inline>
-            <label>Bubble Rank (1 : Most Inner | 3 : Most Outer) </label>
-            <Form.Field 
-              required
-              control={Radio}
-              label='1'
-              value='1'
-              checked={value === '1'}
-              onChange={this.handleChange}
-            />
-            <Form.Field
-              required
-              control={Radio}
-              label='2'
-              value='2'
-              checked={value === '2'}
-              onChange={this.handleChange}
-            />
-            <Form.Field
-              required
-              control={Radio}
-              label='3'
-              value='3'
-              checked={value === '3'}
-              onChange={this.handleChange}
-            />
+            <label>Bubble Circle</label>
+            <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
           </Form.Group>
-          <Form.Field control = {Button} onClick= {this.createBubble}>Submit</Form.Field>
+          <Form.Field control = {Button} onClick= {this.createBubble}>Update</Form.Field>
     </Form>
     );
   }

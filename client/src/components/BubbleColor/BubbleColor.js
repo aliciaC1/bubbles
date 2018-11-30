@@ -19,15 +19,15 @@
 import React from 'react'
 import reactCSS from 'reactcss'
 import { ChromePicker } from 'react-color'
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar, Popup } from 'semantic-ui-react'
+import  Bubble from '../Bubble';
 
 class BubbleColorSelector extends React.Component {
   state = {
     displayColorPicker: false,
     color: {
-      r: '241',
-      g: '112',
-      b: '19',
+      r: '142',
+      g: '188',
+      b: '229',
       a: '1',
     },
   };
@@ -50,21 +50,21 @@ class BubbleColorSelector extends React.Component {
       'default': {
         color: {
           width: '36px',
-          height: '14px',
-          borderRadius: '2px',
+          height: '36px',
+          borderRadius: '50%',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
         },
         swatch: {
           padding: '5px',
-          background: '#fff',
-          borderRadius: '1px',
-          boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
+          borderRadius: '0px',
+          boxShadow: '0 0 0 0px rgba(0,0,0,.1)',
           display: 'inline-block',
           cursor: 'pointer',
         },
         popover: {
           position: 'relative',
           zIndex: '2',
+        }
         },
         cover: {
           position: 'fixed',
@@ -73,7 +73,7 @@ class BubbleColorSelector extends React.Component {
           bottom: '0px',
           left: '0px',
         },
-      },
+
     });
 
     return (

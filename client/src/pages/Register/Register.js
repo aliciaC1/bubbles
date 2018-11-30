@@ -5,8 +5,9 @@ import Link from 'valuelink'
 import API from '../../utils/API';
 import querystring from 'querystring';
 import hash from 'js-sha256';
-import { Button, Form, Grid, Header, Image, Segment, Modal, Icon } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Segment, Modal, Icon } from 'semantic-ui-react';
 // import { set } from 'mongoose';
+import logo from '../../assets/BBLOGO.png';
 
 class Signup extends React.Component {
 
@@ -137,43 +138,42 @@ class Signup extends React.Component {
                 }
               `}</style>
 
+    
         <Modal
-
           open={this.state.modalOpen}
           onClose={this.handleClose}
           basic
-          size='mini'
+          size='small'
           textAlign='center'
-          style={{ height: '100%' }}
-          verticalAlign='middle'
-        >
-          <Header content='Hey There ! ' />
-          <Modal.Content>
-            <h3>All the fields must be filled !! </h3>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color='green' onClick={this.handleClose} inverted>
-              <Icon name='checkmark' /> Got it
-        </Button>
-          </Modal.Actions>
-        </Modal>
+          style ={{paddingTop:'325px'}}
+          >
+            <Modal.Content>
+              <Header inverted as='h3' icon = 'exclamation' content = 'Hey There! All fields must be filled!'/>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button inverted color='yellow' onClick={this.handleClose}>
+                <Icon name='checkmark' /> Got it
+              </Button>
+            </Modal.Actions>
+          </Modal>
 
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' color='black' textAlign='center'>
-              <Image src='/logo.png' /> Log-in to your account
-                  </Header>
+            <Header as='h3' color='black' textAlign='center'>
+              <Image className ='mainLogo' src={logo} style={{width:'293px'}} /> 
+              <br/><br/> --  Create a Bubbles Account --
+            </Header>
             <Form size='large' onSubmit={this.handleSignup}>
-              <Segment stacked>
+              <Segment basic>
 
-                <Form.Input fluid icon='user' label='Username' iconPosition='left' placeholder='Username' value={this.state.username} onChange={this.handleUserChange} valueLink={nameLink} />
+                <Form.Input fluid  icon= 'smile outline' iconPosition='left' placeholder='username' value={this.state.username} onChange={this.handleUserChange} valueLink={nameLink} />
 
-                <Form.Input fluid icon='mail' iconPosition='left' placeholder='E-mail address' value={this.state.email} onChange={this.handleEmail} />
+                <Form.Input fluid icon='at' iconPosition='left' placeholder='e-mail address' value={this.state.email} onChange={this.handleEmail} />
                 <Form.Input
                   fluid
                   icon='lock'
                   iconPosition='left'
-                  placeholder='Password'
+                  placeholder='password'
                   type='password'
                   onChange={this.handlePassword}
                   value={this.state.password}
@@ -183,19 +183,22 @@ class Signup extends React.Component {
                   fluid
                   icon='lock'
                   iconPosition='left'
-                  placeholder='Confirm Password'
+                  placeholder='confirm password'
                   value={this.state.confirm}
                   onChange={this.handlePasswordConfirm}
                   type='password'
-
                 />
-
-                <Button color='black' fluid size='large' type="submit" >
-                  Signup
-                      </Button>
+                <Button animated='vertical' basic color='black' fluid size='large' type="submit">
+                  <Button.Content visible>Signup</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name='arrow right' />
+                  </Button.Content>
+                </Button>
               </Segment>
             </Form>
-
+            already have a Bubbles account? <a href='/login' style = {{color:'#a08000'}}>Login</a>
+            <br/>
+            <a href='/' style = {{color: '#8bb2ff'}}><Icon name ='angle double left'/> Return to Home Page</a>
           </Grid.Column>
         </Grid>
       </div>
