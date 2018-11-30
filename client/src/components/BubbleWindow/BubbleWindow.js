@@ -68,6 +68,7 @@ class BubbleWindow extends Component {
     >
           
           <Window
+        // style={"zIndex": "-99"}
         color={this.props.color}
         theme={this.props.theme}
         chrome
