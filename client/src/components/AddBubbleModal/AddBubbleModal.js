@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Header, Modal, Form, Input, Icon, Radio } from 'semantic-ui-react'
-import FormBubble from '../FormBubble';
+import { Button, Header, Modal, Form, Input, Icon, Dropdown} from 'semantic-ui-react'
+
 import API from '../../utils/API';
 import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
   state = { open: false, name: '' }
+  bubbleOptions = [ { value: 1, text: 'Circle One' }, { value: 2, text: 'Circle Two' },{ value: 3, text: 'Circle Three' }  ]
 
   show = dimmer => () => this.setState({ dimmer, open: true })
 
@@ -48,38 +49,17 @@ class AddBubbleModal extends Component {
         <Modal closeIcon dimmer={dimmer} open={open} onClose={this.close} >
           <Modal.Header>Create a New Bubble</Modal.Header>
           <Modal.Content>
-            {/* <FormBubble> </FormBubble> */}
             <Form>
               <Form.Field required>
                   <label>Bubble Name</label>
-                  <Input placeholder='Bubble Name' name="name" onChange={this.handleChange} />
+                  <Input 
+                  placeholder='Bubble Name' 
+                  name="name" 
+                  onChange={this.handleChange} />
                 </Form.Field>
                 <Form.Group required inline>
-              <label>Bubble Rank (1 : Most Inner | 3 : Most Outer) </label>
-              <Form.Field 
-                required
-                control={Radio}
-                label='1'
-                value='1'
-                checked={value === '1'}
-                onChange={this.handleChange}
-              />
-              <Form.Field
-                required
-                control={Radio}
-                label='2'
-                value='2'
-                checked={value === '2'}
-                onChange={this.handleChange}
-              />
-              <Form.Field
-                required
-                control={Radio}
-                label='3'
-                value='3'
-                checked={value === '3'}
-                onChange={this.handleChange}
-              />
+              <label>Bubble Circle</label>
+              <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
             </Form.Group>
             </Form>
           </Modal.Content>
