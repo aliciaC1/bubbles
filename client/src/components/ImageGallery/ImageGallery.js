@@ -114,7 +114,10 @@ class ImageFeed extends Component {
                         accept="image/*"
                         onDrop={this.onDrop.bind(this)}
                       />
-                      <Button icon onClick = {this.fileUploadHandler}><Icon name ='upload'/></Button>
+                      <Button animated='vertical' basic color='black'icon onClick = {this.fileUploadHandler} style = {{width:'100px'}}>
+                      <Button.Content visible textAlign='center'><Icon name='upload'/></Button.Content>
+                        <Button.Content hidden> UPLOAD </Button.Content>
+                      </Button>
                   </div>
                   <aside style={thumbsContainer}>
                      {thumbs}

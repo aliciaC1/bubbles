@@ -33,7 +33,7 @@ class BubbleWindow extends Component {
 
   static defaultProps = {
     color: '#5e9bff',
-    theme: 'light'  
+    theme: 'light' , 
   };
   
   onCloseClick(event) {
@@ -53,6 +53,7 @@ class BubbleWindow extends Component {
 
 
       <Rnd
+      style={{zIndex:100}}
       size={{ width: this.state.width, height: this.state.height }}
       position={{ x: this.state.x, y: this.state.y }}
       onDragStop={(e, d) => {
@@ -68,7 +69,6 @@ class BubbleWindow extends Component {
     >
           
           <Window
-        // style={"zIndex": "-99"}
         color={this.props.color}
         theme={this.props.theme}
         chrome
@@ -107,7 +107,12 @@ class BubbleWindow extends Component {
                   {/* Bubble Settings here  */}
                   <List.Content>
                     <Popup
-                      trigger={<Button icon='settings' content='Bubble Setting' />}
+                      trigger={
+                        <Button  basic color = 'black' animated='vertical'>
+                        <Button.Content visible> <Icon name='settings' /> Bubble Settings</Button.Content>
+                        <Button.Content hidden>Manage Preferences</Button.Content>
+                        </Button>
+                      }
                       content={<FormBubble />}
                       on='click'
                       style={style}
@@ -119,7 +124,12 @@ class BubbleWindow extends Component {
                   {/* Bubble Magic Link Button here  */}
                   <List.Content>
                     <Popup
-                      trigger={<Button icon='magic' content='Magic Link' />}
+                      trigger={
+                        <Button  basic color = 'black' animated='vertical'>
+                        <Button.Content visible> <Icon name='magic' /> Magic Link</Button.Content>
+                        <Button.Content hidden>Invite Members</Button.Content>
+                        </Button>
+                        }
                       content={'magic link add members'}
                       on='click'
                       style={style}
