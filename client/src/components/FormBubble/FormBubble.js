@@ -24,7 +24,7 @@ class AddBubbleForm extends Component {
             <label>Bubble Circle</label>
             <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
           </Form.Group>
-          <Form.Field control = {Button} onClick= {this.createBubble}>Submit</Form.Field>
+          <Form.Field control = {Button} onClick= {this.createBubble}>Update</Form.Field>
     </Form>
     );
   }
