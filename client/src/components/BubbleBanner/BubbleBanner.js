@@ -1,11 +1,11 @@
 import React from 'react';
 import { Image } from 'semantic-ui-react'
-
-const src = './images/bubblesbanner.png'
+// import banner from '../../assets/BBLOGO.png'
+import banner from '../../assets/banner1.png'
 
 const BubblesBanner = () => (
   <div>
-    <Image src={src} size='tiny' verticalAlign='top'fluid />
+    <Image src={banner}  verticalAlign='top'fluid />
   </div>
 )
 
