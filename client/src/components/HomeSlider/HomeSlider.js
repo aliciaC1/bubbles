@@ -30,14 +30,14 @@ const content = [
 		title: 'Inspiration',
 		description:'As the anti-social media app, Bubbles is commited to providing users with a personal way to connect with friends and family without compromising the user\'s privacy. We do not believe in selling user data and aim to keep the user\'s experience as intimiate and secure as possible. We value the user\'s right in keeping their information and connections personal.',
 		button: 'Download now',
-		image: 'https://i.imgur.com/DvmN8Hx.jpg',
+		image: 'https://media.wired.com/photos/59387586f061de0423ccffa8/master/pass/PAA_HanselGretel_JamesEwing-9917.jpg',
 		// user: 'Bruno Vizovskyy',
 		// userProfile: 'https://i.imgur.com/4KeKvtH.png'
 	}
 ];
 
 const HomeSlider = () => (
-	<Slider direction="vertical" className="slider-wrapper">
+	<Slider  className="slider-wrapper">
 			{content.map((item, index) => (
 				<div
 					key={index}
