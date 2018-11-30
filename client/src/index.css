@@ -27,3 +27,95 @@ Header{
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
 }
+
+.ui.header {
+  border: none;
+  margin: calc(2rem - .14285714em) 0 1rem;
+  padding: 0 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  line-height: 1.28571429em;
+  text-transform: none;
+  color: rgba(0,0,0,.87);
+}
+
+.ui.modal>.header {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: rgba(0,0,0,.85);
+  border-bottom: none;
+  font-weight: 200;
+}
+
+.ui.modal>.header:not(.ui) {
+  font-size: 1.42857143rem;
+  line-height: 1.28571429em;
+  font-weight: 300;
+}
+
+.ui.modal>.actions {
+  background: #ffffff;
+  padding: 1rem 1rem;
+  border-top: none;
+  text-align: right;
+}
+
+.ui.vertical.segment {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background: none transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  width: 180px;
+  border-bottom: 1px solid rgba(34,36,38,.15);
+  text-align: -webkit-right;
+}
+
+/* a {
+  color: #ff0000;
+  text-decoration: none;
+} */
+
+.ui.form input:not([type]), .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=email], .ui.form input[type=file], .ui.form input[type=number], .ui.form input[type=password], .ui.form input[type=search], .ui.form input[type=tel], .ui.form input[type=text], .ui.form input[type=time], .ui.form input[type=url] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  tap-highlight-color: rgba(255,255,255,0);
+  line-height: 1.21428571em;
+  padding: .67857143em 1em;
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  color: rgba(0,0,0,.87);
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 0 0 0 transparent inset;
+  box-shadow: 0 0 0 0 transparent inset;
+  -webkit-transition: color .1s ease,border-color .1s ease;
+  transition: color .1s ease,border-color .1s ease;
+}
+
+.ui.form .field.field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px rgb(249, 249, 249) inset!important;
+  box-shadow: 0 0 0 100px rgb(249, 249, 249) inset!important;
+  border-color: #c8d9ff!important;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: rgb(249, 249, 249) !important;
+  background-image: none !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.mainLogo.ui.image{
+  width: 293px;
+  left: -10px;
+  padding-bottom: 19px;
+}
