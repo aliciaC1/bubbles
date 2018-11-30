@@ -18,8 +18,12 @@ const UserSchema = new Schema({
         required: [true, "can't be blank"],
         index: true
     },
-    image: {
-        type: String,
+    _imageId: 
+        {
+            // Store ObjectIds in the array
+            type: Schema.Types.ObjectId,
+            // The ObjectIds will refer to the ids in the Note model
+            ref: "Image"
     },
     // `password` must be of type String
     // `password` will trim leading and trailing whitespace before it's saved
