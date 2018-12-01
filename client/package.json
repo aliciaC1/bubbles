@@ -5,6 +5,7 @@
   "dependencies": {
     "add": "^2.0.6",
     "axios": "^0.18.0",
+    "circletype": "^2.3.0",
     "http": "^0.0.0",
     "js-sha256": "^0.9.0",
     "querystring": "^0.2.0",
