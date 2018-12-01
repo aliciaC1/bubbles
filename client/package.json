@@ -22,7 +22,7 @@
     "semantic-ui-react": "^0.83.0",
     "valuelink": "^1.5.5"
   },
-  "proxy": "http://localhost:3002",
+  "proxy": "http://localhost:3004",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
