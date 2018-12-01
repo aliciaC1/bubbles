@@ -9,7 +9,14 @@ const src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVScX44baeJmx
 
 class FeedView extends Component {
 
+  state = {
+    messageBody: ''
+  }
+
+
+
   handleChange = (event) => {
+
     this.setState({
       messageBody: event.target.value
     })
@@ -32,6 +39,7 @@ class FeedView extends Component {
 
     this.createPost(obj)
 
+    this.setState({ messageBody: '' })
 
   }
 
@@ -100,7 +108,7 @@ class FeedView extends Component {
                 {/* ================================================Post Form ======================== */}
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group>
-                    <Form.TextArea onMouseDown={e => e.stopPropagation()} placeholder='Type Away...' onChange={this.handleChange} style={{ minWidth: 425 }} />
+                    <Form.TextArea onMouseDown={e => e.stopPropagation()} placeholder='Type Away...' name="messageBody" value={this.state.messageBody} onChange={this.handleChange} style={{ minWidth: 425 }} />
                     <Button basic color='black' animated='vertical'>
                       <Button.Content hidden>POST</Button.Content>
                       <Button.Content visible>
