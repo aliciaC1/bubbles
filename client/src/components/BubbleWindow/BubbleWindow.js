@@ -7,6 +7,7 @@ import ImageGallery from '../ImageGallery';
 import UserAvatar from '../UserAvatar';
 import FormBubble from '../FormBubble';
 import './BubbleWindow.css';
+import axios from 'axios';
 
 const style = {
   borderRadius: 0,
@@ -35,8 +36,11 @@ class BubbleWindow extends Component {
     theme: 'light',
   };
 
-
-
+  getInvite = async () => {
+    const route = `/api/bubble/${this.props.bubbleID}/invite`
+    const link = await axios.get(route);
+    alert(`Invite Link: ${link.data}`)
+  }
 
   onCloseClick(event) {
     event.preventDefault()
@@ -50,7 +54,7 @@ class BubbleWindow extends Component {
       return null
     }
     return (
-      // Settings regarding window 
+      // Settings regarding window
 
 
       <Rnd
@@ -128,7 +132,7 @@ class BubbleWindow extends Component {
                         trigger={
                           <Button basic color='black' animated='vertical'>
                             <Button.Content visible> <Icon name='magic' /> Magic Link</Button.Content>
-                            <Button.Content hidden>Invite Members</Button.Content>
+                            <Button.Content onClick={this.getInvite} hidden>Invite Members</Button.Content>
                           </Button>
                         }
                         content={'magic link add members'}
