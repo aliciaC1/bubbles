@@ -78,7 +78,13 @@ class FeedView extends Component {
                 </Grid.Column>
                 <Grid.Column width={12}>
                   <Segment basic fluid>
-                    <div className="PostDisplay">
+                    <div className="PostDisplay" style={{
+                      overflow:'scroll', 
+                      height:'445px', 
+                      width:'390px',
+                      marginTop: '-10px', 
+                      marginBottom: '-35px' 
+                      }}>
 
                       {this.props.posts ? (
                         this.props.posts.map(post => (

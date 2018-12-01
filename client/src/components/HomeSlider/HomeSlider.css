@@ -1,5 +1,6 @@
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue";
     box-sizing: border-box;
     padding-top: 75px;
   }
@@ -14,13 +15,7 @@ body {
     z-index: 10;
   }
   
-  header section {
-    max-width: 1300px;
-    margin: auto;
-    padding: 20px;
-    background: #FFD800;
-  }
-  
+
   @media (max-width: 1515px) {
     header section {
       max-width: 100%;
@@ -90,7 +85,7 @@ body {
   }
   
   .slide {
-    height: 70vh;
+    height: 100vh;
     background-size: cover !important;
   }
   
@@ -171,7 +166,7 @@ body {
   
   .slider-content .inner p {
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 1.5;
     margin: 20px auto 30px;
     max-width: 640px;
@@ -184,7 +179,7 @@ body {
   }
   
   .slider-content section span {
-    color: #FFFFFF;
+    color: black;
   }
   
   .slider-content section span {

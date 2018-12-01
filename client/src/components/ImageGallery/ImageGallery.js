@@ -9,7 +9,10 @@ const thumbsContainer = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  marginTop: 16
+  margin: 'auto',
+  marginTop: 9,
+  overflow: 'scroll', 
+  height: 110,
 };
 
 const thumb = {
@@ -18,9 +21,9 @@ const thumb = {
   border: '1px solid #eaeaea',
   marginBottom: 8,
   marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
+  width: 90,
+  height: 90,
+  padding: 2,
   boxSizing: 'border-box'
 };
 
@@ -104,29 +107,77 @@ class ImageFeed extends Component {
           <Icon name='image outline' circular />
           <Header.Content><Divider horizontal>Image Gallery</Divider></Header.Content>
         </Header>
-        <Segment basic>
+        <Segment basic style={{overflow: 'scroll', height: '400px'}}>
           <Grid columns={3}>
             <Grid.Column>
-              <ImageCard />
+              <ImageCard
+                image = 'https://i.imgur.com/t7kHtLy.png'
+                 />
             </Grid.Column>
+            <Grid.Column>
+            <ImageCard 
+                image = 'https://i.imgur.com/wEY6VOy.png'/>
+            </Grid.Column>
+            <Grid.Column>
+            <ImageCard 
+                image = 'https://i.imgur.com/B01ExAt.png'/>
+            </Grid.Column>
+            <Grid.Column>
+            <ImageCard 
+                image = 'https://i.imgur.com/wzTFrVj.png'/>
+            </Grid.Column>
+            <Grid.Column>
+            <ImageCard 
+                image = 'https://i.imgur.com/XG0Em1m.png'/>
+            </Grid.Column>
+            <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/YP0dKvE.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/vQbNjh9.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/OamhRub.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/5vdnZpy.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/fSktiWR.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/WOc9ZJ4.png'/>
+              </Grid.Column>
+              <Grid.Column>     
+            <ImageCard 
+                image = 'https://i.imgur.com/IP29RM9.png'/>
+              </Grid.Column>
           </Grid>
         </Segment>
         <Grid.Row>
           <Divider horizontal>ADD MEDIA</Divider>
-          <div className="AddImage">
+          
+          <div className="AddImage" style={{marginBottom:'10px'}}>
             <section>
-              <div className="dropzone">
+              <div className="dropzone"  >
                 <Dropzone
                   text='add media'
                   accept="image/*"
                   onDrop={this.onDrop.bind(this)}
+                  style ={{width:'459px', height:'30px'}}
                 />
                 <Button animated='vertical' basic color='black' icon onClick={this.fileUploadHandler} style={{ width: '100px' }}>
                   <Button.Content visible textAlign='center'><Icon name='upload' /></Button.Content>
                   <Button.Content hidden> UPLOAD </Button.Content>
                 </Button>
               </div>
-              <aside style={thumbsContainer}>
+              <aside style={thumbsContainer} >
                 {thumbs}
               </aside>
             </section>

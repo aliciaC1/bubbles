@@ -64,6 +64,7 @@ class BubbleColorSelector extends React.Component {
         popover: {
           position: 'relative',
           zIndex: '2',
+          marginLeft:'20px', 
         }
         },
         cover: {
