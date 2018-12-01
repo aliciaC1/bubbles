@@ -15,11 +15,12 @@ class FeedView extends Component {
     })
   }
 
+
   createPost = async (post) => {
 
     const newPost = await API.createpost(post)
 
-    this.props.updatePost(newPost)
+    this.props.updatePost(newPost.data._postId)
   }
 
   handleSubmit = () => {
@@ -31,12 +32,14 @@ class FeedView extends Component {
 
     this.createPost(obj)
 
-    console.log(this.props.posts)
+
   }
 
 
 
+
   render() {
+
 
     return (
       <Grid.Row>
@@ -68,6 +71,7 @@ class FeedView extends Component {
                 <Grid.Column width={12}>
                   <Segment basic fluid>
                     <div className="PostDisplay">
+
                       {this.props.posts ? (
                         this.props.posts.map(post => (
                           <PostText
@@ -96,7 +100,7 @@ class FeedView extends Component {
                 {/* ================================================Post Form ======================== */}
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group>
-                    <Form.TextArea onMouseDown={e => e.stopPropagation()} placeholder='Type Away...' post='post' onChange={this.handleChange} style={{ minWidth: 425 }} />
+                    <Form.TextArea onMouseDown={e => e.stopPropagation()} placeholder='Type Away...' onChange={this.handleChange} style={{ minWidth: 425 }} />
                     <Button basic color='black' animated='vertical'>
                       <Button.Content hidden>POST</Button.Content>
                       <Button.Content visible>
