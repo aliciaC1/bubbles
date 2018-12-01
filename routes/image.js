@@ -12,12 +12,14 @@ cloudinary.config({
 const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "demo",
-    allowedFormats: ["jpg", "png",'jpeg'],
+    allowedFormats: ["jpg", "png", 'jpeg'],
     transformation: [{ width: 500, height: 500, crop: "limit" }]
 });
 const parser = multer({ storage: storage });
 
-router.post("/api/images/:bubbleid", parser.single('image'), imageController.postImage);
+
+
+router.post("/api/images/", parser.single('image'), imageController.postImage);
 router.post("/api/avatar", parser.single('image'), imageController.postAvatar);
 
 module.exports = router;

@@ -23,6 +23,21 @@ export default {
   createBubble: function (bubbleName) {
 
     return axios.post('/api/bubble', bubbleName)
+  },
+
+  findbubble: function (id) {
+    return axios.get('/api/bubble/' + id)
+
+  },
+
+  userFindOne: function (username) {
+
+    return axios.post('/findOne', username)
+  },
+
+  createpost: function (post) {
+
+    return axios.post('/api/createpost', post)
   }
 
 };

@@ -1,29 +1,56 @@
 import React from 'react';
-import { Button, Icon, Reveal } from 'semantic-ui-react';
+import { Reveal } from 'semantic-ui-react';
 import BubbleWindow from '../BubbleWindow';
-
-
+import API from '../../utils/API'
 
 
 class Bubble extends React.Component {
 
-  
-  constructor() {
-    super()
-    this.state = {
-      isHidden: true
-    }
+  state = {
+    isHidden: true,
+    posts: [],
+    users: []
+
   }
+
   toggleHidden() {
     this.setState({
       isHidden: !this.state.isHidden
     })
   }
-  
+
+  componentDidMount() {
+    this.getbubbleInfo()
+
+  }
+
+  getbubbleInfo = async () => {
+
+    const res = await API.findbubble(this.props.id)
+    console.log(res)
+    let { _userId } = res.data
+    console.log(res.data._postId)
+
+
+    this.setState({
+      posts: res.data._postId,
+      users: _userId
+    })
+  }
+
+
+
+  updatePost = (posts) => {
+
+    this.setState({ posts: posts })
+
+
+  }
+
   render() {
     return (
       <div>
-        <Reveal animated='move down'>
+            <Reveal animated='move down'>
           <Reveal.Content visible>
           <div className='circle' onClick={this.toggleHidden.bind(this)} name={this.props.name}></div>
           </Reveal.Content>
@@ -40,7 +67,15 @@ class Bubble extends React.Component {
           </div>
           </Reveal.Content>
         </Reveal>
-        {!this.state.isHidden && <BubbleWindow name={this.props.name} username={this.props.username} />}
+        {!this.state.isHidden &&
+          <BubbleWindow
+            bubbleID={this.props.id}
+            name={this.props.name}
+            username={this.props.username}
+            posts={this.state.posts}
+            users={this.state.users}
+            updatePost={this.updatePost}
+          />}
       </div>
     )
   }

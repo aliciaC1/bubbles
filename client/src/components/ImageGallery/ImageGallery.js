@@ -43,7 +43,7 @@ class ImageFeed extends Component {
   constructor() {
     super()
     this.state = {
-      files: [], 
+      files: [],
     };
   }
 
@@ -56,20 +56,22 @@ class ImageFeed extends Component {
     });
   }
 
-    fileUploadHandler = () => {
-    const fd = new FormData();
-    fd.append('image', this.state.files, this.state.files.name);
-    axios.post('',fd, {onUploadProgress: progressEvent => {
+  fileUploadHandler = () => {
+
+    console.log(this.state.files[0])
+
+    axios.post('/api/images/', { bubbleid: this.props.bubbleID, image: this.state.file }, {
+      onUploadProgress: progressEvent => {
         console.log('Upload Progress : ' + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%')
-    }
+      }
     })
-    .then(res => {
+      .then(res => {
         console.log(res);
-    });
-}
+      });
+  }
   componentWillUnmount() {
     // Make sure to revoke the data uris to avoid memory leaks
-    const {files} = this.state;
+    const { files } = this.state;
     for (let i = files.length; i >= 0; i--) {
       const file = files[0];
       URL.revokeObjectURL(file.preview);
@@ -78,54 +80,54 @@ class ImageFeed extends Component {
 
   render() {
 
-    const {files} = this.state;
-    
-        const thumbs = files.map(file => (
-          <div style={thumb}>
-            <div style={thumbInner}>
-              <img
-                src={file.preview}
-                style={img}
-              />
-            </div>
-          </div>
-        ));
+    const { files } = this.state;
 
-    return(
+    const thumbs = files.map(file => (
+      <div style={thumb}>
+        <div style={thumbInner}>
+          <img
+            src={file.preview}
+            style={img}
+          />
+        </div>
+      </div>
+    ));
+
+    return (
       <Grid.Row>
-      <Header as='h2' icon textAlign='center'>
-      <Icon name='image outline' circular />
-        <Header.Content><Divider horizontal>Image Gallery</Divider></Header.Content>
-      </Header>
-      <Segment basic>
-        <Grid columns = {3}>
+        <Header as='h2' icon textAlign='center'>
+          <Icon name='image outline' circular />
+          <Header.Content><Divider horizontal>Image Gallery</Divider></Header.Content>
+        </Header>
+        <Segment basic>
+          <Grid columns={3}>
             <Grid.Column>
-              <ImageCard/>
+              <ImageCard />
             </Grid.Column>
-        </Grid>
-      </Segment>
-      <Grid.Row>
+          </Grid>
+        </Segment>
+        <Grid.Row>
           <Divider horizontal>ADD MEDIA</Divider>
-              <div className="AddImage">
-                <section>
-                  <div className="dropzone">
-                     <Dropzone
-                        text = 'add media'
-                        accept="image/*"
-                        onDrop={this.onDrop.bind(this)}
-                      />
-                      <Button animated='vertical' basic color='black'icon onClick = {this.fileUploadHandler} style = {{width:'100px'}}>
-                      <Button.Content visible textAlign='center'><Icon name='upload'/></Button.Content>
-                        <Button.Content hidden> UPLOAD </Button.Content>
-                      </Button>
-                  </div>
-                  <aside style={thumbsContainer}>
-                     {thumbs}
-                  </aside>
-                </section>
+          <div className="AddImage">
+            <section>
+              <div className="dropzone">
+                <Dropzone
+                  text='add media'
+                  accept="image/*"
+                  onDrop={this.onDrop.bind(this)}
+                />
+                <Button animated='vertical' basic color='black' icon onClick={this.fileUploadHandler} style={{ width: '100px' }}>
+                  <Button.Content visible textAlign='center'><Icon name='upload' /></Button.Content>
+                  <Button.Content hidden> UPLOAD </Button.Content>
+                </Button>
               </div>
+              <aside style={thumbsContainer}>
+                {thumbs}
+              </aside>
+            </section>
+          </div>
+        </Grid.Row>
       </Grid.Row>
-    </Grid.Row>
     );
   }
 

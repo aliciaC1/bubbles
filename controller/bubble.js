@@ -14,13 +14,15 @@ const generateKey = () => {
 module.exports = {
   // Find one note
   findOne: function (req, res) {
-    db.Bubble.findOne({ _id: req.body.id })
+    db.Bubble.findOne({ _id: req.params.id })
       .populate("_userId")
       .populate("_postId")
       .populate("_imageId")
       .then(function (dbBubble) {
         // If we were able to successfully find Articles, send them back to the client
+        console.log("--------------------------------");
         console.log(dbBubble);
+        console.log("--------------------------------");
         res.json(dbBubble);
       })
       .catch(function (err) {
