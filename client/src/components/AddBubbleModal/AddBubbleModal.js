@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Header, Modal, Form, Input, Icon, Dropdown} from 'semantic-ui-react'
+import { Button, Header, Modal, Form, Input, Icon, Dropdown } from 'semantic-ui-react'
 
 import API from '../../utils/API';
 import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
   state = { open: false, name: '' }
-  bubbleOptions = [ { value: 1, text: 'Circle One' }, { value: 2, text: 'Circle Two' },{ value: 3, text: 'Circle Three' }  ]
+  bubbleOptions = [{ value: 1, text: 'Circle One' }, { value: 2, text: 'Circle Two' }, { value: 3, text: 'Circle Three' }]
 
   show = dimmer => () => this.setState({ dimmer, open: true })
 
@@ -27,6 +27,8 @@ class AddBubbleModal extends Component {
 
   }
 
+  close = () =>
+    this.setState({ open: false })
 
   handleChange = (event) => {
 
@@ -51,20 +53,20 @@ class AddBubbleModal extends Component {
           <Modal.Content>
             <Form>
               <Form.Field required>
-                  <label>Bubble Name</label>
-                  <Input 
-                  placeholder='Bubble Name' 
-                  name="name" 
+                <label>Bubble Name</label>
+                <Input
+                  placeholder='Bubble Name'
+                  name="name"
                   onChange={this.handleChange} />
-                </Form.Field>
-                <Form.Group required inline>
-              <label>Bubble Circle</label>
-              <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
-            </Form.Group>
+              </Form.Field>
+              <Form.Group required inline>
+                <label>Bubble Circle</label>
+                <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
+              </Form.Group>
             </Form>
           </Modal.Content>
           <Modal.Actions>
-          {/* <Button
+            {/* <Button
               positive
               icon='x'
               labelPosition='right'
@@ -73,7 +75,7 @@ class AddBubbleModal extends Component {
             /> */}
             <Button
               basic
-              color ='black' 
+              color='black'
               icon='checkmark'
               labelPosition='right'
               content="Make New Bubble!"
