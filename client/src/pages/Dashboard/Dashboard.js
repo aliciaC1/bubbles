@@ -77,8 +77,8 @@ class UserDashboard extends React.Component {
                           name={bubble.name}
                           users={bubble._userID}
                           username={this.props.username}
-                          updatePost={this.props.updatePost}
-                          posts={bubble.postId}
+
+
 
 
                         />

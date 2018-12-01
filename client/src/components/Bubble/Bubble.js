@@ -5,12 +5,14 @@ import API from '../../utils/API'
 
 
 class Bubble extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      isHidden: true
-    }
+
+  state = {
+    isHidden: true,
+    posts: [],
+    users: []
+
   }
+
   toggleHidden() {
     this.setState({
       isHidden: !this.state.isHidden
@@ -24,24 +26,24 @@ class Bubble extends React.Component {
 
   getbubbleInfo = async () => {
 
-    const posts = await API.findbubble(this.props.id)
-    console.log(posts)
-    let { _userId } = posts.data
-    console.log(posts.data._postId)
+    const res = await API.findbubble(this.props.id)
+    console.log(res)
+    let { _userId } = res.data
+    console.log(res.data._postId)
+
 
     this.setState({
-      posts: posts.data._postId,
+      posts: res.data._postId,
       users: _userId
     })
   }
 
 
 
-  updatePost = (post) => {
-    this.setState({
-      posts: post,
+  updatePost = (posts) => {
 
-    })
+    this.setState({ posts: posts })
+
 
   }
 
