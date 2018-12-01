@@ -23,73 +23,75 @@ class UserDashboard extends React.Component {
   loadData = async () => {
     const data = await API.dashboardInfo();
     let { _bubbleId } = data.data;
-    console.log(data.data)
-
-    this.props.updateBubbles(_bubbleId)
     this.props.updateUserName(data.data.username)
+    this.props.updateBubbles(_bubbleId)
+
   }
 
 
   render() {
     return (
       <div>
-         <BubblesBanner />
-         <br/>
-         <div className="container">        
-         <Grid>
-         <Grid.Row >
-          {/* <Grid.Column floated = 'left' width = {10}>
+        <BubblesBanner />
+        <br />
+        <div className="container">
+          <Grid>
+            <Grid.Row >
+              {/* <Grid.Column floated = 'left' width = {10}>
           </Grid.Column> */}
-         <Grid.Column  width={16}>
-            <SideNav bubbles={this.props.bubbles} updateBubbles={this.props.updateBubbles} username={this.props.username} />
-         </Grid.Column>
-         </Grid.Row>
-         <Grid.Row>    
-            <Grid.Column width={2}>
-              <div className = 'colorPicker'>
-                <Segment vertical>
-                  <Header as='h2'> 
-                    1 <BubbleColor/> 
-                  </Header>
-                </Segment>
-                <Segment vertical>
-                  <Header as='h2'> 
-                    2 <BubbleColor/> 
-                  </Header>
-                </Segment>
-                <Segment vertical>
-                  <Header as='h2'> 
-                    3 <BubbleColor/> 
-                  </Header>
-                </Segment>
-              </div>
-            </Grid.Column>
-            <Grid.Column width={14}>       
-            <br/>
-            <div className = 'bubbleCanvas'>
-              <Segment basic >
-                {this.props.bubbles ? (
-                  this.props.bubbles.map(bubble => (
-                    <Bubble
-                      id={bubble._ID}
-                      name={bubble.name}
-                      _userID={bubble._userID}
-                      username={this.props.username}
-                    />
-                  ))) : null
-                }
-                <Bubble/>
-                <Bubble/>
-                <Bubble/>
-                <Bubble/>
-                <Bubble/>
+              <Grid.Column width={16}>
+                <SideNav
+                  bubbles={this.props.bubbles}
+                  updateBubbles={this.props.updateBubbles}
+                  username={this.props.username} />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column width={2}>
+                <div className='colorPicker'>
+                  <Segment vertical>
+                    <Header as='h2'>
+                      1 <BubbleColor />
+                    </Header>
+                  </Segment>
+                  <Segment vertical>
+                    <Header as='h2'>
+                      2 <BubbleColor />
+                    </Header>
+                  </Segment>
+                  <Segment vertical>
+                    <Header as='h2'>
+                      3 <BubbleColor />
+                    </Header>
+                  </Segment>
+                </div>
+              </Grid.Column>
+              <Grid.Column width={14}>
+                <br />
+                <div className='bubbleCanvas'>
+                  <Segment basic >
+                    {this.props.bubbles ? (
+                      this.props.bubbles.map(bubble => (
+                        <Bubble
+                          id={bubble._id}
+                          name={bubble.name}
+                          users={bubble._userID}
+                          username={this.props.username}
+                          updatePost={this.props.updatePost}
+                          posts={bubble.postId}
 
-              </Segment>
-              </div>
-            </Grid.Column>
+
+                        />
+                      ))) : null
+                    }
+
+
+                  </Segment>
+                </div>
+              </Grid.Column>
             </Grid.Row>
           </Grid>
-        </div> 
+        </div>
       </div>
     );
   }

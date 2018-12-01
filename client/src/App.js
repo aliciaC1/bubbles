@@ -11,7 +11,6 @@ class App extends React.Component {
   state = {
     bubbles: [],
     username: '',
-    posts: [],
     avatar: '',
   }
 
@@ -21,12 +20,6 @@ class App extends React.Component {
     })
   }
 
-  updatePosts = (posts) => {
-
-    this.setState({
-      posts
-    })
-  }
 
   updateUserName = (username) => {
     this.setState({
