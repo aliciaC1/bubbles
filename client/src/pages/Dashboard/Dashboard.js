@@ -10,7 +10,7 @@ class UserDashboard extends React.Component {
 
   constructor(props) {
     super(props);
-    // initialize state here
+    // initialize state 
     this.state = {
       avatar: ""
     }
@@ -73,6 +73,7 @@ class UserDashboard extends React.Component {
                     {this.props.bubbles ? (
                       this.props.bubbles.map(bubble => (
                         <Bubble
+                          key={bubble._id}
                           id={bubble._id}
                           name={bubble.name}
                           users={bubble._userID}
