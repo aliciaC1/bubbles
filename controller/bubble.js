@@ -83,15 +83,16 @@ module.exports = {
           const password = generateKey();
           const expirationTime = 600000; //10 minutes
           const updateDB = db.Bubble.findOneAndUpdate({ _id: bubbleID }, { inviteCode: password, inviteActive: true }, { new: true });
-          updateDB.then(function (response) {
-            console.log("Number")
+          updateDB.then(function (response1) {
+            console.log(response1)
 
             setTimeout(function () {
               const destroy = db.User.findOneAndUpdate({ _id: bubbleID }, { inviteActive: false }, { new: true });
               destroy.then(function (response) { console.log(`Invite Link for ${response.name} has expired!`) });
             }, expirationTime);
-            const domain = "localhost:3001"
+            const domain = "bubbles-b.herokuapp.com"
             res.send(domain + "/api/bubble/" + bubbleID + "/" + password);
+            res.end();
           })
         }
       })
@@ -101,25 +102,15 @@ module.exports = {
       res.end();
     }
   },
-  join: function (req, res) {
-    if (req.cookies.sessionID) {
-      const { bubbleID, invite } = req.params;
-      const Bubble = db.Bubble.findOne({ inviteCode: invite });
-      Bubble.then(function (bubble) {
-        if (bubble.inviteActive) {
-          const User = db.User.findOneAndUpdate({ sessionID: req.cookies.sessionID }, { $push: { _bubbleId: bubbleID } }, { new: true });
-          User.then(function (user) {
-            const Update = db.Bubble.findOneAndUpdate({ inviteCode: invite }, { $push: { _userId: user._id } }, { new: true });
-            Update.then(function (update) {
-              console.log("---------------------\n", update);
-              console.log("---------------------\n", user);
-              res.redirect("/dashboard");
-            })
-          })
-        } else {
-          res.send("<h1> Invite Link has Expired! </h1>");
-        }
-      })
+  join: async function (req, res) {
+    console.log("working");
+    const { bubbleID, invite } = req.params;
+    const Bubble = await db.Bubble.findOne({ inviteCode: invite });
+    if(Bubble.inviteActive) {
+      const User = await db.User.updateOne({ sessionID: req.cookies.sessionID }, { $push: { _bubbleId: bubbleID } });
+      const Update = await db.Bubble.updateOne({ inviteCode: invite }, { $push: { _userId: User._id }});
+      res.redirect("/dashboard");
+      res.end();
     }
   }
 };
