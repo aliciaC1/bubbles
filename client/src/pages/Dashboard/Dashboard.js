@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SideNav from '../../components/SideNav';
 import BubblesBanner from '../../components/BubbleBanner';
 import { Segment, Grid, Header } from 'semantic-ui-react';
 import Bubble from '../../components/Bubble';
 import API from "../../utils/API";
 import BubbleColor from "../../components/BubbleColor";
+import { useSpring, animated as anim } from 'react-spring';
+import './Dashboard.css'
+// import BubbleCanvas from '../../components/BubbleCanvas';
+
+const radius = 200; 
 
 class UserDashboard extends React.Component {
 
@@ -32,7 +37,7 @@ class UserDashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div centered>
          <BubblesBanner />
          <br/>
          <div className="container">        
@@ -45,9 +50,9 @@ class UserDashboard extends React.Component {
          </Grid.Column>
          </Grid.Row>
          <Grid.Row>    
-            <Grid.Column width={2}>
+            <Grid.Column stackable width={2}>
               <div className = 'colorPicker'>
-                <Segment vertical>
+                <Segment vertical style ={{width:'136px;'}}>
                   <Header as='h2'> 
                     1 <BubbleColor/> 
                   </Header>
@@ -64,8 +69,9 @@ class UserDashboard extends React.Component {
                 </Segment>
               </div>
             </Grid.Column>
-            <Grid.Column width={14}>       
+            <Grid.Column stackable width={14}>       
             <br/>
+            {/* <BubbleCanvas/> */}
             <div className = 'bubbleCanvas'>
               <Segment basic >
                 {this.props.bubbles ? (
@@ -73,17 +79,13 @@ class UserDashboard extends React.Component {
                     <Bubble
                       id={bubble._ID}
                       name={bubble.name}
+                      bubbleCategories={bubble.bubbleCategories}
                       _userID={bubble._userID}
                       username={this.props.username}
                     />
                   ))) : null
                 }
                 <Bubble/>
-                <Bubble/>
-                <Bubble/>
-                <Bubble/>
-                <Bubble/>
-
               </Segment>
               </div>
             </Grid.Column>

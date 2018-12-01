@@ -4,7 +4,6 @@ import UserAvatar from '../UserAvatar';
 import UserSettings from '../UserSettings';
 import AddBubbleModal from '../AddBubbleModal';
 import BubbleColor from '../BubbleColor';
-import BLOGO from '../../assets/blogo.png'
 
 export default class MenuExampleVerticalSecondary extends Component {
 
