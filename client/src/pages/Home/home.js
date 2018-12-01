@@ -13,10 +13,59 @@ import {
   Segment,
   Sidebar,
   Visibility,
+  Image
 } from 'semantic-ui-react'
 import { Parallax, ParallaxLayer } from 'react-spring/dist/addons'
+import { controller, AnimatedValue, createAnimatedComponent, SpringAnimation, config } from 'react-spring'
+import './home.css';
+import logo from '../../assets/blogowhite.png'
 // import HomeSlider from '../../components/HomeSlider'
+import panel1 from '../../assets/P1.png';
+import sidelogo from '../../assets/sidelogo.png';
+import iconsbubble from '../../assets/iconsbubble.png';
+import logotitle from '../../assets/logotitle.png';
+import HomeSlider from '../../components/HomeSlider/HomeSlider';
 
+const front = (<Image src={panel1}/>)
+const title = (<Image src = {logotitle}/>)
+const circleimg = (<Image src = {iconsbubble}/>)
+const sideimg = (<Image src ={sidelogo} style={{height:'1029px', width:'auto'}} />)
+
+const Page = ({ offset, caption, first, second, gradient, onClick, image }) => (
+  <React.Fragment>
+    <ParallaxLayer offset={offset} speed={0.2} onClick={onClick} style={{ overflowX: 'auto'}} onScroll={e => e.stopPropagation()}>
+      <div className="slopeBegin" />
+    </ParallaxLayer>
+
+    <ParallaxLayer offset={offset} speed={-0.2} onClick={onClick}>
+      <div className={`slopeEnd ${gradient}`} />
+    </ParallaxLayer>
+
+    <ParallaxLayer className="text" offset={offset} speed={0.3}>
+      <span>0{offset + 1}</span>
+    </ParallaxLayer>
+
+    <ParallaxLayer className="text header" offset={offset} speed={0.4}>
+      <span>
+        <p style={{ fontSize: 20 }}>{caption}</p>
+        <div className={`stripe ${gradient}`} />
+        <div>{first}</div>
+        <div>{second}</div>
+        <div>{image}</div>
+      </span>
+    </ParallaxLayer>
+  </React.Fragment>
+)
+
+const bubbleDes = '';
+const statement = 'As the anti-social media app, Bubbles is commited to providing users with a personal way to connect with friends and family without compromising the user\'s privacy. We do not believe in selling user data and aim to keep the user\'s experience as intimiate and secure as possible. We value the user\'s right in keeping their information and connections personal.'; 
+const getStarted = (
+  <Button.Group >
+  <Button inverted color ='grey' as='a' href = '/login'>Login</Button>
+  <Button.Or inverted text='' />
+  <Button inverted color = 'grey' as='a' href='/register'>Sign Up</Button>
+  </Button.Group>
+  )  
 
 class DesktopContainer extends Component {
   state = {}
@@ -32,34 +81,37 @@ class DesktopContainer extends Component {
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
           once={false}
-          onBottomPassed={this.showFixedMenu}
+          // onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
+            basic
             inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{padding: '.2em 0em' }}
           >
             <Menu
               fixed={fixed ? 'top' : null}
               inverted={!fixed}
-              pointing={!fixed}
               secondary={!fixed}
               size='large'
             >
               <Container>
-
-                <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed} href='/login'>
-                    Log in
-                  </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} href='/register'>
-                    Sign Up
-                  </Button>
+                <Menu.Item>
+                <Image src ={logo} style={{height: '58px', width: 'auto'}}/>
                 </Menu.Item>
+                <Menu.Item position = 'right'>{getStarted}</Menu.Item>
+                {/* <Menu.Item position='right' as='a'  href='/login'>
+                    Login
+                </Menu.Item>
+                <Menu.Item  as='a'  href='/register'>
+                Sign Up
+                </Menu.Item> */}
+  
               </Container>
             </Menu>
             {/* <HomeSlider></HomeSlider> */}
+  
           </Segment>
         </Visibility>
 
@@ -125,7 +177,6 @@ class MobileContainer extends Component {
                   </Menu.Item>
                 </Menu>
               </Container>
-              {/* <Home mobile /> */}
             </Segment>
 
             {children}
@@ -151,130 +202,73 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const HomepageLayout = () => (
-  <ResponsiveContainer>
-    {/* <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row> */}
-    {/* <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Companies and Companions
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              We can give your company superpowers to do things that they never thought possible.
-              Let us delight your customers and empower your needs... through pure data analytics.
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              We Make Bananas That Can Dance
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-              bioengineered.
-            </p>
-          </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
-          </Grid.Column> */}
-    {/* </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment> */}
-    {/* <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "What a Company"
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "I shouldn't have gone with their competitor."
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='/images/avatar/large/nan.jpg' />
-              <b>Nan</b> Chief Fun Officer Acme Toys
-            </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the
-          art of doing nothing by providing massive amounts of whitespace and generic content that
-          can seem massive, monolithic and worth your attention.
-        </p>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
-        <Divider
-          as='h4'
-          className='header'
-          horizontal
-          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-        >
-          <a href='/home'>Case Studies</a>
-        </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Did We Tell You About Our Bananas?
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-          it's really true. It took years of gene splicing and combinatory DNA research, but our
-          bananas can really dance.
-        </p>
-        <Button as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
-      </Container>
-    </Segment> */}
-    <Segment inverted style={{ padding: '5em 0em' }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item as='a'>About</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Team' />
-              <List link inverted>
-                <List.Item as='a'>William Ma</List.Item>
-                <List.Item as='a'>Luis Rishi Puno</List.Item>
-                <List.Item as='a'>Jonas Morel</List.Item>
-                <List.Item as='a'>Alicia Chan</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-              Bubbles: The Anti-Social Media Social Media App 
-              </Header>
-              <p>
-                <Icon name ='github' size = ''/>View on Github 
-                <br/>
-                <br/>
-                Bubbles© Copyright 2018
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
-  </ResponsiveContainer>
-)
+class HomepageLayout extends React.Component {
+  // scroll = to => this.refs.parallax.scrollTo(to)
+  render(){
+    return (
+ 
+      <ResponsiveContainer>
+        <HomeSlider/>
+      {/* <Parallax className="container" ref="parallax" pages={3} horizontal scrolling={false}>
+        <Page className = "firstSlide"
+        offset={0} 
+        gradient="pink" 
+        caption="who we are" 
+        first={front}
+        second="dolor sit" 
+        onClick={() => this.scroll(1)} 
+        />
+        <Page 
+        offset={1} 
+        gradient="black" 
+        caption="what we d" 
+        first={sideimg}
+        second="adipiscing elit" 
+        onClick={() => this.scroll(2)} 
+        />
+        <Page 
+        offset={2} 
+        gradient="tomato" 
+        caption="Our Mission Statement" 
+        first={statement}
+        // second="est dignissim" 
+        onClick={() => this.scroll(0)} />
+   
+      </Parallax> */}
+    {/* footer  */}
+      <Segment basic inverted style={{ padding: '6em 0em' , marginTop: '-10px'}}>
+        <Container>
+          <Grid divided inverted stackable>
+            <Grid.Row>
+              <Grid.Column width={6}>
+              <Header inverted as='h4' >
+                Bubbles: The Anti-Social Media Social Media App 
+                </Header>
+                <p>
+                  <Icon name ='github' size = ''/>View on Github 
+                  <br/>
+                  <br/>
+                  Bubbles© Copyright 2018
+                </p>
+              </Grid.Column>
+              <Grid.Column width={6}>
+                <Header as='h4' inverted content='Team' />
+                <List inverted link >
+                  <List.Item as='a' href='https://github.com/LRPuno'>Luis Rishi Puno || Project Manager | Database Design  </List.Item>
+                  <List.Item as='a' href='https://github.com/AngelusQQ'>William Ma || Back-End OAuth</List.Item>
+                  <List.Item as='a' href='https://github.com/jame08'>Jonas Morel || Full-Stack React</List.Item> 
+                  <List.Item as='a' href='https://github.com/aliciaC1'>Alicia Chan || UI / UX | Front-End React</List.Item>
+                  <List.Item as='a' href='https://github.com/aabrole'>Aman Abole || Chat Feature</List.Item>
+                </List>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </Segment>
+    </ResponsiveContainer>
+    )
+    
+  }
+}
+ 
 export default HomepageLayout

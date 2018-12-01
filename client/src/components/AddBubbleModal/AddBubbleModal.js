@@ -5,8 +5,10 @@ import API from '../../utils/API';
 import querystring from 'querystring';
 
 class AddBubbleModal extends Component {
+
   state = { open: false, name: '' }
   bubbleOptions = [{ value: 1, text: 'Circle One' }, { value: 2, text: 'Circle Two' }, { value: 3, text: 'Circle Three' }]
+
 
   show = dimmer => () => this.setState({ dimmer, open: true })
 
@@ -16,7 +18,7 @@ class AddBubbleModal extends Component {
     let bubbles = this.props.bubbles;
     this.setState({ open: false })
 
-    API.createBubble({ name: this.state.name }).then(res => {
+    API.createBubble({ name: this.state.name}).then(res => {
       console.log("WHAT DIS", res.data)
       bubbles.push(res.data);
       this.props.updateBubbles(bubbles)
@@ -32,13 +34,14 @@ class AddBubbleModal extends Component {
 
   handleChange = (event) => {
 
-    this.setState({ name: event.target.value })
+    this.setState({ name: event.target.value, bubbleCategories: event.target.value })
     console.log(event.target.value)
+    console.log(this.state.bubbleCategories)
   }
 
   render() {
     const { open, dimmer } = this.state
-    const value = ''
+    
 
     return (
       <div>
@@ -58,11 +61,11 @@ class AddBubbleModal extends Component {
                   placeholder='Bubble Name'
                   name="name"
                   onChange={this.handleChange} />
-              </Form.Field>
-              <Form.Group required inline>
-                <label>Bubble Circle</label>
-                <Dropdown placeholder='Bubble Circle' search selection options={this.bubbleOptions} />
-              </Form.Group>
+                </Form.Field>
+                <Form.Group required inline>
+              <label>Bubble Circle</label>
+              <Dropdown placeholder='Bubble Circle' value={this.state.bubbleCategories} selection options={this.bubbleOptions} onChange={this.handleChange}/>
+            </Form.Group>
             </Form>
           </Modal.Content>
           <Modal.Actions>

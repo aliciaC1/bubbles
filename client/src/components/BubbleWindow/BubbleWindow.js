@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
 import { Rnd } from "react-rnd";
-import { Grid, Icon, Popup, List, Button } from 'semantic-ui-react';
+import { Grid, Icon, Popup, Image, Button } from 'semantic-ui-react';
 import Feed from '../Feed';
 import ImageGallery from '../ImageGallery';
 import UserAvatar from '../UserAvatar';
 import FormBubble from '../FormBubble';
 import './BubbleWindow.css';
 import axios from 'axios';
+import smlogo from '../../assets/logoblack.png'
 
 const style = {
   borderRadius: 0,
   opacity: 0.85,
   padding: '2em',
 }
-
-
 
 class BubbleWindow extends Component {
 
@@ -83,8 +82,6 @@ class BubbleWindow extends Component {
           width="1200px"
           padding="10px"
         >
-
-
           <TitleBar title={this.props.name}
             controls
             // isMaximized={this.state.isMaximized}
@@ -98,22 +95,18 @@ class BubbleWindow extends Component {
 
           {/* Displays Window Body Content */}
           {/* Displays TopBar Avatar + Settings */}
-          <Grid padded celled='internally'>
-            <Grid.Row>
-              <div className="controlWindow">
-                <List divided horizontal size='small' textAlign='center'>
-                  <List.Item>
-                    <List.Content>
-                      {/* Show User's Avatar + Name here  */}
-                      <UserAvatar />
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    {/* Bubble Settings here  */}
-                    <List.Content>
-                      <Popup
+          <Grid celled='internally'>
+          <Grid.Row  columns={3}>
+          <Grid.Column verticalAlign='middle'>
+            
+            <Image src = {smlogo} textAlign='center' size ='small' style ={{margin:'auto', marginTop: '-10px'}}/>
+          </Grid.Column>
+          <Grid.Column >
+            <Popup
                         trigger={
-                          <Button basic color='black' animated='vertical'>
+                          <Button basic color='black' animated='vertical' style={{
+                            marginLeft: '104px',
+                            marginTop: '2px'}}>
                             <Button.Content visible> <Icon name='settings' /> Bubble Settings</Button.Content>
                             <Button.Content hidden>Manage Preferences</Button.Content>
                           </Button>
@@ -123,14 +116,13 @@ class BubbleWindow extends Component {
                         style={style}
                         wide
                       />
-                    </List.Content>
-                  </List.Item>
-                  <List.Item>
-                    {/* Bubble Magic Link Button here  */}
-                    <List.Content>
-                      <Popup
+          </Grid.Column>
+          <Grid.Column>
+            <Popup 
                         trigger={
-                          <Button basic color='black' animated='vertical'>
+                          <Button basic color='black' animated='vertical' style={{
+                            marginLeft: '104px',
+                            marginTop: '2px'}}>
                             <Button.Content visible> <Icon name='magic' /> Magic Link</Button.Content>
                             <Button.Content onClick={this.getInvite} hidden>Invite Members</Button.Content>
                           </Button>
@@ -140,11 +132,9 @@ class BubbleWindow extends Component {
                         style={style}
                         inverted
                       />
-                    </List.Content>
-                  </List.Item>
-                </List>
-              </div>
-            </Grid.Row>
+          </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
             <Grid.Column width={8} textAlign="center">
               {/* Display Post Feed Here  */}
               <Feed
@@ -159,6 +149,7 @@ class BubbleWindow extends Component {
               {/* Display Image Feed Here  */}
               <ImageGallery bubbleID={this.props.bubbleID} />
             </Grid.Column>
+            </Grid.Row>
           </Grid>
         </Window>
 
