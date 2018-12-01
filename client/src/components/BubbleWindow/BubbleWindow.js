@@ -87,7 +87,7 @@ class BubbleWindow extends Component {
             theme={this.props.theme}
             background={this.props.color}
             onCloseClick={this.onCloseClick}
-            onMinimizeClick={this.minimize}
+            onMinimizeClick={this.onCloseClick}
             onMaximizeClick={this.toggleMaximize}
             onRestoreDownClick={this.toggleMaximize}
           />
