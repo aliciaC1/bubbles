@@ -24,6 +24,7 @@ import panel1 from '../../assets/P1.png';
 import sidelogo from '../../assets/sidelogo.png';
 import iconsbubble from '../../assets/iconsbubble.png';
 import logotitle from '../../assets/logotitle.png';
+import HomeSlider from '../../components/HomeSlider/HomeSlider';
 
 const front = (<Image src={panel1}/>)
 const title = (<Image src = {logotitle}/>)
@@ -60,7 +61,7 @@ const bubbleDes = '';
 const statement = 'As the anti-social media app, Bubbles is commited to providing users with a personal way to connect with friends and family without compromising the user\'s privacy. We do not believe in selling user data and aim to keep the user\'s experience as intimiate and secure as possible. We value the user\'s right in keeping their information and connections personal.'; 
 const getStarted = (
   <Button.Group >
-  <Button inverted color ='teal' as='a' href = '/login'>Login</Button>
+  <Button inverted color ='grey' as='a' href = '/login'>Login</Button>
   <Button.Or inverted text='' />
   <Button inverted color = 'grey' as='a' href='/register'>Sign Up</Button>
   </Button.Group>
@@ -202,12 +203,13 @@ ResponsiveContainer.propTypes = {
 }
 
 class HomepageLayout extends React.Component {
-  scroll = to => this.refs.parallax.scrollTo(to)
+  // scroll = to => this.refs.parallax.scrollTo(to)
   render(){
     return (
  
       <ResponsiveContainer>
-      <Parallax className="container" ref="parallax" pages={3} horizontal scrolling={false}>
+        <HomeSlider/>
+      {/* <Parallax className="container" ref="parallax" pages={3} horizontal scrolling={false}>
         <Page className = "firstSlide"
         offset={0} 
         gradient="pink" 
@@ -232,9 +234,9 @@ class HomepageLayout extends React.Component {
         // second="est dignissim" 
         onClick={() => this.scroll(0)} />
    
-      </Parallax>
+      </Parallax> */}
     {/* footer  */}
-      <Segment basic inverted style={{ padding: '5em 0em', marginTop: '1000px' }}>
+      <Segment basic inverted style={{ padding: '6em 0em' , marginTop: '-10px'}}>
         <Container>
           <Grid divided inverted stackable>
             <Grid.Row>

@@ -5,7 +5,7 @@
 	opacity: 0;
 }
 
-.slide button {
+.slide image {
 	transition: all 0.3s ease;
 	-webkit-transform: translateY(20px);
 					transform: translateY(20px);
@@ -13,6 +13,12 @@
 }
 
 .slide p {
+	transition: all 0.3s ease;
+	-webkit-transform: translateY(20px);
+					transform: translateY(20px);
+	opacity: 0;
+}
+.slide .image .ui{
 	transition: all 0.3s ease;
 	-webkit-transform: translateY(20px);
 					transform: translateY(20px);
@@ -44,9 +50,9 @@
 .slide.animateIn.previous h1,
 .slide.current h1,
 .slide.animateIn.next h1,
-.slide.animateIn.previous button,
-.slide.current button,
-.slide.animateIn.next button,
+.slide.animateIn.previous image,
+.slide.current image,
+.slide.animateIn.next image,
 .slide.animateIn.previous p,
 .slide.current p,
 .slide.animateIn.next p,

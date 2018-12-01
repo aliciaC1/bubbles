@@ -73,25 +73,18 @@ class UserDashboard extends React.Component {
               </Grid.Column>
               <Grid.Column width={14}>
                 <br />
-                <div className='bubbleCanvas'>
-                  <Segment basic >
+                <div >         
+                    <Segment basic className='bubbleCanvas'verticalAlign='middle' centered > 
                     {this.props.bubbles ? (
                       this.props.bubbles.map(bubble => (
-                        <Bubble
+                        <Bubble className="cbubble"
                           id={bubble._id}
                           name={bubble.name}
                           users={bubble._userID}
                           username={this.props.username}
-
-
-
-
-                        />
-                      ))) : null
-                    }
-
-
-                  </Segment>
+                        />))) : null
+                      }
+                    </Segment>
                 </div>
               </Grid.Column>
             </Grid.Row>
