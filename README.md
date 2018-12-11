@@ -21,10 +21,6 @@ o Each user's profile and bubbles are kept private. Users cannot search for othe
 
 o Joining Bubbles is easy. Only an email and age verification is required, no further information is needed. 
 
-## Inspiration 
-
-o As the anti-social media app, Bubbles is commited to providing users with a personal way to connect with friends and family without compromising the user's privacy. We do not believe in selling user data and aim to keep the user's experience as intimiate and secure as possible. We value the user's right in keeping their information and connections personal. 
-
 ## Features 
 
 ![FEATURES](https://i.imgur.com/oZ9gS2o.png)
