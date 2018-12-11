@@ -1,4 +1,9 @@
 # Bubbles
+The Anti-Social Media App 
+![alt text](https://i.imgur.com/pLNuTLj.png)
+
+![alt text](https://i.imgur.com/h0McPrI.png)
+
 
 ## Bubbles : The Anti-Social Media App 
 
@@ -22,20 +27,12 @@ o As the anti-social media app, Bubbles is commited to providing users with a pe
 
 ## Features 
 
-### User Dashboard: 
+![FEATURES](https://i.imgur.com/oZ9gS2o.png)
 
-![alt text](./imgs/db1.png)
+## Contributors: 
 
-![alt text](./imgs/db.png)
-
-### User Feed / Chat: 
-
-![alt text](./imgs/feed.png)
-
-## Members 
-
-Jonas - Front-End 
-Luis - Back-end models / posts
-William - Back-end login /reg 
-Aman -  back-end chat 
-Alicia - UX/UI / front-end
+Jonas Morel 
+Luis Rishi Puno
+William Ma
+Aman Abrole 
+Alicia Chan
