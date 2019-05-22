@@ -5,7 +5,7 @@ The Anti-Social Media App
 ![alt text](https://i.imgur.com/h0McPrI.png)
 
 
-## Bubbles : The Anti-Social Media App 
+## b u b b l e s : The Anti-Social Media App 
 
 o Unlike Facebook and Instagram, Bubbles is a social media application which allows users to connect within the Bubbles community without requiring profiles to have centralized content and friend list. 
 
